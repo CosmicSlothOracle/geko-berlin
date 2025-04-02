@@ -1,0 +1,190 @@
+html
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Kollektiv für solidarische Gesundheit e.V." name="description"/>
+<title>Collective for solidarity health e.v.</title>
+Montserrat font
+<link href="/css/style.css" rel="stylesheet"/>
+Stylesheet
+<link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+Background Slideshow
+<div class="background-slideshow">
+<img alt="Hintergrundbild 1" src="https://link.storjshare.io/raw/jugzctopkbs4vqzqtx756s2jmw3q/geko/Diashow/dia1.png"/>
+<img alt="Hintergrundbild 2" src="https://link.storjshare.io/raw/juiieutbu2jnjxxb4cgxl3waxrbq/geko/Diashow/dia2.png"/>
+</div>
+Content Wrapper
+<div class="content-wrapper">
+<header role="banner">
+<div class="logo-container">
+<img alt="Logo Kollektiv für solidarische Gesundheit e.V." class="logo" src="https://link.storjshare.io/raw/jvqgd5lrwvx7gnp7lrcszh7qfjmq/geko/Logokosge.png">
+</img></div>
+<div class="language-controls">
+<label class="visually-hidden" for="language">Choose language</label>
+<select id="language" onchange="changeLanguage(this.value);">
+<option value="index.html">Deutsch 🇩🇪</option>
+<option value="lang/tr.html">Turkish 🇹🇷</option>
+<option value="lang/ar.html">العربية 🇸🇦</option>
+<option value="lang/ru.html">Русский 🇷🇺</option>
+<option selected="selected" value="lang/en.html">English 🇬🇧</option>
+</select>
+<a aria-label="Einfache Sprache" class="simple-language-btn" href="lang/einfach.html">Simple language</a>
+</div>
+</header>
+<nav aria-label="Hauptnavigation" role="navigation">
+<ul class="main-nav">
+<li><a href="#start">Start</a></li>
+<li><a href="#about">Who we are</a></li>
+<li><a href="#concept">The concept</a></li>
+<li><a href="#goal">Our goal</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#join">Take part</a></li>
+<li><a href="#contact">Contact &amp; imprint</a></li>
+</ul>
+</nav>
+Hero Slideshow
+<div class="hero-slideshow">
+<div class="hero-slide active">
+<img alt="Stadtteil-Gesundheits-Zentrum" src="https://link.storjshare.io/raw/jugzctopkbs4vqzqtx756s2jmw3q/geko/Diashow/dia1.png"/>
+</div>
+<div class="hero-slide">
+<img alt="Gemeinschaftsaktivitäten" src="https://link.storjshare.io/raw/juiieutbu2jnjxxb4cgxl3waxrbq/geko/Diashow/dia2.png"/>
+</div>
+</div>
+<main id="main-content">
+<section id="start">
+<h1>Collective for solidarity health e.v.</h1>
+<p>[Mission &amp; Vision Place owner]</p>
+</section>
+<section id="about">
+<h2>Who we are</h2>
+<p>We are a group of people who have a common wish to make health care in the neighborhood more holistic and more social. For this purpose, we have been working as a collective for solidarity health e.V. for some time on the implementation of a district health center in Berlin. We are guided by existing structures such as the Ko Neukölln and the Veddel polyclinic in Hamburg, with which we are in exchange about the Germany-wide polyclinic syndicate.</p>
+</section>
+<section id="concept">
+<h2>The concept</h2>
+<p>Body and soul, where and how we live and our place in society together influence our health and our quality of life. To look at and strengthen this as a whole is an essential aspect of our idea of ​​a district health center. Specifically, this means the close cooperation between different professional groups within the healthcare system (such as doctors from different specialties, psychologists, therapists, nursing staff) as well as social workers and people who work legally, pedagogically and activist. It is particularly important to us that the residents of the neighborhood can actively participate in the development and design of the center in order to create a place that is adapted to their needs and grows with them.</p>
+</section>
+<section id="goal">
+<h2>Our goal</h2>
+<p>Our goal is to promote health - i.e. the physical, mental and social well -being - of the residents of a neighborhood and to offer a place of encounter, exchange and networking (e.g. in the form of a café, rooms for workshops and groups). Our work is currently focusing on the establishment of first supply offers in Lichtenberg, but in perspective we want to bring the concept of a district health center to all Berlin neighborhoods in which the residents can be particularly strengthened.</p>
+</section>
+<section id="events">
+<h2>Events</h2>
+<div class="slideshow">
+<img alt="Diashow Bild 1" src="https://link.storjshare.io/raw/jugzctopkbs4vqzqtx756s2jmw3q/geko/Diashow/dia1.png"/>
+<img alt="Diashow Bild 2" src="https://link.storjshare.io/raw/juiieutbu2jnjxxb4cgxl3waxrbq/geko/Diashow/dia2.png"/>
+</div>
+</section>
+<section id="join">
+<h2>Take part</h2>
+<p>We are a relatively homogeneous, white, academically socialized group and want more perspectives in order to be able to meet the requirements of the people in the neighborhood! We look forward to everyone who gets to know us, get an idea of ​​us and want to enrich us with your individual perspective and your experiences! If you would like to become active with us or want to support us, have a warm invitation to stop by at the next meeting or to contact us via our email address :)</p>
+</section>
+</main>
+<footer id="contact" role="contentinfo">
+<h2>Contact &amp; imprint</h2>
+<p><strong>Collective for solidarity health e.v.</strong></p>
+<p>Email:<a href="mailto:info@kosge-berlin.de">info@kosge-berlin.de</a></p>
+<p>Telephone:<a href="tel:+4915207240947">+49 1520 7240947</a></p>
+<p>[Placeholder for data protection, imprint, card, calendar, donation link, external links]</p>
+</footer>
+</div>
+Script for dynamic background slideshow
+<script>
+        // This function makes it easy to add more images to the background slideshow
+        function addBackgroundImage(imageUrl) {
+            const slideshow = document.querySelector('.background-slideshow');
+            if (slideshow) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Hintergrundbild';
+                slideshow.appendChild(img);
+
+                // Update animation delays for all images
+                const images = slideshow.querySelectorAll('img');
+                const totalDuration = 12; // seconds
+                const individualDuration = totalDuration / images.length;
+
+                images.forEach((img, index) => {
+                    img.style.animationDelay = `${ index * individualDuration }s`;
+                });
+            }
+        }
+
+        // Example of how to add more images in the future:
+        // addBackgroundImage('https://link.storjshare.io/raw/your-new-image-url');
+
+        // Hero Slideshow functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                // Hide all slides
+                heroSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+
+                // Show the current slide
+                heroSlides[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % heroSlides.length;
+                showSlide(currentSlide);
+            }
+
+            // Initialize slideshow
+            showSlide(currentSlide);
+
+            // Change slide every 6 seconds
+            setInterval(nextSlide, 6000);
+        });
+    </script>
+Language Switching Script
+<script>
+        // Language Configuration
+        const languageConfig = {
+            'de': '/index.html',
+            'en': '/lang/en.html',
+            'tr': '/lang/tr.html',
+            'ru': '/lang/ru.html',
+            'ar': '/lang/ar.html'
+        };
+
+        function changeLanguage(targetLang) {
+            // Get the target URL from the configuration
+            const targetUrl = languageConfig[targetLang];
+
+            if (targetUrl) {
+                // Save language preference
+                localStorage.setItem('preferredLanguage', targetLang);
+
+                // Redirect to the selected language page
+                window.location.href = targetUrl;
+            }
+        }
+
+        // On page load, check for saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            const languageSelect = document.getElementById('language');
+
+            // Set the dropdown to the saved or current language
+            if (savedLanguage) {
+                languageSelect.value = savedLanguage;
+            } else {
+                // Default to German if no preference saved
+                languageSelect.value = 'de';
+            }
+
+            // Add event listener to language select
+            languageSelect.addEventListener('change', (event) => {
+                changeLanguage(event.target.value);
+            });
+        });
+    </script>
+</body>
+</html>

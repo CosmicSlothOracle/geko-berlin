@@ -5,11 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Kollektiv für solidarische Gesundheit e.V." />
-    <title>Kollektiv für solidarische Gesundheit e.V.</title>
+    <title data-translate="title">Kollektiv für solidarische Gesundheit e.V.</title>
     <!-- Schriftart Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Translation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.14/i18next.min.js"></script>
 </head>
 
 <body>
@@ -28,74 +30,76 @@
                 alt="Logo Kollektiv für solidarische Gesundheit e.V." class="logo" />
             </div>
             <div class="language-controls">
-                <label for="language" class="visually-hidden">Sprache wählen</label>
-                <select id="language" onchange="location = this.value;">
-                    <option value="index.html">Deutsch</option>
-                    <option value="lang/tr.html">Türkçe</option>
-                    <option value="lang/ar.html">العربية</option>
-                    <option value="lang/ru.html">Русский</option>
-                    <option value="lang/en.html">English</option>
+                <label for="language" class="visually-hidden" data-translate="language-label">Sprache wählen</label>
+                <select id="language">
+                    <option value="de">Deutsch 🇩🇪</option>
+                    <option value="tr">Türkçe 🇹🇷</option>
+                    <option value="ar">العربية 🇸🇦</option>
+                    <option value="ru">Русский 🇷🇺</option>
+                    <option value="en">English 🇬🇧</option>
+                    <option value="simple">Einfache Sprache 🔤</option>
                 </select>
-                <a href="lang/einfach.html" class="simple-language-btn" aria-label="Einfache Sprache">Einfache
-                    Sprache</a>
             </div>
         </header>
         <nav role="navigation" aria-label="Hauptnavigation">
             <ul class="main-nav">
-                <li><a href="#start">Start</a></li>
-                <li><a href="#about">Wer wir sind</a></li>
-                <li><a href="#concept">Das Konzept</a></li>
-                <li><a href="#goal">Unser Ziel</a></li>
-                <li><a href="#events">Veranstaltungen</a></li>
-                <li><a href="#join">Mitmachen</a></li>
-                <li><a href="#contact">Kontakt & Impressum</a></li>
+                <li><a href="#start" data-translate="nav-start">Start</a></li>
+                <li><a href="#about" data-translate="nav-about">Wer wir sind</a></li>
+                <li><a href="#concept" data-translate="nav-concept">Das Konzept</a></li>
+                <li><a href="#goal" data-translate="nav-goal">Unser Ziel</a></li>
+                <li><a href="#events" data-translate="nav-events">Veranstaltungen</a></li>
+                <li><a href="#join" data-translate="nav-join">Mitmachen</a></li>
+                <li><a href="#contact" data-translate="nav-contact">Kontakt & Impressum</a></li>
             </ul>
         </nav>
+        <!-- Hero Slideshow -->
+        <div class="hero-slideshow">
+            <div class="hero-slide active">
+                <img src="https://link.storjshare.io/raw/jugzctopkbs4vqzqtx756s2jmw3q/geko/Diashow/dia1.png"
+                alt="Stadtteil-Gesundheits-Zentrum">
+            </div>
+            <div class="hero-slide">
+                <img src="https://link.storjshare.io/raw/juiieutbu2jnjxxb4cgxl3waxrbq/geko/Diashow/dia2.png"
+                alt="Gemeinschaftsaktivitäten">
+            </div>
+        </div>
         <main id="main-content">
             <section id="start">
-                <h1>Kollektiv für solidarische Gesundheit e.V.</h1>
-                <p>[Mission & Vision Platzhalter]</p>
+                <h1 data-translate="start-title">Kollektiv für solidarische Gesundheit e.V.</h1>
+                <p data-translate="start-description">[Mission & Vision Platzhalter]</p>
             </section>
             <section id="about">
-                <h2>Wer wir sind</h2>
-                <p>Wir sind eine Gruppe von Menschen, die den gemeinsamen Wunsch haben, die gesundheitliche Versorgung
-                    im
-                    Kiez ganzheitlicher und sozialer zu gestalten. Dazu arbeiten wir als Kollektiv für solidarische
-                    Gesundheit e.V. seit einiger Zeit an der Umsetzung eines Stadtteilgesundheitszentrums in Berlin.
-                    Hierbei
-                    orientieren wir uns an bereits vorhandenen Strukturen wie dem GeKo Neukölln und der Poliklinik
-                    Veddel in
-                    Hamburg, mit denen wir über das deutschlandweite Poliklinik-Syndikat in Austausch stehen.</p>
+                <h2 data-translate="about-title">Wer wir sind</h2>
+                <p data-translate="about-description">Wir sind eine Gruppe von Menschen, die den gemeinsamen Wunsch
+                    haben, die gesundheitliche Versorgung im Kiez ganzheitlicher und sozialer zu gestalten. Dazu
+                    arbeiten wir als Kollektiv für solidarische Gesundheit e.V. seit einiger Zeit an der Umsetzung eines
+                    Stadtteilgesundheitszentrums in Berlin. Hierbei orientieren wir uns an bereits vorhandenen
+                    Strukturen wie dem GeKo Neukölln und der Poliklinik Veddel in Hamburg, mit denen wir über das
+                    deutschlandweite Poliklinik-Syndikat in Austausch stehen.</p>
             </section>
             <section id="concept">
-                <h2>Das Konzept</h2>
-                <p>Körper und Seele, wo und wie wir leben und unser Platz in der Gesellschaft beeinflussen gemeinsam
-                    unsere
-                    Gesundheit und unsere Lebensqualität. Diese im Gesamten zu betrachten und zu stärken ist ein
-                    wesentlicher Aspekt unserer Idee eines Stadtteilgesundheitszentrums. Konkret bedeutet das die enge
-                    Zusammenarbeit zwischen verschiedenen Berufsgruppen innerhalb des Gesundheitswesens (wie Ärzt*innen
-                    verschiedener Fachrichtungen, Psycholog*innen, Therapeut*innen, Pflegefachkräften) sowie
-                    Sozialarbeiter*innen und Menschen, die juristisch, pädagogisch und aktivistisch tätig sind. Uns ist
-                    besonders wichtig, dass die Bewohner*innen des Kiezes dabei aktiv an der Entwicklung und Gestaltung
-                    des
-                    Zentrums beteiligt sein können, um einen Ort zu schaffen, der an ihre Bedürfnisse angepasst ist und
-                    mit
-                    diesen wächst.</p>
+                <h2 data-translate="concept-title">Das Konzept</h2>
+                <p data-translate="concept-description">Körper und Seele, wo und wie wir leben und unser Platz in der
+                    Gesellschaft beeinflussen gemeinsam unsere Gesundheit und unsere Lebensqualität. Diese im Gesamten
+                    zu betrachten und zu stärken ist ein wesentlicher Aspekt unserer Idee eines
+                    Stadtteilgesundheitszentrums. Konkret bedeutet das die enge Zusammenarbeit zwischen verschiedenen
+                    Berufsgruppen innerhalb des Gesundheitswesens (wie Ärzt*innen verschiedener Fachrichtungen,
+                    Psycholog*innen, Therapeut*innen, Pflegefachkräften) sowie Sozialarbeiter*innen und Menschen, die
+                    juristisch, pädagogisch und aktivistisch tätig sind. Uns ist besonders wichtig, dass die
+                    Bewohner*innen des Kiezes dabei aktiv an der Entwicklung und Gestaltung des Zentrums beteiligt sein
+                    können, um einen Ort zu schaffen, der an ihre Bedürfnisse angepasst ist und mit diesen wächst.</p>
             </section>
             <section id="goal">
-                <h2>Unser Ziel</h2>
-                <p>Unser Ziel ist es, die Gesundheit - also das körperliche, seelische und soziale Wohlbefinden - der
-                    Bewohner*innen eines Kiezes zu fördern und einen Ort der Begegnung, des Austausches und der
-                    Vernetzung
-                    anzubieten (z.B. in Form eines Cafés, Räume für Workshops und Gruppen). Aktuell fokussiert sich
-                    unsere
-                    Arbeit auf den Aufbau erster Versorgungsangebote in Lichtenberg, perspektivisch möchten wir das
-                    Konzept
-                    eines Stadtteilgesundheitszentrum jedoch in alle Berliner Kieze bringen, in denen die Bewohner*innen
-                    dadurch besonders gestärkt werden können.</p>
+                <h2 data-translate="goal-title">Unser Ziel</h2>
+                <p data-translate="goal-description">Unser Ziel ist es, die Gesundheit - also das körperliche, seelische
+                    und soziale Wohlbefinden - der Bewohner*innen eines Kiezes zu fördern und einen Ort der Begegnung,
+                    des Austausches und der Vernetzung anzubieten (z.B. in Form eines Cafés, Räume für Workshops und
+                    Gruppen). Aktuell fokussiert sich unsere Arbeit auf den Aufbau erster Versorgungsangebote in
+                    Lichtenberg, perspektivisch möchten wir das Konzept eines Stadtteilgesundheitszentrum jedoch in alle
+                    Berliner Kieze bringen, in denen die Bewohner*innen dadurch besonders gestärkt werden können.</p>
             </section>
             <section id="events">
-                <h2>Veranstaltungen</h2>
+                <h2 data-translate="events-title">Veranstaltungen</h2>
                 <div class="slideshow">
                     <img src="https://link.storjshare.io/raw/jugzctopkbs4vqzqtx756s2jmw3q/geko/Diashow/dia1.png"
                     alt="Diashow Bild 1">
@@ -104,24 +108,20 @@
                 </div>
             </section>
             <section id="join">
-                <h2>Mitmachen</h2>
-                <p>Wir sind eine relativ homogene, weiße, akademisch sozialisierte Gruppe und wünschen uns mehr
-                    Perspektiven, um den Anforderungen der Menschen im Kiez gerecht werden zu können! Wir freuen uns
-                    über
-                    alle, die uns kennenlernen, sich ein Bild von uns machen und uns mit ihrer individuellen Sicht und
-                    ihren
-                    Erfahrungen bereichern wollen! Wer gerne bei uns aktiv werden bzw. uns unterstützen möchte, ist
-                    herzlich
-                    eingeladen beim nächsten Treffen vorbeizuschauen oder uns über unsere E-Mail-Adresse zu kontaktieren
-                    :)
-                </p>
+                <h2 data-translate="join-title">Mitmachen</h2>
+                <p data-translate="join-description">Wir sind eine relativ homogene, weiße, akademisch sozialisierte
+                    Gruppe und wünschen uns mehr Perspektiven, um den Anforderungen der Menschen im Kiez gerecht werden
+                    zu können! Wir freuen uns über alle, die uns kennenlernen, sich ein Bild von uns machen und uns mit
+                    ihrer individuellen Sicht und ihren Erfahrungen bereichern wollen! Wer gerne bei uns aktiv werden
+                    bzw. uns unterstützen möchte, ist herzlich eingeladen beim nächsten Treffen vorbeizuschauen oder uns
+                    über unsere E-Mail-Adresse zu kontaktieren :)
             </section>
         </main>
         <footer id="contact" role="contentinfo">
-            <h2>Kontakt & Impressum</h2>
-            <p><strong>Kollektiv für solidarische Gesundheit e.V.</strong></p>
-            <p>Email: <a href="mailto:info@kosge-berlin.de">info@kosge-berlin.de</a></p>
-            <p>Telefon: <a href="tel:+4915207240947">+49 1520 7240947</a></p>
+            <h2 data-translate="contact-title">Kontakt & Impressum</h2>
+            <p><strong data-translate="contact-org">Kollektiv für solidarische Gesundheit e.V.</strong></p>
+            <p data-translate="contact-email">Email: <a href="mailto:info@kosge-berlin.de">info@kosge-berlin.de</a></p>
+            <p data-translate="contact-phone">Telefon: <a href="tel:+4915207240947">+49 1520 7240947</a></p>
             <p>[Platzhalter für Datenschutz, Impressum, Karte, Kalender, Spendenlink, externe Verlinkungen]</p>
         </footer>
     </div>
@@ -149,6 +149,228 @@
 
         // Example of how to add more images in the future:
         // addBackgroundImage('https://link.storjshare.io/raw/your-new-image-url');
+
+        // Hero Slideshow functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                // Hide all slides
+                heroSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+
+                // Show the current slide
+                heroSlides[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % heroSlides.length;
+                showSlide(currentSlide);
+            }
+
+            // Initialize slideshow
+            showSlide(currentSlide);
+
+            // Change slide every 6 seconds
+            setInterval(nextSlide, 6000);
+        });
+    </script>
+    <!-- Language Switching Script -->
+    <script>
+        // Translations
+        const translations = {
+            de: {
+                'title': 'Kollektiv für solidarische Gesundheit e.V.',
+                'language-label': 'Sprache wählen',
+                'nav-start': 'Start',
+                'nav-about': 'Wer wir sind',
+                'nav-concept': 'Das Konzept',
+                'nav-goal': 'Unser Ziel',
+                'nav-events': 'Veranstaltungen',
+                'nav-join': 'Mitmachen',
+                'nav-contact': 'Kontakt & Impressum',
+                'start-title': 'Kollektiv für solidarische Gesundheit e.V.',
+                'start-description': '[Mission & Vision Platzhalter]',
+                'about-title': 'Wer wir sind',
+                'about-description': 'Wir sind eine Gruppe von Menschen, die den gemeinsamen Wunsch haben, die gesundheitliche Versorgung im Kiez ganzheitlicher und sozialer zu gestalten. Dazu arbeiten wir als Kollektiv für solidarische Gesundheit e.V. seit einiger Zeit an der Umsetzung eines Stadtteilgesundheitszentrums in Berlin. Hierbei orientieren wir uns an bereits vorhandenen Strukturen wie dem GeKo Neukölln und der Poliklinik Veddel in Hamburg, mit denen wir über das deutschlandweite Poliklinik-Syndikat in Austausch stehen.',
+                'concept-title': 'Das Konzept',
+                'concept-description': 'Körper und Seele, wo und wie wir leben und unser Platz in der Gesellschaft beeinflussen gemeinsam unsere Gesundheit und unsere Lebensqualität. Diese im Gesamten zu betrachten und zu stärken ist ein wesentlicher Aspekt unserer Idee eines Stadtteilgesundheitszentrums. Konkret bedeutet das die enge Zusammenarbeit zwischen verschiedenen Berufsgruppen innerhalb des Gesundheitswesens (wie Ärzt*innen verschiedener Fachrichtungen, Psycholog*innen, Therapeut*innen, Pflegefachkräften) sowie Sozialarbeiter*innen und Menschen, die juristisch, pädagogisch und aktivistisch tätig sind. Uns ist besonders wichtig, dass die Bewohner*innen des Kiezes dabei aktiv an der Entwicklung und Gestaltung des Zentrums beteiligt sein können, um einen Ort zu schaffen, der an ihre Bedürfnisse angepasst ist und mit diesen wächst.',
+                'goal-title': 'Unser Ziel',
+                'goal-description': 'Unser Ziel ist es, die Gesundheit - also das körperliche, seelische und soziale Wohlbefinden - der Bewohner*innen eines Kiezes zu fördern und einen Ort der Begegnung, des Austausches und der Vernetzung anzubieten (z.B. in Form eines Cafés, Räume für Workshops und Gruppen). Aktuell fokussiert sich unsere Arbeit auf den Aufbau erster Versorgungsangebote in Lichtenberg, perspektivisch möchten wir das Konzept eines Stadtteilgesundheitszentrum jedoch in alle Berliner Kieze bringen, in denen die Bewohner*innen dadurch besonders gestärkt werden können.',
+                'events-title': 'Veranstaltungen',
+                'join-title': 'Mitmachen',
+                'join-description': 'Wir sind eine relativ homogene, weiße, akademisch sozialisierte Gruppe und wünschen uns mehr Perspektiven, um den Anforderungen der Menschen im Kiez gerecht werden zu können! Wir freuen uns über alle, die uns kennenlernen, sich ein Bild von uns machen und uns mit ihrer individuellen Sicht und ihren Erfahrungen bereichern wollen! Wer gerne bei uns aktiv werden bzw. uns unterstützen möchte, ist herzlich eingeladen beim nächsten Treffen vorbeizuschauen oder uns über unsere E-Mail-Adresse zu kontaktieren :)',
+                'contact-title': 'Kontakt & Impressum',
+                'contact-org': 'Kollektiv für solidarische Gesundheit e.V.',
+                'contact-email': 'Email: info@kosge-berlin.de',
+                'contact-phone': 'Telefon: +49 1520 7240947'
+            },
+            en: {
+                'title': 'Collective for Solidarity Health e.V.',
+                'language-label': 'Choose Language',
+                'nav-start': 'Start',
+                'nav-about': 'Who We Are',
+                'nav-concept': 'The Concept',
+                'nav-goal': 'Our Goal',
+                'nav-events': 'Events',
+                'nav-join': 'Get Involved',
+                'nav-contact': 'Contact & Imprint',
+                'start-title': 'Collective for Solidarity Health e.V.',
+                'start-description': '[Mission & Vision Placeholder]',
+                'about-title': 'Who We Are',
+                'about-description': 'We are a group of people who share the common desire to make healthcare in the neighborhood more holistic and social. We have been working as the Collective for Solidarity Health e.V. to implement a neighborhood health center in Berlin. In doing so, we are guided by existing structures such as GeKo Neukölln and the Poliklinik Veddel in Hamburg, with which we are in exchange through the nationwide Poliklinik Syndicate.',
+                'concept-title': 'The Concept',
+                'concept-description': 'Body and soul, where and how we live, and our place in society collectively influence our health and quality of life. Viewing and strengthening these as a whole is a crucial aspect of our neighborhood health center idea. Specifically, this means close collaboration between various professional groups within healthcare (such as doctors from different specialties, psychologists, therapists, nursing professionals) as well as social workers and people active in legal, educational, and activist fields. It is particularly important to us that neighborhood residents can actively participate in the development and design of the center, creating a place that is adapted to their needs and grows with them.',
+                'goal-title': 'Our Goal',
+                'goal-description': 'Our goal is to promote the health - that is, the physical, mental, and social well-being - of neighborhood residents and offer a place of encounter, exchange, and networking (e.g., in the form of a café, spaces for workshops and groups). Currently, our work focuses on building initial care offerings in Lichtenberg, but we aim to bring the neighborhood health center concept to all Berlin neighborhoods where residents can be particularly empowered.',
+                'events-title': 'Events',
+                'join-title': 'Get Involved',
+                'join-description': 'We are a relatively homogeneous, white, academically socialized group and wish for more perspectives to meet the needs of people in the neighborhood! We welcome everyone who wants to get to know us, form an impression, and enrich us with their individual perspective and experiences! Anyone who would like to become active with us or support us is cordially invited to drop by the next meeting or contact us via email :)',
+                'contact-title': 'Contact & Imprint',
+                'contact-org': 'Collective for Solidarity Health e.V.',
+                'contact-email': 'Email: info@kosge-berlin.de',
+                'contact-phone': 'Phone: +49 1520 7240947'
+            },
+            tr: {
+                'title': 'Dayanışmacı Sağlık Kolektifi e.V.',
+                'language-label': 'Dil Seçin',
+                'nav-start': 'Başlangıç',
+                'nav-about': 'Biz Kimiz',
+                'nav-concept': 'Konsept',
+                'nav-goal': 'Hedefimiz',
+                'nav-events': 'Etkinlikler',
+                'nav-join': 'Katılın',
+                'nav-contact': 'İletişim & Künye',
+                'start-title': 'Dayanışmacı Sağlık Kolektifi e.V.',
+                'start-description': '[Misyon & Vizyon Yer Tutucu]',
+                'about-title': 'Biz Kimiz',
+                'about-description': 'Mahallede sağlık hizmetlerini daha bütüncül ve sosyal hale getirmek ortak arzusunu paylaşan bir grupuz. Dayanışmacı Sağlık Kolektifi e.V. olarak Berlin\'de bir mahalle sağlık merkezi uygulaması için çalışıyoruz. Bunu yaparken, Almanya çapındaki Poliklinik Sendikası aracılığıyla GeKo Neukölln ve Hamburg\'daki Poliklinik Veddel gibi mevcut yapılardan rehberlik alıyoruz.',
+                'concept-title': 'Konsept',
+                'concept-description': 'Beden ve ruh, yaşadığımız yer ve toplum içindeki yerimiz sağlığımızı ve yaşam kalitemizi ortaklaşa etkiler. Bunları bir bütün olarak görüp güçlendirmek, mahalle sağlık merkezi fikrimizdeki kritik bir unsurdur. Özellikle, bu, sağlık alanındaki çeşitli meslek grupları (farklı uzmanlık alanlarından doktorlar, psikologlar, terapistler, hemşireler) ile sosyal çalışmacılar ve hukuki, eğitimsel ve aktivist alanlarda faaliyet gösteren insanlar arasında yakın işbirliği anlamına gelir. Mahalle sakinlerinin merkezin gelişimi ve tasarımına aktif olarak katılabilmesi ve ihtiyaçlarına uyarlanmış, onlarla birlikte büyüyen bir yer yaratılması bizim için özellikle önemlidir.',
+                'goal-title': 'Hedefimiz',
+                'goal-description': 'Hedefimiz, mahalle sakinlerinin sağlığını - yani fiziksel, zihinsel ve sosyal refahını - teşvik etmek ve karşılaşma, değişim ve ağ kurma yeri sunmaktır (örneğin bir kafe, atölye ve gruplar için alanlar şeklinde). Şu anda çalışmamız Lichtenberg\'de ilk bakım teklifleri oluşturmaya odaklanmış durumda, ancak mahalle sağlık merkezi konseptini sakinlerin özellikle güçlendirildiği tüm Berlin mahallelerine getirmeyi amaçlıyoruz.',
+                'events-title': 'Etkinlikler',
+                'join-title': 'Katılın',
+                'join-description': 'Nispeten homojen, beyaz, akademik olarak sosyalleşmiş bir grupuz ve mahalle halkının ihtiyaçlarını karşılamak için daha fazla perspektife ihtiyacımız var! Bizi tanımak, izlenim edinmek ve bireysel perspektifleri ve deneyimleriyle bizi zenginleştirmek isteyen herkesi memnuniyetle karşılıyoruz! Bizimle aktif olmak veya bizi desteklemek isteyen herkes, bir sonraki toplantıya katılmaya veya e-posta yoluyla bizimle iletişime geçmeye davetlidir :)',
+                'contact-title': 'İletişim & Künye',
+                'contact-org': 'Dayanışmacı Sağlık Kolektifi e.V.',
+                'contact-email': 'E-posta: info@kosge-berlin.de',
+                'contact-phone': 'Telefon: +49 1520 7240947'
+            },
+            ru: {
+                'title': 'Коллектив солидарного здоровья e.V.',
+                'language-label': 'Выберите язык',
+                'nav-start': 'Начало',
+                'nav-about': 'Кто мы',
+                'nav-concept': 'Концепция',
+                'nav-goal': 'Наша цель',
+                'nav-events': 'Мероприятия',
+                'nav-join': 'Присоединиться',
+                'nav-contact': 'Контакты и выходные данные',
+                'start-title': 'Коллектив солидарного здоровья e.V.',
+                'start-description': '[Миссия и видение - заполнитель]',
+                'about-title': 'Кто мы',
+                'about-description': 'Мы группа людей, которые разделяют общее желание сделать медицинское обслуживание в районе более целостным и социальным. Мы работаем как Коллектив солидарного здоровья e.V., чтобы реализовать центр здоровья района в Берлине. При этом мы руководствуемся существующими структурами, такими как GeKo Нойкёлльн и Поликлиника Веддель в Гамбурге, с которыми мы поддерживаем связь через общенациональный Синдикат поликлиник.',
+                'concept-title': 'Концепция',
+                'concept-description': 'Тело и душа, место и образ нашей жизни, наше место в обществе совместно влияют на наше здоровье и качество жизни. Рассмотрение и укрепление этих аспектов в целом является crucial для нашей идеи районного центра здоровья. В частности, это означает тесное сотрудничество между различными профессиональными группами в сфере здравоохранения (такими как врачи разных специальностей, психологи, терапевты, медсестры), а также социальными работниками и людьми, активно работающими в юридической, образовательной и общественной сферах. Для нас особенно важно, чтобы жители района могли активно участвовать в развитии и проектировании центра, создавая место, адаптированное к их потребностям и растущее вместе с ними.',
+                'goal-title': 'Наша цель',
+                'goal-description': 'Наша цель - содействовать здоровью - то есть физическому, психическому и социальному благополучию - жителей района и предложить место для встреч, обмена опытом и налаживания связей (например, в виде кафе, помещений для воркшопов и групп). В настоящее время наша работа сосредоточена на создании первоначальных предложений по уходу в Лихтенберге, но мы стремимся распространить концепцию районного центра здоровья на все районы Берлина, где жители могут быть особенно поддержаны.',
+                'events-title': 'Мероприятия',
+                'join-title': 'Присоединиться',
+                'join-description': 'Мы относительно однородная, белая, академически социализированная группа и хотим получить больше перспектив, чтобы соответствовать потребностям людей в районе! Мы приветствуем всех, кто хочет нас узнать, составить о нас впечатление и обогатить нас своей индивидуальной точкой зрения и опытом! Каждый, кто хотел бы стать активным участником или поддержать нас, приглашается на следующую встречу или может связаться с нами по электронной почте :)',
+                'contact-title': 'Контакты и выходные данные',
+                'contact-org': 'Коллектив солидарного здоровья e.V.',
+                'contact-email': 'Электронная почта: info@kosge-berlin.de',
+                'contact-phone': 'Телефон: +49 1520 7240947'
+            },
+            ar: {
+                'title': 'الجمعية التعاونية للصحة التضامنية',
+                'language-label': 'اختر اللغة',
+                'nav-start': 'البداية',
+                'nav-about': 'من نحن',
+                'nav-concept': 'المفهوم',
+                'nav-goal': 'هدفنا',
+                'nav-events': 'الفعاليات',
+                'nav-join': 'انضم إلينا',
+                'nav-contact': 'اتصل والطباعة',
+                'start-title': 'الجمعية التعاونية للصحة التضامنية',
+                'start-description': '[مكان حامل للمهمة والرؤية]',
+                'about-title': 'من نحن',
+                'about-description': 'نحن مجموعة من الأشخاص الذين يشاركون الرغبة المشتركة في جعل الرعاية الصحية في الحي أكثر شمولية واجتماعية. نعمل كجمعية تعاونية للصحة التضامنية لتنفيذ مركز صحي للحي في برلين. في هذا السياق، نسترشد بالهياكل القائمة مثل GeKo Neukölln وعيادة Veddel في هامبورغ، التي نتواصل معها من خلال نقابة العيادات الوطنية.',
+                'concept-title': 'المفهوم',
+                'concept-description': 'الجسد والروح، والمكان وكيفية عيشنا، ومكاننا في المجتمع تؤثر بشكل جماعي على صحتنا وجودة حياتنا. إن النظر إلى هذه الجوانب وتعزيزها ككل هو جانب حاسم في فكرتنا لمركز صحي للحي. على وجه التحديد، يعني هذا التعاون الوثيق بين مختلف المجموعات المهنية في مجال الرعاية الصحية (مثل الأطباء من تخصصات مختلفة، وعلماء النفس، والمعالجين، والممرضات) بالإضافة إلى العاملين الاجتماعيين والأشخاص النشطين في المجالات القانونية والتعليمية والنشطة. من المهم بشكل خاص بالنسبة لنا أن يتمكن سكان الحي من المشاركة بنشاط في تطوير وتصميم المركز، مما يخلق مكانًا مصممًا وفقًا لاحتياجاتهم وينمو معهم.',
+                'goal-title': 'هدفنا',
+                'goal-description': 'هدفنا هو تعزيز الصحة - أي الرفاهية الجسدية والعقلية والاجتماعية - للسكان في الحي وتقديم مكان للقاء والتبادل والتواصل (على سبيل المثال في شكل مقهى، وأماكن للورش والمجموعات). حاليًا، يركز عملنا على بناء عروض رعاية أولية في Lichtenberg، ولكننا نهدف إلى جلب مفهوم مركز صحي للحي إلى جميع أحياء برلين حيث يمكن تمكين السكان بشكل خاص.',
+                'events-title': 'الفعاليات',
+                'join-title': 'انضم إلينا',
+                'join-description': 'نحن مجموعة متجانسة نسبيًا، بيضاء، تم تنشئتها أكاديميًا ونرغب في المزيد من وجهات النظر لتلبية احتياجات الناس في الحي! نرحب بكل من يريد التعرف علينا وتكوين انطباع وإثرائنا بوجهة نظره الفردية وتجاربه! كل من يرغب في أن يصبح نشطًا معنا أو يدعمنا مدعو بحفاوة لحضور الاجتماع التالي أو التواصل معنا عبر البريد الإلكتروني :)',
+                'contact-title': 'اتصل والطباعة',
+                'contact-org': 'الجمعية التعاونية للصحة التضامنية',
+                'contact-email': 'البريد الإلكتروني: info@kosge-berlin.de',
+                'contact-phone': 'الهاتف: +49 1520 7240947'
+            },
+            simple: {
+                'title': 'Einfache Sprache - Gesundheit für alle',
+                'language-label': 'Leichte Sprache wählen',
+                'nav-start': 'Start',
+                'nav-about': 'Wer wir sind',
+                'nav-concept': 'Unser Plan',
+                'nav-goal': 'Was wir wollen',
+                'nav-events': 'Veranstaltungen',
+                'nav-join': 'Mitmachen',
+                'nav-contact': 'Kontakt',
+                'start-title': 'Gesundheit für alle',
+                'start-description': 'Wir wollen, dass alle Menschen gesund sein können.',
+                'about-title': 'Wer wir sind',
+                'about-description': 'Wir sind eine Gruppe. Wir wollen, dass Menschen im Kiez besser gesund werden können. Wir arbeiten zusammen, um ein Gesundheits-Zentrum zu bauen.',
+                'concept-title': 'Unser Plan',
+                'concept-description': 'Gesundheit ist mehr als nur keine Krankheit. Gesundheit bedeutet: Körper und Seele sind gut. Wo und wie wir leben, ist wichtig für unsere Gesundheit. Wir wollen allen Menschen helfen, gesund zu sein.',
+                'goal-title': 'Was wir wollen',
+                'goal-description': 'Unser Ziel ist es, dass alle Menschen im Kiez gesund sein können. Wir wollen einen Ort schaffen, wo Menschen sich treffen und austauschen können. Wir bauen ein Gesundheits-Zentrum in Lichtenberg. Später wollen wir mehr Gesundheits-Zentren in Berlin machen.',
+                'events-title': 'Veranstaltungen',
+                'join-title': 'Mitmachen',
+                'join-description': 'Wir suchen mehr Menschen mit verschiedenen Ideen. Komm zu uns! Erzähle uns von deinen Erfahrungen. Hilf uns, besser zu werden. Du kannst zu unserem nächsten Treffen kommen oder uns eine E-Mail schreiben.',
+                'contact-title': 'Kontakt',
+                'contact-org': 'Kollektiv für solidarische Gesundheit e.V.',
+                'contact-email': 'E-Mail: info@kosge-berlin.de',
+                'contact-phone': 'Telefon: +49 1520 7240947'
+            }
+        };
+
+        // Language Switching Logic
+        function applyTranslation(lang) {
+            document.documentElement.lang = lang;
+
+            // Update page title
+            document.title = translations[lang].title;
+
+            // Translate elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Optional: Additional language-specific styling
+            document.body.className = `lang-${ lang }`;
+        }
+
+        // Language Selection Event
+        document.getElementById('language').addEventListener('change', (event) => {
+            const selectedLang = event.target.value;
+            applyTranslation(selectedLang);
+            localStorage.setItem('preferredLanguage', selectedLang);
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'de';
+            document.getElementById('language').value = savedLang;
+            applyTranslation(savedLang);
+        });
     </script>
 </body>
 
