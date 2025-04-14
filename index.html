@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="Kollektiv für solidarische Gesundheit e.V." />
     <title data-translate="title">Kollektiv für solidarische Gesundheit e.V.</title>
     <!-- Schriftart Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome for Mobile Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- Translation Library -->
     <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.14/i18next.min.js"></script>
 </head>
@@ -26,7 +28,7 @@
     <div class="content-wrapper">
         <header role="banner">
             <div class="logo-container">
-                <img src="https://link.storjshare.io/raw/jvqgd5lrwvx7gnp7lrcszh7qfjmq/geko/Logokosge.png"
+                <img src="https://link.storjshare.io/raw/jxeghfjuomgqgf536ls26sw3tazq/geko/KOSGE%202.png"
                 alt="Logo Kollektiv für solidarische Gesundheit e.V." class="logo" />
             </div>
             <div class="language-controls">
@@ -41,6 +43,7 @@
                 </select>
             </div>
         </header>
+        <!-- Desktop Navigation -->
         <nav role="navigation" aria-label="Hauptnavigation">
             <ul class="main-nav">
                 <li><a href="#start" data-translate="nav-start">Start</a></li>
@@ -51,6 +54,29 @@
                 <li><a href="#join" data-translate="nav-join">Mitmachen</a></li>
                 <li><a href="#contact" data-translate="nav-contact">Kontakt & Impressum</a></li>
             </ul>
+        </nav>
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <a href="#start" class="mobile-nav-item">
+                <i class="fas fa-home"></i>
+                <span data-translate="nav-start">Start</span>
+            </a>
+            <a href="#about" class="mobile-nav-item">
+                <i class="fas fa-info-circle"></i>
+                <span data-translate="nav-about">Wer wir sind</span>
+            </a>
+            <a href="#concept" class="mobile-nav-item">
+                <i class="fas fa-lightbulb"></i>
+                <span data-translate="nav-concept">Konzept</span>
+            </a>
+            <a href="#join" class="mobile-nav-item">
+                <i class="fas fa-hands-helping"></i>
+                <span data-translate="nav-join">Mitmachen</span>
+            </a>
+            <a href="#contact" class="mobile-nav-item">
+                <i class="fas fa-envelope"></i>
+                <span data-translate="nav-contact">Kontakt</span>
+            </a>
         </nav>
         <!-- Hero Slideshow -->
         <div class="hero-slideshow">
@@ -65,10 +91,20 @@
         </div>
         <main id="main-content">
             <section id="start">
+                <div class="section-title-container">
+                    <h2>Vision</h2>
+                </div>
                 <h1 data-translate="start-title">Kollektiv für solidarische Gesundheit e.V.</h1>
-                <p data-translate="start-description">[Mission & Vision Platzhalter]</p>
+                <p data-translate="start-description">Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und
+                    der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und
+                    Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.</p>
+                <img class="section-arrow"
+                src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
             </section>
             <section id="about">
+                <div class="section-title-container">
+                    <h2>Wer wir sind</h2>
+                </div>
                 <h2 data-translate="about-title">Wer wir sind</h2>
                 <p data-translate="about-description">Wir sind eine Gruppe von Menschen, die den gemeinsamen Wunsch
                     haben, die gesundheitliche Versorgung im Kiez ganzheitlicher und sozialer zu gestalten. Dazu
@@ -76,8 +112,13 @@
                     Stadtteilgesundheitszentrums in Berlin. Hierbei orientieren wir uns an bereits vorhandenen
                     Strukturen wie dem GeKo Neukölln und der Poliklinik Veddel in Hamburg, mit denen wir über das
                     deutschlandweite Poliklinik-Syndikat in Austausch stehen.</p>
+                <img class="section-arrow"
+                src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
             </section>
             <section id="concept">
+                <div class="section-title-container">
+                    <h2>Das Konzept</h2>
+                </div>
                 <h2 data-translate="concept-title">Das Konzept</h2>
                 <p data-translate="concept-description">Körper und Seele, wo und wie wir leben und unser Platz in der
                     Gesellschaft beeinflussen gemeinsam unsere Gesundheit und unsere Lebensqualität. Diese im Gesamten
@@ -88,17 +129,28 @@
                     juristisch, pädagogisch und aktivistisch tätig sind. Uns ist besonders wichtig, dass die
                     Bewohner*innen des Kiezes dabei aktiv an der Entwicklung und Gestaltung des Zentrums beteiligt sein
                     können, um einen Ort zu schaffen, der an ihre Bedürfnisse angepasst ist und mit diesen wächst.</p>
+                <img class="section-arrow"
+                src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
             </section>
             <section id="goal">
+                <div class="section-title-container">
+                    <h2>Unser Ziel</h2>
+                </div>
                 <h2 data-translate="goal-title">Unser Ziel</h2>
                 <p data-translate="goal-description">Unser Ziel ist es, die Gesundheit - also das körperliche, seelische
                     und soziale Wohlbefinden - der Bewohner*innen eines Kiezes zu fördern und einen Ort der Begegnung,
                     des Austausches und der Vernetzung anzubieten (z.B. in Form eines Cafés, Räume für Workshops und
                     Gruppen). Aktuell fokussiert sich unsere Arbeit auf den Aufbau erster Versorgungsangebote in
-                    Lichtenberg, perspektivisch möchten wir das Konzept eines Stadtteilgesundheitszentrum jedoch in alle
+                    Lichtenberg, perspektivisch möchten wir das Konzept eines Stadtteilgesundheitszentrums jedoch in
+                    alle
                     Berliner Kieze bringen, in denen die Bewohner*innen dadurch besonders gestärkt werden können.</p>
+                <img class="section-arrow"
+                src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
             </section>
             <section id="events">
+                <div class="section-title-container">
+                    <h2>Veranstaltungen</h2>
+                </div>
                 <h2 data-translate="events-title">Veranstaltungen</h2>
                 <div class="slideshow">
                     <img src="https://link.storjshare.io/raw/jugzctopkbs4vqzqtx756s2jmw3q/geko/Diashow/dia1.png"
@@ -106,8 +158,13 @@
                     <img src="https://link.storjshare.io/raw/juiieutbu2jnjxxb4cgxl3waxrbq/geko/Diashow/dia2.png"
                     alt="Diashow Bild 2">
                 </div>
+                <img class="section-arrow"
+                src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
             </section>
             <section id="join">
+                <div class="section-title-container">
+                    <h2>Mitmachen</h2>
+                </div>
                 <h2 data-translate="join-title">Mitmachen</h2>
                 <p data-translate="join-description">Wir sind eine relativ homogene, weiße, akademisch sozialisierte
                     Gruppe und wünschen uns mehr Perspektiven, um den Anforderungen der Menschen im Kiez gerecht werden
@@ -115,6 +172,34 @@
                     ihrer individuellen Sicht und ihren Erfahrungen bereichern wollen! Wer gerne bei uns aktiv werden
                     bzw. uns unterstützen möchte, ist herzlich eingeladen beim nächsten Treffen vorbeizuschauen oder uns
                     über unsere E-Mail-Adresse zu kontaktieren :)
+                    <img class="section-arrow"
+                    src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
+            </section>
+            <section id="banners">
+                <div class="section-title-container">
+                    <h2>Unsere Banner</h2>
+                </div>
+                <h2 data-translate="banners-title">Unsere Banner</h2>
+                <div class="banner-grid">
+                    <div class="banner">
+                        <img src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 1" id="banner1">
+                        <button class="edit-banner-btn" data-banner="1">Bearbeiten</button>
+                    </div>
+                    <div class="banner">
+                        <img src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 2" id="banner2">
+                        <button class="edit-banner-btn" data-banner="2">Bearbeiten</button>
+                    </div>
+                    <div class="banner">
+                        <img src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 3" id="banner3">
+                        <button class="edit-banner-btn" data-banner="3">Bearbeiten</button>
+                    </div>
+                    <div class="banner">
+                        <img src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 4" id="banner4">
+                        <button class="edit-banner-btn" data-banner="4">Bearbeiten</button>
+                    </div>
+                </div>
+                <img class="section-arrow"
+                src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Pfeil">
             </section>
         </main>
         <footer id="contact" role="contentinfo">
@@ -122,9 +207,108 @@
             <p><strong data-translate="contact-org">Kollektiv für solidarische Gesundheit e.V.</strong></p>
             <p data-translate="contact-email">Email: <a href="mailto:info@kosge-berlin.de">info@kosge-berlin.de</a></p>
             <p data-translate="contact-phone">Telefon: <a href="tel:+4915207240947">+49 1520 7240947</a></p>
-            <p>[Platzhalter für Datenschutz, Impressum, Karte, Kalender, Spendenlink, externe Verlinkungen]</p>
         </footer>
     </div>
+    <!-- Admin Login Button -->
+    <button id="admin-login-button">Admin Login</button>
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Admin Login</h2>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="username">Benutzername:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Passwort:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Anmelden</button>
+            </form>
+        </div>
+    </div>
+    <!-- Banner Edit Modal -->
+    <div id="banner-edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Banner bearbeiten</h2>
+            <form id="banner-edit-form">
+                <input type="hidden" id="edit-banner-id">
+                <input type="text" id="banner-url" placeholder="Neue Banner-URL" required>
+                <button type="submit">Speichern</button>
+            </form>
+        </div>
+    </div>
+    <!-- Teilnahme-Modal -->
+    <div id="participation-modal" class="modal">
+        <div class="modal-content participation-modal">
+            <span class="close">&times;</span>
+            <h2 data-translate="participation-title">Banner-Teilnahme</h2>
+            <div id="selected-banner-preview">
+                <img id="selected-banner-image" src="" alt="Ausgewähltes Banner">
+            </div>
+            <form id="participation-form">
+                <input type="text" id="participant-name" placeholder="Ihr Name" required>
+                <input type="email" id="participant-email" placeholder="Ihre E-Mail (optional)">
+                <textarea id="participant-message" placeholder="Ihre Nachricht (optional)"></textarea>
+                <button type="submit" data-translate="participate-btn">Teilnehmen</button>
+            </form>
+        </div>
+    </div>
+    <!-- Admin Teilnahme-Übersicht Modal -->
+    <div id="admin-participation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Teilnahmen</h2>
+            <div id="participation-list">
+                <!-- Teilnahmen werden hier dynamisch eingefügt -->
+            </div>
+        </div>
+    </div>
+    <!-- Datenschutz Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="privacy-policy">
+                <h3>Datenschutzerklärung</h3>
+                <h4>1. Grundlegende Informationen</h4>
+                <p>Der Kollektiv für solidarische Gesundheit e.V. (KoSGe) nimmt den Schutz Ihrer persönlichen Daten sehr
+                    ernst. Diese Datenschutzerklärung informiert Sie über die Verarbeitung Ihrer personenbezogenen
+                    Daten.</p>
+                <h4>2. Verantwortliche Stelle</h4>
+                <p>Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+                <p>Kollektiv für solidarische Gesundheit e.V.<br>
+                    [Adresse einfügen]<br>
+                    [Kontaktinformationen]</p>
+                <h4>3. Welche Daten werden verarbeitet?</h4>
+                <ul>
+                    <li>Kontaktformular-Eingaben</li>
+                    <li>IP-Adresse bei Websitebesuch</li>
+                    <li>Freiwillig bereitgestellte personenbezogene Daten</li>
+                </ul>
+                <h4>4. Zweck der Datenverarbeitung</h4>
+                <p>Ihre Daten werden ausschließlich zur Kommunikation und Erfüllung satzungsgemäßer Vereinszwecke
+                    verwendet.</p>
+                <h4>5. Ihre Rechte</h4>
+                <ul>
+                    <li>Recht auf Auskunft</li>
+                    <li>Recht auf Berichtigung</li>
+                    <li>Recht auf Löschung</li>
+                    <li>Recht auf Einschränkung der Verarbeitung</li>
+                </ul>
+                <h4>6. Kontakt bei Datenschutzfragen</h4>
+                <p>Bei Fragen zum Datenschutz kontaktieren Sie uns unter: [Kontakt-E-Mail]</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer mit Datenschutz-Link -->
+    <footer>
+        <p>&copy; 2024 Kollektiv für solidarische Gesundheit e.V.
+            <a href="#" id="privacy-link">Datenschutz</a>
+        </p>
+    </footer>
     <!-- Script for dynamic background slideshow -->
     <script>
         // This function makes it easy to add more images to the background slideshow
@@ -192,20 +376,28 @@
                 'nav-join': 'Mitmachen',
                 'nav-contact': 'Kontakt & Impressum',
                 'start-title': 'Kollektiv für solidarische Gesundheit e.V.',
-                'start-description': '[Mission & Vision Platzhalter]',
+                'start-description': 'Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.',
                 'about-title': 'Wer wir sind',
                 'about-description': 'Wir sind eine Gruppe von Menschen, die den gemeinsamen Wunsch haben, die gesundheitliche Versorgung im Kiez ganzheitlicher und sozialer zu gestalten. Dazu arbeiten wir als Kollektiv für solidarische Gesundheit e.V. seit einiger Zeit an der Umsetzung eines Stadtteilgesundheitszentrums in Berlin. Hierbei orientieren wir uns an bereits vorhandenen Strukturen wie dem GeKo Neukölln und der Poliklinik Veddel in Hamburg, mit denen wir über das deutschlandweite Poliklinik-Syndikat in Austausch stehen.',
                 'concept-title': 'Das Konzept',
                 'concept-description': 'Körper und Seele, wo und wie wir leben und unser Platz in der Gesellschaft beeinflussen gemeinsam unsere Gesundheit und unsere Lebensqualität. Diese im Gesamten zu betrachten und zu stärken ist ein wesentlicher Aspekt unserer Idee eines Stadtteilgesundheitszentrums. Konkret bedeutet das die enge Zusammenarbeit zwischen verschiedenen Berufsgruppen innerhalb des Gesundheitswesens (wie Ärzt*innen verschiedener Fachrichtungen, Psycholog*innen, Therapeut*innen, Pflegefachkräften) sowie Sozialarbeiter*innen und Menschen, die juristisch, pädagogisch und aktivistisch tätig sind. Uns ist besonders wichtig, dass die Bewohner*innen des Kiezes dabei aktiv an der Entwicklung und Gestaltung des Zentrums beteiligt sein können, um einen Ort zu schaffen, der an ihre Bedürfnisse angepasst ist und mit diesen wächst.',
                 'goal-title': 'Unser Ziel',
-                'goal-description': 'Unser Ziel ist es, die Gesundheit - also das körperliche, seelische und soziale Wohlbefinden - der Bewohner*innen eines Kiezes zu fördern und einen Ort der Begegnung, des Austausches und der Vernetzung anzubieten (z.B. in Form eines Cafés, Räume für Workshops und Gruppen). Aktuell fokussiert sich unsere Arbeit auf den Aufbau erster Versorgungsangebote in Lichtenberg, perspektivisch möchten wir das Konzept eines Stadtteilgesundheitszentrum jedoch in alle Berliner Kieze bringen, in denen die Bewohner*innen dadurch besonders gestärkt werden können.',
+                'goal-description': 'Unser Ziel ist es, die Gesundheit - also das körperliche, seelische und soziale Wohlbefinden - der Bewohner*innen eines Kiezes zu fördern und einen Ort der Begegnung, des Austausches und der Vernetzung anzubieten (z.B. in Form eines Cafés, Räume für Workshops und Gruppen). Aktuell fokussiert sich unsere Arbeit auf den Aufbau erster Versorgungsangebote in Lichtenberg, perspektivisch möchten wir das Konzept eines Stadtteilgesundheitszentrums jedoch in alle Berliner Kieze bringen, in denen die Bewohner*innen dadurch besonders gestärkt werden können.',
                 'events-title': 'Veranstaltungen',
                 'join-title': 'Mitmachen',
                 'join-description': 'Wir sind eine relativ homogene, weiße, akademisch sozialisierte Gruppe und wünschen uns mehr Perspektiven, um den Anforderungen der Menschen im Kiez gerecht werden zu können! Wir freuen uns über alle, die uns kennenlernen, sich ein Bild von uns machen und uns mit ihrer individuellen Sicht und ihren Erfahrungen bereichern wollen! Wer gerne bei uns aktiv werden bzw. uns unterstützen möchte, ist herzlich eingeladen beim nächsten Treffen vorbeizuschauen oder uns über unsere E-Mail-Adresse zu kontaktieren :)',
                 'contact-title': 'Kontakt & Impressum',
                 'contact-org': 'Kollektiv für solidarische Gesundheit e.V.',
                 'contact-email': 'Email: info@kosge-berlin.de',
-                'contact-phone': 'Telefon: +49 1520 7240947'
+                'contact-phone': 'Telefon: +49 1520 7240947',
+                'banners-title': 'Unsere Banner',
+                'participation-title': 'Banner-Teilnahme',
+                'participate-btn': 'Teilnehmen',
+                'privacy-title': 'Datenschutzerklärung',
+                'privacy-intro': 'Wir als Verein erklären hiermit ausdrücklich, dass wir die aus der DSGVO erforderlichen Datenschutzrichtlinien einhalten wollen. Wir beziehen uns dabei insbesondere auf:',
+                'privacy-gdpr-articles': 'Relevante DSGVO-Artikel',
+                'privacy-jitsi-title': 'Videokonferenzen mit Jitsi Meet',
+                'privacy-jitsi-description': 'Wir nutzen Jitsi Meet, ein Open-Source-Tool mit verschlüsselter Übertragung. Bei Hosting auf unseren eigenen Servern erfolgt keine Datenweitergabe an Dritte. Verarbeitet werden nur für die Konferenz notwendige Daten (z.B. Name, IP-Adresse, Audio-/Videodaten).'
             },
             en: {
                 'title': 'Collective for Solidarity Health e.V.',
@@ -218,7 +410,7 @@
                 'nav-join': 'Get Involved',
                 'nav-contact': 'Contact & Imprint',
                 'start-title': 'Collective for Solidarity Health e.V.',
-                'start-description': '[Mission & Vision Placeholder]',
+                'start-description': 'Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.',
                 'about-title': 'Who We Are',
                 'about-description': 'We are a group of people who share the common desire to make healthcare in the neighborhood more holistic and social. We have been working as the Collective for Solidarity Health e.V. to implement a neighborhood health center in Berlin. In doing so, we are guided by existing structures such as GeKo Neukölln and the Poliklinik Veddel in Hamburg, with which we are in exchange through the nationwide Poliklinik Syndicate.',
                 'concept-title': 'The Concept',
@@ -231,7 +423,15 @@
                 'contact-title': 'Contact & Imprint',
                 'contact-org': 'Collective for Solidarity Health e.V.',
                 'contact-email': 'Email: info@kosge-berlin.de',
-                'contact-phone': 'Phone: +49 1520 7240947'
+                'contact-phone': 'Phone: +49 1520 7240947',
+                'banners-title': 'Our Banners',
+                'participation-title': 'Banner Participation',
+                'participate-btn': 'Participate',
+                'privacy-title': 'Privacy Policy',
+                'privacy-intro': 'We explicitly declare that we want to comply with the data protection guidelines required by the GDPR. We refer in particular to:',
+                'privacy-gdpr-articles': 'Relevant GDPR Articles',
+                'privacy-jitsi-title': 'Video Conferences with Jitsi Meet',
+                'privacy-jitsi-description': 'We use Jitsi Meet, an open-source tool with encrypted transmission. When hosted on our own servers, no data is passed on to third parties. Only data necessary for the conference is processed (e.g., name, IP address, audio/video data).'
             },
             tr: {
                 'title': 'Dayanışmacı Sağlık Kolektifi e.V.',
@@ -244,7 +444,7 @@
                 'nav-join': 'Katılın',
                 'nav-contact': 'İletişim & Künye',
                 'start-title': 'Dayanışmacı Sağlık Kolektifi e.V.',
-                'start-description': '[Misyon & Vizyon Yer Tutucu]',
+                'start-description': 'Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.',
                 'about-title': 'Biz Kimiz',
                 'about-description': 'Mahallede sağlık hizmetlerini daha bütüncül ve sosyal hale getirmek ortak arzusunu paylaşan bir grupuz. Dayanışmacı Sağlık Kolektifi e.V. olarak Berlin\'de bir mahalle sağlık merkezi uygulaması için çalışıyoruz. Bunu yaparken, Almanya çapındaki Poliklinik Sendikası aracılığıyla GeKo Neukölln ve Hamburg\'daki Poliklinik Veddel gibi mevcut yapılardan rehberlik alıyoruz.',
                 'concept-title': 'Konsept',
@@ -257,7 +457,15 @@
                 'contact-title': 'İletişim & Künye',
                 'contact-org': 'Dayanışmacı Sağlık Kolektifi e.V.',
                 'contact-email': 'E-posta: info@kosge-berlin.de',
-                'contact-phone': 'Telefon: +49 1520 7240947'
+                'contact-phone': 'Telefon: +49 1520 7240947',
+                'banners-title': 'Afişlerimiz',
+                'participation-title': 'Afiş Katılımı',
+                'participate-btn': 'Katıl',
+                'privacy-title': 'Gizlilik Politikası',
+                'privacy-intro': 'GDPR tarafından gerektirilen veri koruma yönergelerine uyacağımızı açıkça beyan ediyoruz. Özellikle şunlara atıfta bulunuyoruz:',
+                'privacy-gdpr-articles': 'İlgili GDPR Maddeleri',
+                'privacy-jitsi-title': 'Jitsi Meet ile Video Konferansları',
+                'privacy-jitsi-description': 'Şifrelenmiş iletim özelliği olan açık kaynaklı bir araç olan Jitsi Meet\'i kullanıyoruz. Kendi sunucularımızda barındırıldığında, üçüncü taraflara veri aktarılmaz. Yalnızca konferans için gerekli veriler işlenir (örn. ad, IP adresi, ses/video verileri).'
             },
             ru: {
                 'title': 'Коллектив солидарного здоровья e.V.',
@@ -270,7 +478,7 @@
                 'nav-join': 'Присоединиться',
                 'nav-contact': 'Контакты и выходные данные',
                 'start-title': 'Коллектив солидарного здоровья e.V.',
-                'start-description': '[Миссия и видение - заполнитель]',
+                'start-description': 'Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.',
                 'about-title': 'Кто мы',
                 'about-description': 'Мы группа людей, которые разделяют общее желание сделать медицинское обслуживание в районе более целостным и социальным. Мы работаем как Коллектив солидарного здоровья e.V., чтобы реализовать центр здоровья района в Берлине. При этом мы руководствуемся существующими структурами, такими как GeKo Нойкёлльн и Поликлиника Веддель в Гамбурге, с которыми мы поддерживаем связь через общенациональный Синдикат поликлиник.',
                 'concept-title': 'Концепция',
@@ -283,7 +491,15 @@
                 'contact-title': 'Контакты и выходные данные',
                 'contact-org': 'Коллектив солидарного здоровья e.V.',
                 'contact-email': 'Электронная почта: info@kosge-berlin.de',
-                'contact-phone': 'Телефон: +49 1520 7240947'
+                'contact-phone': 'Телефон: +49 1520 7240947',
+                'banners-title': 'Наши баннеры',
+                'participation-title': 'Участие в баннере',
+                'participate-btn': 'Участвовать',
+                'privacy-title': 'Политика конфиденциальности',
+                'privacy-intro': 'Мы как организация заявляем, что хотим соблюдать правила защиты персональных данных, установленные GDPR. Мы в частности ссылаемся на:',
+                'privacy-gdpr-articles': 'Соответствующие статьи GDPR',
+                'privacy-jitsi-title': 'Видеоконференции с Jitsi Meet',
+                'privacy-jitsi-description': 'Мы используем Jitsi Meet, открытый исходный код с зашифрованным передачей. При размещении на наших собственных серверах данные не передаются третьим лицам. Обрабатываются только данные, необходимые для конференции (например, имя, IP-адрес, аудио- и видеоданные).'
             },
             ar: {
                 'title': 'الجمعية التعاونية للصحة التضامنية',
@@ -296,7 +512,7 @@
                 'nav-join': 'انضم إلينا',
                 'nav-contact': 'اتصل والطباعة',
                 'start-title': 'الجمعية التعاونية للصحة التضامنية',
-                'start-description': '[مكان حامل للمهمة والرؤية]',
+                'start-description': 'Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.',
                 'about-title': 'من نحن',
                 'about-description': 'نحن مجموعة من الأشخاص الذين يشاركون الرغبة المشتركة في جعل الرعاية الصحية في الحي أكثر شمولية واجتماعية. نعمل كجمعية تعاونية للصحة التضامنية لتنفيذ مركز صحي للحي في برلين. في هذا السياق، نسترشد بالهياكل القائمة مثل GeKo Neukölln وعيادة Veddel في هامبورغ، التي نتواصل معها من خلال نقابة العيادات الوطنية.',
                 'concept-title': 'المفهوم',
@@ -309,7 +525,15 @@
                 'contact-title': 'اتصل والطباعة',
                 'contact-org': 'الجمعية التعاونية للصحة التضامنية',
                 'contact-email': 'البريد الإلكتروني: info@kosge-berlin.de',
-                'contact-phone': 'الهاتف: +49 1520 7240947'
+                'contact-phone': 'الهاتف: +49 1520 7240947',
+                'banners-title': 'لافتاتنا',
+                'participation-title': 'المشاركة في اللافتة',
+                'participate-btn': 'المشاركة',
+                'privacy-title': 'سياسة الخصوصية',
+                'privacy-intro': 'نحن كمؤسسة أعلنا بصراحة أننا نريد أن نتزامنا مع معايير الحماية الشخصية المطلوبة من الGDPR. نحن نشير بشكل خاص إلى:',
+                'privacy-gdpr-articles': 'مواد GDPR المتعلقة',
+                'privacy-jitsi-title': 'مؤتمرات الفيديو مع Jitsi Meet',
+                'privacy-jitsi-description': 'نستخدم Jitsi Meet، أداة مفتوحة المصدر مع انتقال مشفر. عند التصحيح على خوادمنا الخاصة، لا يتم نقل البيانات إلى طرف ثالث. تُعالج البيانات اللازمة للمؤتمر فقط (على سبيل المثال، الاسم وعنوان IP والبيانات الصوتية والبيانات المرئية).'
             },
             simple: {
                 'title': 'Einfache Sprache - Gesundheit für alle',
@@ -322,7 +546,7 @@
                 'nav-join': 'Mitmachen',
                 'nav-contact': 'Kontakt',
                 'start-title': 'Gesundheit für alle',
-                'start-description': 'Wir wollen, dass alle Menschen gesund sein können.',
+                'start-description': 'Ein gesundheitsfördernder Ort der Begegnung, des Austauschs und der Vernetzung für alle Menschen in Lichtenberg. Mit Café, Räumen für Workshops, Gruppen und Beratungen zur Stärkung des gemeinschaftlichen Wohlbefindens und der sozialen Teilhabe.',
                 'about-title': 'Wer wir sind',
                 'about-description': 'Wir sind eine Gruppe. Wir wollen, dass Menschen im Kiez besser gesund werden können. Wir arbeiten zusammen, um ein Gesundheits-Zentrum zu bauen.',
                 'concept-title': 'Unser Plan',
@@ -335,7 +559,15 @@
                 'contact-title': 'Kontakt',
                 'contact-org': 'Kollektiv für solidarische Gesundheit e.V.',
                 'contact-email': 'E-Mail: info@kosge-berlin.de',
-                'contact-phone': 'Telefon: +49 1520 7240947'
+                'contact-phone': 'Telefon: +49 1520 7240947',
+                'banners-title': 'Unsere Banner',
+                'participation-title': 'Banner-Teilnahme',
+                'participate-btn': 'Teilnehmen',
+                'privacy-title': 'Datenschutzerklärung',
+                'privacy-intro': 'Wir als Verein erklären hiermit ausdrücklich, dass wir die aus der DSGVO erforderlichen Datenschutzrichtlinien einhalten wollen. Wir beziehen uns dabei insbesondere auf:',
+                'privacy-gdpr-articles': 'Relevante DSGVO-Artikel',
+                'privacy-jitsi-title': 'Videokonferenzen mit Jitsi Meet',
+                'privacy-jitsi-description': 'Wir nutzen Jitsi Meet, ein Open-Source-Tool mit verschlüsselter Übertragung. Bei Hosting auf unseren eigenen Servern erfolgt keine Datenweitergabe an Dritte. Verarbeitet werden nur für die Konferenz notwendige Daten (z.B. Name, IP-Adresse, Audio-/Videodaten).'
             }
         };
 
@@ -370,6 +602,248 @@
             const savedLang = localStorage.getItem('preferredLanguage') || 'de';
             document.getElementById('language').value = savedLang;
             applyTranslation(savedLang);
+        });
+    </script>
+    <!-- Admin Login and Banner Management -->
+    <script>
+        // Admin Login and Banner Management
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD = 'kosge2024!';
+        let isAdminLoggedIn = false;
+
+        // Admin Login Modal
+        const adminLoginModal = document.getElementById('admin-login-modal');
+        const bannerEditModal = document.getElementById('banner-edit-modal');
+        const adminLoginForm = document.getElementById('admin-login-form');
+        const bannerEditForm = document.getElementById('banner-edit-form');
+        const editBannerBtns = document.querySelectorAll('.edit-banner-btn');
+        const closeButtons = document.querySelectorAll('.close');
+
+        // Close modal functions
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // Admin Login
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                adminLoginModal.style.display = 'none';
+                alert('Erfolgreich angemeldet!');
+
+                // Explicitly show edit buttons
+                editBannerBtns.forEach(btn => {
+                    btn.style.display = 'block';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            } else {
+                alert('Ungültige Anmeldedaten');
+            }
+        });
+
+        // Ensure edit buttons are hidden by default
+        document.addEventListener('DOMContentLoaded', () => {
+            editBannerBtns.forEach(btn => {
+                btn.style.display = 'none';
+                btn.style.visibility = 'hidden';
+                btn.style.opacity = '0';
+            });
+        });
+
+        // Banner Edit Functionality
+        editBannerBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!isAdminLoggedIn) {
+                    adminLoginModal.style.display = 'block';
+                    return;
+                }
+
+                const bannerId = btn.getAttribute('data-banner');
+                document.getElementById('edit-banner-id').value = bannerId;
+                bannerEditModal.style.display = 'block';
+            });
+        });
+
+        // Save Banner URL
+        bannerEditForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const bannerId = document.getElementById('edit-banner-id').value;
+            const newUrl = document.getElementById('banner-url').value;
+
+            // Update banner image
+            const bannerImg = document.getElementById(`banner${ bannerId }`);
+            bannerImg.src = newUrl;
+
+            // Close modal
+            bannerEditModal.style.display = 'none';
+
+            // Optional: Save to localStorage for persistence
+            localStorage.setItem(`banner${ bannerId }_url`, newUrl);
+        });
+
+        // Load saved banner URLs on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            for (let i = 1; i <= 4; i++) {
+                const savedUrl = localStorage.getItem(`banner${ i }_url`);
+                if (savedUrl) {
+                    document.getElementById(`banner${ i }`).src = savedUrl;
+                }
+            }
+        });
+    </script>
+    <!-- Add translations for banners -->
+    <script>
+        // Add translations for banners
+        Object.keys(translations).forEach(lang => {
+            translations[lang]['banners-title'] = lang === 'en' ? 'Our Banners' :
+                lang === 'tr' ? 'Afişlerimiz' :
+                    lang === 'ru' ? 'Наши баннеры' :
+                        lang === 'ar' ? 'لافتاتنا' :
+                            'Unsere Banner';
+        });
+    </script>
+    <!-- Teilnahme-Funktionalität -->
+    <script>
+        // Teilnahme-Funktionalität
+        const banners = document.querySelectorAll('.banner');
+        const participationModal = document.getElementById('participation-modal');
+        const adminParticipationModal = document.getElementById('admin-participation-modal');
+        const participationForm = document.getElementById('participation-form');
+        const selectedBannerImage = document.getElementById('selected-banner-image');
+        const participationList = document.getElementById('participation-list');
+
+        // Speichern der Teilnahmen im localStorage
+        function saveParticipation(bannerNumber, name, email, message) {
+            const participations = JSON.parse(localStorage.getItem('banner-participations') || '[]');
+            participations.push({
+                bannerNumber,
+                name,
+                email,
+                message,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('banner-participations', JSON.stringify(participations));
+        }
+
+        // Abrufen aller Teilnahmen
+        function getParticipations() {
+            return JSON.parse(localStorage.getItem('banner-participations') || '[]');
+        }
+
+        // Banner Klick-Ereignis
+        banners.forEach(banner => {
+            banner.addEventListener('click', () => {
+                const bannerImg = banner.querySelector('img');
+                const bannerNumber = banner.querySelector('.edit-banner-btn').getAttribute('data-banner');
+
+                // Bild in die Mitte setzen
+                selectedBannerImage.src = bannerImg.src;
+                participationModal.style.display = 'block';
+
+                // Speichere die aktuelle Banner-Nummer für das Formular
+                participationForm.dataset.bannerNumber = bannerNumber;
+            });
+        });
+
+        // Teilnahme-Formular Absenden
+        participationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const bannerNumber = participationForm.dataset.bannerNumber;
+            const name = document.getElementById('participant-name').value;
+            const email = document.getElementById('participant-email').value;
+            const message = document.getElementById('participant-message').value;
+
+            // Speichere Teilnahme
+            saveParticipation(bannerNumber, name, email, message);
+
+            // Schließe Modal und zeige Bestätigung
+            participationModal.style.display = 'none';
+            alert('Vielen Dank für Ihre Teilnahme!');
+
+            // Formular zurücksetzen
+            participationForm.reset();
+        });
+
+        // Admin Teilnahmen anzeigen
+        function showParticipations() {
+            if (!isAdminLoggedIn) {
+                adminLoginModal.style.display = 'block';
+                return;
+            }
+
+            const participations = getParticipations();
+            participationList.innerHTML = participations.length ?
+                participations.map(p => `
+                    <div class="participation-entry">
+                        <strong>Banner ${ p.bannerNumber }</strong>
+                        <p>Name: ${ p.name }</p>
+                        <p>Email: ${ p.email || 'Keine E-Mail' }</p>
+                        <p>Nachricht: ${ p.message || 'Keine Nachricht' }</p>
+                        <small>${ new Date(p.timestamp).toLocaleString() }</small>
+                    </div>
+                `).join('') :
+                '<p>Keine Teilnahmen vorhanden.</p>';
+
+            adminParticipationModal.style.display = 'block';
+        }
+
+        // Füge eine Option zum Admin-Menü hinzu, um Teilnahmen zu sehen
+        document.addEventListener('DOMContentLoaded', () => {
+            // Füge einen Button zur Admin-Login-Modal hinzu
+            const showParticipationsBtn = document.createElement('button');
+            showParticipationsBtn.textContent = 'Teilnahmen anzeigen';
+            showParticipationsBtn.addEventListener('click', showParticipations);
+
+            // Füge den Button nach dem Login-Formular ein
+            const adminLoginForm = document.getElementById('admin-login-form');
+            adminLoginForm.appendChild(showParticipationsBtn);
+        });
+    </script>
+    <!-- Füge Übersetzungen für die neuen Elemente hinzu -->
+    <script>
+        // Füge Übersetzungen für Teilnahme-Elemente hinzu
+        Object.keys(translations).forEach(lang => {
+            translations[lang]['participation-title'] = lang === 'en' ? 'Banner Participation' :
+                lang === 'tr' ? 'Afiş Katılımı' :
+                    lang === 'ru' ? 'Участие в баннере' :
+                        lang === 'ar' ? 'المشاركة في اللافتة' :
+                            'Banner-Teilnahme';
+
+            translations[lang]['participate-btn'] = lang === 'en' ? 'Participate' :
+                lang === 'tr' ? 'Katıl' :
+                    lang === 'ru' ? 'Участвовать' :
+                        lang === 'ar' ? 'المشاركة' :
+                            'Teilnehmen';
+        });
+    </script>
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const privacyModal = document.getElementById('privacy-modal');
+            const privacyLink = document.getElementById('privacy-link');
+            const closeBtn = document.querySelector('#privacy-modal .close');
+
+            privacyLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                privacyModal.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', function () {
+                privacyModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (e) {
+                if (e.target === privacyModal) {
+                    privacyModal.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
