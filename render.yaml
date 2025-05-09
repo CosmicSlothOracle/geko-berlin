@@ -2,8 +2,11 @@ services:
   - type: web
     name: kos-2
     env: python
+    region: frankfurt
+    plan: free
+    branch: main
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
@@ -13,6 +16,7 @@ services:
         value: production
       - key: FLASK_APP
         value: app.py
+    autoDeploy: true
     disk:
       name: uploads
       mountPath: /opt/render/project/src/uploads
@@ -20,8 +24,11 @@ services:
 
   - type: static
     name: kos-frontend
+    region: frankfurt
     buildCommand: null
-    staticPublishPath: ./frontend/public
+    staticPublishPath: frontend/public
+    branch: main
     envVars:
       - key: BACKEND_URL
         value: https://kos-2.onrender.com
+    autoDeploy: true
