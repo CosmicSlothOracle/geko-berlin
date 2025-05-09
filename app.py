@@ -124,7 +124,26 @@ def save_participants(participants):
 
 @app.route('/api/health', methods=['GET'])
 def health():
-    return jsonify({'status': 'ok'}), 200
+    try:
+        # Check if we can read participants file
+        participants = load_participants()
+        # Check if uploads directory exists
+        uploads_exist = os.path.exists(UPLOAD_FOLDER)
+
+        return jsonify({
+            'status': 'healthy',
+            'participants_count': len(participants),
+            'uploads_directory': uploads_exist,
+            'base_dir': BASE_DIR,
+            'python_version': os.environ.get('PYTHON_VERSION', '3.11.11'),
+            'environment': os.environ.get('FLASK_ENV', 'production')
+        }), 200
+    except Exception as e:
+        logger.error(f'Health check failed: {str(e)}')
+        return jsonify({
+            'status': 'unhealthy',
+            'error': str(e)
+        }), 500
 
 
 @app.route('/api/login', methods=['POST'])
@@ -359,28 +378,6 @@ def index():
 @app.route('/favicon.ico')
 def favicon():
     return '', 204  # Return no content status
-
-
-@app.route('/health', methods=['GET'])
-def health_check():
-    try:
-        # Check if we can read participants file
-        participants = load_participants()
-        # Check if uploads directory exists
-        uploads_exist = os.path.exists(UPLOAD_FOLDER)
-
-        return jsonify({
-            'status': 'healthy',
-            'participants_count': len(participants),
-            'uploads_directory': uploads_exist,
-            'base_dir': BASE_DIR
-        }), 200
-    except Exception as e:
-        logger.error(f'Health check failed: {str(e)}')
-        return jsonify({
-            'status': 'unhealthy',
-            'error': str(e)
-        }), 500
 
 
 if __name__ == '__main__':

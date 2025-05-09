@@ -5,8 +5,10 @@ services:
     region: frankfurt
     plan: free
     branch: main
-    buildCommand: pip install -r requirements.txt && pip install gunicorn
-    startCommand: gunicorn app:app
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app --log-level debug
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
@@ -16,6 +18,8 @@ services:
         value: production
       - key: FLASK_APP
         value: app.py
+      - key: PYTHONUNBUFFERED
+        value: "true"
     autoDeploy: true
 
   - type: web
