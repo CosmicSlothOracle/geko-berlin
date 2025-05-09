@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'https://kos-2.onrender.com';
 
 // Function to load and display banners
 async function loadBanners() {
