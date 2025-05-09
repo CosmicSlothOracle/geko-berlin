@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: kos-2
+    name: kosge-backend
     env: python
     region: frankfurt
     plan: free
@@ -19,12 +19,9 @@ services:
     autoDeploy: true
 
   - type: web
-    name: kos-frontend
+    name: kosge-frontend
     env: static
     buildCommand: null
     staticPublishPath: frontend/public
     branch: main
-    envVars:
-      - key: BACKEND_URL
-        value: https://kos-2.onrender.com
     autoDeploy: true
