@@ -17,15 +17,10 @@ services:
       - key: FLASK_APP
         value: app.py
     autoDeploy: true
-    disk:
-      name: uploads
-      mountPath: /opt/render/project/src/uploads
-      sizeGB: 1
 
   - type: web
     name: kos-frontend
     env: static
-    region: frankfurt
     buildCommand: null
     staticPublishPath: frontend/public
     branch: main
