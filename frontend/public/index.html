@@ -131,6 +131,107 @@
         .mobile-nav {
             display: none !important;
         }
+
+        /* Participation modal styling */
+        .participation-modal {
+            max-width: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .participation-modal h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #selected-banner-preview {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+        }
+
+        #selected-banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #participation-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #participation-form input,
+        #participation-form textarea {
+            padding: 12px;
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            font-family: var(--font);
+            font-size: 16px;
+        }
+
+        #participation-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #participation-form button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        #participation-form button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .banner {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .banner:hover {
+            transform: translateY(-5px);
+        }
+
+        .banner::after {
+            content: "Klicken für Teilnahme";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .banner:hover::after {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -810,16 +911,8 @@
             if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
                 isAdminLoggedIn = true;
                 adminLoginModal.style.display = 'none';
-                alert('Erfolgreich angemeldet!');
-
-                // Explicitly show edit buttons
-                editBannerBtns.forEach(btn => {
-                    btn.style.display = 'block';
-                    btn.style.visibility = 'visible';
-                    btn.style.opacity = '1';
-                });
-                // Zeige Dashboard-Button
-                dashboardBtn.style.display = 'block';
+                // Automatically redirect to dashboard instead of showing dashboard button
+                window.location.href = 'admin/dashboard.html';
             } else {
                 alert('Ungültige Anmeldedaten');
             }
@@ -930,9 +1023,17 @@
 
         // Banner Klick-Ereignis
         banners.forEach((banner, index) => {
-            // Remove banner click event
-            // Banners should not have click functionality in frontend view
-            banner.style.cursor = 'default';
+            // Add interactive cursor and click event for participation
+            banner.style.cursor = 'pointer';
+            banner.addEventListener('click', () => {
+                const bannerImg = banner.querySelector('img');
+                const bannerNumber = index + 1; // Use index + 1 for banner number
+
+                // Show participation modal
+                selectedBannerImage.src = bannerImg.src;
+                participationModal.style.display = 'block';
+                participationForm.dataset.bannerNumber = bannerNumber;
+            });
         });
 
         // Teilnahme-Formular Absenden

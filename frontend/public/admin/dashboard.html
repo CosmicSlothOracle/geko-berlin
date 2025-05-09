@@ -87,61 +87,177 @@
         }
         .error { color: #e74c3c; }
         .success { color: #27ae60; }
+        .participation-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .tab-button {
+            padding: 8px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: normal;
+        }
+
+        .tab-button.active {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: bold;
+            border-color: var(--secondary-color);
+        }
+
+        .participation-entry {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fafafa;
+            position: relative;
+        }
+
+        .participation-entry.banner1 {
+            border-left: 5px solid #E67E22;
+        }
+
+        .participation-entry.banner2 {
+            border-left: 5px solid #3498DB;
+        }
+
+        .participation-entry.banner3 {
+            border-left: 5px solid #2ECC71;
+        }
+
+        .participation-entry.banner4 {
+            border-left: 5px solid #9B59B6;
+        }
+
+        .participation-banner {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            font-size: 12px;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .banner-tag-1 {
+            background-color: #E67E22;
+        }
+
+        .banner-tag-2 {
+            background-color: #3498DB;
+        }
+
+        .banner-tag-3 {
+            background-color: #2ECC71;
+        }
+
+        .banner-tag-4 {
+            background-color: #9B59B6;
+        }
+
+        .no-participations {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
     </style>
 </head>
 
 <body>
     <div class="dashboard-container">
-        <h2>Banner-Verwaltung</h2>
-
-        <div class="banner-input-group">
-            <h3>Banner Einstellungen</h3>
-            <p>Empfohlene Bildgrößen für optimale Darstellung:</p>
-            <ul>
-                <li>Breite: 100% der verfügbaren Breite</li>
-                <li>Höhe: 250px</li>
-                <li>Seitenverhältnis: 16:9 empfohlen</li>
-                <li>Unterstützte Formate: PNG, JPG, JPEG, GIF</li>
-                <li>Max. Dateigröße: 16MB</li>
-            </ul>
-        </div>
-
-        <div class="banner-grid">
-            <div class="banner-input-group">
-                <h3>Banner 1</h3>
-                <input type="url" id="banner1-url" placeholder="Bild-URL eingeben" />
-                <div class="preview-container">
-                    <img id="banner1-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 1 Vorschau" />
-                </div>
+        <section class="dashboard-section">
+            <h2 class="section-title">Banner-Verwaltung</h2>
+            <div class="banner-info">
+                <h3>Banner-Informationen</h3>
+                <ul>
+                    <li>Empfohlene Höhe: 250px</li>
+                    <li>Empfohlenes Seitenverhältnis: 16:9</li>
+                    <li>Unterstützte Formate: PNG, JPG, JPEG, GIF</li>
+                </ul>
             </div>
-
-            <div class="banner-input-group">
-                <h3>Banner 2</h3>
-                <input type="url" id="banner2-url" placeholder="Bild-URL eingeben" />
-                <div class="preview-container">
-                    <img id="banner2-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 2 Vorschau" />
+            <div class="banner-management">
+                <div class="banner-input-group">
+                    <h3>Banner Einstellungen</h3>
+                    <p>Empfohlene Bildgrößen für optimale Darstellung:</p>
+                    <ul>
+                        <li>Breite: 100% der verfügbaren Breite</li>
+                        <li>Höhe: 250px</li>
+                        <li>Seitenverhältnis: 16:9 empfohlen</li>
+                        <li>Unterstützte Formate: PNG, JPG, JPEG, GIF</li>
+                        <li>Max. Dateigröße: 16MB</li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="banner-input-group">
-                <h3>Banner 3</h3>
-                <input type="url" id="banner3-url" placeholder="Bild-URL eingeben" />
-                <div class="preview-container">
-                    <img id="banner3-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 3 Vorschau" />
+                <div class="banner-grid">
+                    <div class="banner-input-group">
+                        <h3>Banner 1</h3>
+                        <input type="url" id="banner1-url" placeholder="Bild-URL eingeben" />
+                        <div class="preview-container">
+                            <img id="banner1-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 1 Vorschau" />
+                        </div>
+                    </div>
+
+                    <div class="banner-input-group">
+                        <h3>Banner 2</h3>
+                        <input type="url" id="banner2-url" placeholder="Bild-URL eingeben" />
+                        <div class="preview-container">
+                            <img id="banner2-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 2 Vorschau" />
+                        </div>
+                    </div>
+
+                    <div class="banner-input-group">
+                        <h3>Banner 3</h3>
+                        <input type="url" id="banner3-url" placeholder="Bild-URL eingeben" />
+                        <div class="preview-container">
+                            <img id="banner3-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 3 Vorschau" />
+                        </div>
+                    </div>
+
+                    <div class="banner-input-group">
+                        <h3>Banner 4</h3>
+                        <input type="url" id="banner4-url" placeholder="Bild-URL eingeben" />
+                        <div class="preview-container">
+                            <img id="banner4-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 4 Vorschau" />
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="banner-input-group">
-                <h3>Banner 4</h3>
-                <input type="url" id="banner4-url" placeholder="Bild-URL eingeben" />
-                <div class="preview-container">
-                    <img id="banner4-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 4 Vorschau" />
-                </div>
+                <button id="save-banners">Änderungen speichern</button>
+                <div id="message" class="message"></div>
             </div>
-        </div>
+        </section>
 
-        <button id="save-banners">Änderungen speichern</button>
-        <div id="message" class="message"></div>
+        <!-- Banner Participation Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">Banner-Teilnahmen</h2>
+            <div class="participation-tabs">
+                <button class="tab-button active" data-banner="all">Alle</button>
+                <button class="tab-button" data-banner="1">Banner 1</button>
+                <button class="tab-button" data-banner="2">Banner 2</button>
+                <button class="tab-button" data-banner="3">Banner 3</button>
+                <button class="tab-button" data-banner="4">Banner 4</button>
+            </div>
+            <div id="participation-container">
+                <div class="loading-message">Teilnahmen werden geladen...</div>
+            </div>
+        </section>
     </div>
 
     <script>
@@ -201,6 +317,80 @@
         if (window.opener) {
             window.opener.location.reload();
         }
+    });
+
+    // Fetch and display participation data
+    async function fetchParticipations() {
+        const container = document.getElementById('participation-container');
+        container.innerHTML = '<div class="loading-message">Teilnahmen werden geladen...</div>';
+
+        try {
+            const API_BASE = window.location.hostname === 'localhost'
+                ? 'http://localhost:5000'
+                : 'https://kos-2.onrender.com';
+
+            const response = await fetch(API_BASE + '/api/participants');
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            displayParticipations('all', data.participants || []);
+
+            // Add tab event listeners
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const bannerFilter = this.getAttribute('data-banner');
+                    displayParticipations(bannerFilter, data.participants || []);
+                });
+            });
+
+        } catch (error) {
+            console.error('Error fetching participations:', error);
+            container.innerHTML = '<div class="error-message">Fehler beim Laden der Teilnahmen. Bitte versuchen Sie es später erneut.</div>';
+        }
+    }
+
+    // Display participations based on selected filter
+    function displayParticipations(filter, participations) {
+        const container = document.getElementById('participation-container');
+
+        if (!participations.length) {
+            container.innerHTML = '<div class="no-participations">Keine Teilnahmen vorhanden.</div>';
+            return;
+        }
+
+        let filteredParticipations = participations;
+        if (filter !== 'all') {
+            filteredParticipations = participations.filter(p => p.banner === filter);
+        }
+
+        if (!filteredParticipations.length) {
+            container.innerHTML = `<div class="no-participations">Keine Teilnahmen für Banner ${filter} vorhanden.</div>`;
+            return;
+        }
+
+        const html = filteredParticipations.map(p => `
+            <div class="participation-entry banner${p.banner}">
+                <span class="participation-banner banner-tag-${p.banner}">Banner ${p.banner}</span>
+                <h3>${p.name}</h3>
+                <p><strong>E-Mail:</strong> ${p.email || 'Nicht angegeben'}</p>
+                <p><strong>Nachricht:</strong> ${p.message || 'Keine Nachricht'}</p>
+                <p><small>Datum: ${new Date(p.date || Date.now()).toLocaleString('de-DE')}</small></p>
+            </div>
+        `).join('');
+
+        container.innerHTML = html;
+    }
+
+    // Load participations on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadBanners();
+        setupPreviewListeners();
+        fetchParticipations(); // Added this line to fetch participations
     });
     </script>
 </body>
