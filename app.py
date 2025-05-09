@@ -361,6 +361,28 @@ def favicon():
     return '', 204  # Return no content status
 
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    try:
+        # Check if we can read participants file
+        participants = load_participants()
+        # Check if uploads directory exists
+        uploads_exist = os.path.exists(UPLOAD_FOLDER)
+
+        return jsonify({
+            'status': 'healthy',
+            'participants_count': len(participants),
+            'uploads_directory': uploads_exist,
+            'base_dir': BASE_DIR
+        }), 200
+    except Exception as e:
+        logger.error(f'Health check failed: {str(e)}')
+        return jsonify({
+            'status': 'unhealthy',
+            'error': str(e)
+        }), 500
+
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
