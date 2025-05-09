@@ -33,6 +33,27 @@ services:
       - path: /*
         name: Cache-Control
         value: no-cache
+      - path: /*.css
+        name: Content-Type
+        value: text/css
+      - path: /*.js
+        name: Content-Type
+        value: application/javascript
+      - path: /*.png
+        name: Content-Type
+        value: image/png
+      - path: /*.jpg
+        name: Content-Type
+        value: image/jpeg
+      - path: /*.jpeg
+        name: Content-Type
+        value: image/jpeg
+      - path: /*.woff2
+        name: Content-Type
+        value: font/woff2
+      - path: /*.woff
+        name: Content-Type
+        value: font/woff
     routes:
       - type: rewrite
         source: /*
