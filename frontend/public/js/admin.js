@@ -48,12 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-const API_BASE = 'https://kos-2.onrender.com';
+const API_BASE = '/api';
 
 // Function to load and display banners
 async function loadBanners() {
     try {
-        const response = await fetch(`${API_BASE}/api/banners`);
+        const response = await fetch(`${API_BASE}/banners`);
         const data = await response.json();
 
         // Update banner images in the grid
