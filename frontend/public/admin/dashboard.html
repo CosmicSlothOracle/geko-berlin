@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard - KOSGE</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/config.js"></script>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -237,302 +239,117 @@
             font-weight: bold;
             color: var(--secondary-color);
         }
+
+        .participation-section {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .participation-list {
+            margin-top: 1.5rem;
+        }
+
+        .participation-entry {
+            background: #f8f9fa;
+            border-left: 4px solid #E67E22;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .participation-banner {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .banner-tag-1 { background-color: #E67E22; }
+        .banner-tag-2 { background-color: #3498db; }
+        .banner-tag-3 { background-color: #2ecc71; }
+        .banner-tag-4 { background-color: #9b59b6; }
+
+        .loading-message {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #e74c3c;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .error-message button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        .error-message button:hover {
+            background: #c0392b;
+        }
+
+        .no-participations {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        #logout-button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #logout-button:hover {
+            background: #c0392b;
+        }
     </style>
 </head>
 
 <body>
     <div class="dashboard-container">
-        <section class="dashboard-section">
-            <h2 class="section-title">Banner-Verwaltung</h2>
-            <div class="banner-info">
-                <h3>Banner-Informationen</h3>
-                <ul>
-                    <li><span class="highlight">Neues Seitenverhältnis: 4:3</span> (statt 16:9)</li>
-                    <li>Empfohlene Größe: 800×600 Pixel</li>
-                    <li>Unterstützte Formate: PNG, JPG, JPEG, GIF</li>
-                </ul>
-            </div>
-            <div class="banner-management">
-                <div class="banner-input-group">
-                    <h3>Banner Einstellungen</h3>
-                    <p>Empfohlene Bildgrößen für optimale Darstellung:</p>
-                    <ul>
-                        <li>Breite: 100% der verfügbaren Breite</li>
-                        <li>Höhe: 250px</li>
-                        <li>Seitenverhältnis: 16:9 empfohlen</li>
-                        <li>Unterstützte Formate: PNG, JPG, JPEG, GIF</li>
-                        <li>Max. Dateigröße: 16MB</li>
-                    </ul>
-                </div>
+        <div class="header">
+            <h1>KOSGE Admin Dashboard</h1>
+            <button id="logout-button">Logout</button>
+        </div>
 
-                <div class="banner-grid">
-                    <div class="banner-input-group">
-                        <h3>Banner 1</h3>
-                        <div class="banner-preview">
-                            <img id="banner1-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 1 Vorschau">
-                        </div>
-                        <div class="form-group">
-                            <label for="banner1-url">Banner-URL</label>
-                            <input type="url" id="banner1-url" placeholder="https://beispiel.com/bild.jpg">
-                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
-                            <p id="banner1-message" class="status-message"></p>
-                        </div>
-                        <div class="button-group">
-                            <button class="save-button" onclick="saveBanner(1)">Speichern</button>
-                            <button class="clear-button" onclick="clearBanner(1)">Löschen</button>
-                        </div>
-                    </div>
-
-                    <div class="banner-input-group">
-                        <h3>Banner 2</h3>
-                        <div class="banner-preview">
-                            <img id="banner2-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 2 Vorschau">
-                        </div>
-                        <div class="form-group">
-                            <label for="banner2-url">Banner-URL</label>
-                            <input type="url" id="banner2-url" placeholder="https://beispiel.com/bild.jpg">
-                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
-                            <p id="banner2-message" class="status-message"></p>
-                        </div>
-                        <div class="button-group">
-                            <button class="save-button" onclick="saveBanner(2)">Speichern</button>
-                            <button class="clear-button" onclick="clearBanner(2)">Löschen</button>
-                        </div>
-                    </div>
-
-                    <div class="banner-input-group">
-                        <h3>Banner 3</h3>
-                        <div class="banner-preview">
-                            <img id="banner3-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 3 Vorschau">
-                        </div>
-                        <div class="form-group">
-                            <label for="banner3-url">Banner-URL</label>
-                            <input type="url" id="banner3-url" placeholder="https://beispiel.com/bild.jpg">
-                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
-                            <p id="banner3-message" class="status-message"></p>
-                        </div>
-                        <div class="button-group">
-                            <button class="save-button" onclick="saveBanner(3)">Speichern</button>
-                            <button class="clear-button" onclick="clearBanner(3)">Löschen</button>
-                        </div>
-                    </div>
-
-                    <div class="banner-input-group">
-                        <h3>Banner 4</h3>
-                        <div class="banner-preview">
-                            <img id="banner4-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 4 Vorschau">
-                        </div>
-                        <div class="form-group">
-                            <label for="banner4-url">Banner-URL</label>
-                            <input type="url" id="banner4-url" placeholder="https://beispiel.com/bild.jpg">
-                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
-                            <p id="banner4-message" class="status-message"></p>
-                        </div>
-                        <div class="button-group">
-                            <button class="save-button" onclick="saveBanner(4)">Speichern</button>
-                            <button class="clear-button" onclick="clearBanner(4)">Löschen</button>
-                        </div>
-                    </div>
-                </div>
-
-                <button id="save-banners">Änderungen speichern</button>
-                <div id="message" class="message"></div>
-            </div>
-        </section>
-
-        <!-- Banner Participation Section -->
-        <section class="dashboard-section">
-            <h2 class="section-title">Banner-Teilnahmen</h2>
-            <div class="participation-tabs">
-                <button class="tab-button active" data-banner="all">Alle</button>
-                <button class="tab-button" data-banner="1">Banner 1</button>
-                <button class="tab-button" data-banner="2">Banner 2</button>
-                <button class="tab-button" data-banner="3">Banner 3</button>
-                <button class="tab-button" data-banner="4">Banner 4</button>
-            </div>
-            <div id="participation-container">
-                <div class="loading-message">Teilnahmen werden geladen...</div>
+        <section class="participation-section">
+            <h2>Teilnahmen</h2>
+            <div id="participation-list">
+                <!-- Participants will be loaded here -->
             </div>
         </section>
     </div>
 
-    <script>
-    // Use relative API path
-    const API_BASE = '/api';
-
-    // Load saved banner URLs on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        loadBanners();
-        setupPreviewListeners();
-        fetchParticipations();
-    });
-
-    // Load saved banner URLs
-    function loadBanners() {
-        for (let i = 1; i <= 4; i++) {
-            const savedUrl = localStorage.getItem(`banner${i}Url`);
-            if (savedUrl) {
-                document.getElementById(`banner${i}-url`).value = savedUrl;
-                document.getElementById(`banner${i}-preview`).src = savedUrl;
-            }
-        }
-    }
-
-    // Set up live preview listeners
-    function setupPreviewListeners() {
-        for (let i = 1; i <= 4; i++) {
-            const urlInput = document.getElementById(`banner${i}-url`);
-            urlInput.addEventListener('input', function() {
-                const url = this.value.trim();
-                if (isValidImageUrl(url)) {
-                    const previewImg = document.getElementById(`banner${i}-preview`);
-                    previewImg.src = url;
-                    previewImg.onerror = function() {
-                        this.src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
-                        document.getElementById(`banner${i}-message`).textContent = 'Fehler beim Laden des Bildes. Überprüfen Sie die URL.';
-                        document.getElementById(`banner${i}-message`).className = 'status-message error';
-                    };
-                    previewImg.onload = function() {
-                        document.getElementById(`banner${i}-message`).textContent = '';
-                    };
-                }
-            });
-        }
-    }
-
-    // Save banner URL
-    function saveBanner(bannerNumber) {
-        const urlInput = document.getElementById(`banner${bannerNumber}-url`);
-        const url = urlInput.value.trim();
-        const messageEl = document.getElementById(`banner${bannerNumber}-message`);
-
-        if (!url) {
-            messageEl.textContent = 'Bitte geben Sie eine URL ein.';
-            messageEl.className = 'status-message error';
-            return;
-        }
-
-        if (!isValidImageUrl(url)) {
-            messageEl.textContent = 'Bitte geben Sie eine gültige Bild-URL ein (PNG, JPG, JPEG, GIF).';
-            messageEl.className = 'status-message error';
-            return;
-        }
-
-        // Save to localStorage
-        localStorage.setItem(`banner${bannerNumber}Url`, url);
-
-        // Update preview
-        document.getElementById(`banner${bannerNumber}-preview`).src = url;
-
-        // Show success message
-        messageEl.textContent = 'Banner erfolgreich gespeichert.';
-        messageEl.className = 'status-message success';
-
-        // Clear message after 3 seconds
-        setTimeout(() => {
-            messageEl.textContent = '';
-        }, 3000);
-    }
-
-    // Clear banner
-    function clearBanner(bannerNumber) {
-        // Clear localStorage
-        localStorage.removeItem(`banner${bannerNumber}Url`);
-
-        // Clear input field
-        document.getElementById(`banner${bannerNumber}-url`).value = '';
-
-        // Reset preview
-        document.getElementById(`banner${bannerNumber}-preview`).src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
-
-        // Show success message
-        const messageEl = document.getElementById(`banner${bannerNumber}-message`);
-        messageEl.textContent = 'Banner erfolgreich gelöscht.';
-        messageEl.className = 'status-message success';
-
-        // Clear message after 3 seconds
-        setTimeout(() => {
-            messageEl.textContent = '';
-        }, 3000);
-    }
-
-    // Validate image URL
-    function isValidImageUrl(url) {
-        if (!url) return false;
-
-        try {
-            new URL(url);
-            return url.match(/\.(jpeg|jpg|gif|png)$/i) != null;
-        } catch (e) {
-            return false;
-        }
-    }
-
-    // Fetch and display participation data
-    async function fetchParticipations() {
-        const container = document.getElementById('participation-container');
-        container.innerHTML = '<div class="loading-message">Teilnahmen werden geladen...</div>';
-
-        try {
-            const response = await fetch(API_BASE + '/participants');
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            displayParticipations('all', data.participants || []);
-
-            // Add tab event listeners
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    const bannerFilter = this.getAttribute('data-banner');
-                    displayParticipations(bannerFilter, data.participants || []);
-                });
-            });
-
-        } catch (error) {
-            console.error('Error fetching participations:', error);
-            container.innerHTML = '<div class="error-message">Fehler beim Laden der Teilnahmen. Bitte versuchen Sie es später erneut.</div>';
-        }
-    }
-
-    // Display participations based on selected filter
-    function displayParticipations(filter, participations) {
-        const container = document.getElementById('participation-container');
-
-        if (!participations || participations.length === 0) {
-            container.innerHTML = '<div class="no-participations">Keine Teilnahmen vorhanden.</div>';
-            return;
-        }
-
-        const filteredParticipations = filter === 'all'
-            ? participations
-            : participations.filter(p => p.banner === filter);
-
-        if (filteredParticipations.length === 0) {
-            container.innerHTML = `<div class="no-participations">Keine Teilnahmen für Banner ${filter} vorhanden.</div>`;
-            return;
-        }
-
-        const html = filteredParticipations.map(p => `
-            <div class="participation-entry banner${p.banner || '1'}">
-                <div class="participation-banner banner-tag-${p.banner || '1'}">Banner ${p.banner || '1'}</div>
-                <h3>${p.name}</h3>
-                ${p.email ? `<p><strong>Email:</strong> ${p.email}</p>` : ''}
-                ${p.message ? `<p><strong>Nachricht:</strong> ${p.message}</p>` : ''}
-                <p><strong>Datum:</strong> ${new Date(p.timestamp).toLocaleString('de-DE')}</p>
-            </div>
-        `).join('');
-
-        container.innerHTML = html;
-    }
-
-    // Refresh participations periodically
-    setInterval(fetchParticipations, 30000); // Refresh every 30 seconds
-    </script>
+    <script src="../js/admin-dashboard.js"></script>
 </body>
 
 </html>

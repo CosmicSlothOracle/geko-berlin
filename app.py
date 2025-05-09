@@ -20,11 +20,14 @@ CORS(app, resources={
             "http://localhost:8080",
             "https://kosge-frontend.onrender.com",
             "https://kosge-frontend-kqxo.onrender.com",
-            "https://kos-frontend.onrender.com"
+            "https://kos-frontend.onrender.com",
+            "https://kos-frontend-kqxo.onrender.com",
+            "https://kos-2.onrender.com"
         ],
         "methods": ["GET", "POST", "DELETE", "OPTIONS", "PUT"],
         "allow_headers": ["Content-Type", "Authorization"],
-        "expose_headers": ["Content-Type", "Authorization"]
+        "expose_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
     }
 })
 
@@ -50,6 +53,19 @@ if not os.path.exists(UPLOAD_FOLDER):
 if not os.path.exists(PARTICIPANTS_FILE):
     with open(PARTICIPANTS_FILE, 'w', encoding='utf-8') as f:
         json.dump([], f)
+
+# Add debug logging for participants file
+logger.info(f'Participants file path: {PARTICIPANTS_FILE}')
+if os.path.exists(PARTICIPANTS_FILE):
+    logger.info('Participants file exists')
+    with open(PARTICIPANTS_FILE, 'r', encoding='utf-8') as f:
+        try:
+            participants = json.load(f)
+            logger.info(f'Number of participants: {len(participants)}')
+        except json.JSONDecodeError as e:
+            logger.error(f'Error reading participants file: {e}')
+else:
+    logger.warning('Participants file does not exist')
 
 # Dummy-User (später DB)
 DUMMY_USER = {
@@ -226,8 +242,28 @@ def add_participant():
 
 @app.route('/api/participants', methods=['GET'])
 def get_participants():
-    participants = load_participants()
-    return jsonify({'participants': participants}), 200
+    try:
+        participants = load_participants()
+        response = jsonify({'participants': participants})
+        # Add CORS headers
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add(
+            'Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Content-Type', 'application/json')
+        return response, 200
+    except Exception as e:
+        logger.error(f'Error getting participants: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/participants', methods=['OPTIONS'])
+def participants_options():
+    response = make_response()
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    return response
 
 
 # CMS Routes
