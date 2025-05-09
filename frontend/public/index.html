@@ -126,6 +126,11 @@
                 margin: 5px 0;
             }
         }
+
+        /* Remove mobile nav styles */
+        .mobile-nav {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -173,28 +178,12 @@
             </ul>
         </nav>
         <!-- Mobile Navigation -->
-        <nav class="mobile-nav">
-            <a href="#start" class="mobile-nav-item">
-                <i class="fas fa-home"></i>
-                <span data-translate="nav-start">Start</span>
-            </a>
-            <a href="#about" class="mobile-nav-item">
-                <i class="fas fa-info-circle"></i>
-                <span data-translate="nav-about">Wer wir sind</span>
-            </a>
-            <a href="#concept" class="mobile-nav-item">
-                <i class="fas fa-lightbulb"></i>
-                <span data-translate="nav-concept">Konzept</span>
-            </a>
-            <a href="#join" class="mobile-nav-item">
-                <i class="fas fa-hands-helping"></i>
-                <span data-translate="nav-join">Mitmachen</span>
-            </a>
-            <a href="#contact" class="mobile-nav-item">
-                <i class="fas fa-envelope"></i>
-                <span data-translate="nav-contact">Kontakt</span>
-            </a>
-        </nav>
+        <style>
+            /* Remove mobile nav styles */
+            .mobile-nav {
+                display: none !important;
+            }
+        </style>
         <!-- Hero Slideshow -->
         <div class="hero-slideshow">
             <div class="hero-slide active">
