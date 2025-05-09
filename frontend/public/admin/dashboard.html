@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background: #f6f6f6; margin: 0; }
+        .dashboard-container { max-width: 600px; margin: 2rem auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 2rem; }
+        h2 { text-align: center; margin-bottom: 2rem; }
+        .banner-list { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .banner-item { background: #fafafa; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); padding: 0.5rem; display: flex; flex-direction: column; align-items: center; width: 120px; }
+        .banner-item img { max-width: 100px; max-height: 100px; border-radius: 4px; margin-bottom: 0.5rem; object-fit: cover; }
+        .upload-form { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+        .upload-form input[type="file"] { border: 1px solid #ccc; border-radius: 5px; padding: 0.3rem; }
+        .upload-form button { background: #E67E22; color: #fff; border: none; border-radius: 5px; padding: 0.7rem 1.5rem; font-size: 1rem; cursor: pointer; }
+        .upload-form button:disabled { background: #ccc; }
+        .message { margin-top: 1rem; text-align: center; font-size: 0.95rem; }
+        .error { color: #c0392b; }
+        .success { color: #27ae60; }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h2>Banner-Verwaltung</h2>
+        <form class="upload-form" id="banner-upload-form" enctype="multipart/form-data">
+            <input type="file" id="banner-file" accept="image/png" required>
+            <button type="submit" id="upload-btn">Banner hochladen</button>
+        </form>
+        <div class="message" id="upload-message"></div>
+        <div class="banner-list" id="banner-list"></div>
+        <hr style="margin:2rem 0;">
+        <h2>Teilnehmerübersicht</h2>
+        <button id="reload-participants" style="margin-bottom:1rem;">Teilnehmerliste neu laden</button>
+        <div class="participants-table-wrapper">
+            <table id="participants-table" style="width:100%;border-collapse:collapse;">
+                <thead>
+                    <tr style="background:#fafafa;">
+                        <th style="padding:0.5rem;border-bottom:1px solid #eee;">Name</th>
+                        <th style="padding:0.5rem;border-bottom:1px solid #eee;">E-Mail</th>
+                        <th style="padding:0.5rem;border-bottom:1px solid #eee;">Nachricht</th>
+                        <th style="padding:0.5rem;border-bottom:1px solid #eee;">Banner</th>
+                    </tr>
+                </thead>
+                <tbody id="participants-tbody">
+                    <tr><td colspan="4" style="text-align:center;">Lade Teilnehmer...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+    const API_BASE = 'http://localhost:5000';
+    const uploadForm = document.getElementById('banner-upload-form');
+    const bannerFile = document.getElementById('banner-file');
+    const uploadBtn = document.getElementById('upload-btn');
+    const messageDiv = document.getElementById('upload-message');
+    const bannerList = document.getElementById('banner-list');
+    const participantsTbody = document.getElementById('participants-tbody');
+    const reloadParticipantsBtn = document.getElementById('reload-participants');
+
+    function getFilenameFromUrl(url) {
+        return url.split('/').pop();
+    }
+
+    async function fetchBanners() {
+        bannerList.innerHTML = '<span>Lade Banner...</span>';
+        try {
+            const res = await fetch(`${API_BASE}/api/banners`);
+            const data = await res.json();
+            bannerList.innerHTML = '';
+            if (data.banners && data.banners.length > 0) {
+                data.banners.forEach(url => {
+                    const div = document.createElement('div');
+                    div.className = 'banner-item';
+                    const img = document.createElement('img');
+                    img.src = API_BASE + url;
+                    img.alt = 'Banner';
+                    div.appendChild(img);
+                    // Löschen-Button
+                    const delBtn = document.createElement('button');
+                    delBtn.textContent = 'Löschen';
+                    delBtn.style.marginTop = '0.5rem';
+                    delBtn.style.background = '#c0392b';
+                    delBtn.style.color = '#fff';
+                    delBtn.style.border = 'none';
+                    delBtn.style.borderRadius = '4px';
+                    delBtn.style.padding = '0.3rem 0.7rem';
+                    delBtn.style.cursor = 'pointer';
+                    delBtn.onclick = async () => {
+                        if (confirm('Banner wirklich löschen?')) {
+                            const filename = getFilenameFromUrl(url);
+                            try {
+                                const res = await fetch(`${API_BASE}/api/banners/${filename}`, { method: 'DELETE' });
+                                if (res.ok) {
+                                    messageDiv.textContent = 'Banner gelöscht!';
+                                    messageDiv.className = 'message success';
+                                    fetchBanners();
+                                    // Update main page banners
+                                    window.opener?.location.reload();
+                                } else {
+                                    const err = await res.json();
+                                    messageDiv.textContent = err.error || 'Löschen fehlgeschlagen.';
+                                    messageDiv.className = 'message error';
+                                }
+                            } catch (err) {
+                                messageDiv.textContent = 'Server nicht erreichbar.';
+                                messageDiv.className = 'message error';
+                            }
+                        }
+                    };
+                    div.appendChild(delBtn);
+                    bannerList.appendChild(div);
+                });
+            } else {
+                bannerList.innerHTML = '<span>Keine Banner vorhanden.</span>';
+            }
+        } catch (err) {
+            bannerList.innerHTML = '<span class="error">Fehler beim Laden der Banner.</span>';
+        }
+    }
+
+    uploadForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        messageDiv.textContent = '';
+        uploadBtn.disabled = true;
+        const file = bannerFile.files[0];
+        if (!file || file.type !== 'image/png') {
+            messageDiv.textContent = 'Bitte nur PNG-Dateien hochladen!';
+            messageDiv.className = 'message error';
+            uploadBtn.disabled = false;
+            return;
+        }
+        const formData = new FormData();
+        formData.append('file', file);
+        try {
+            const res = await fetch(`${API_BASE}/api/banners`, {
+                method: 'POST',
+                body: formData
+            });
+            if (res.ok) {
+                const data = await res.json();
+                messageDiv.textContent = 'Upload erfolgreich!';
+                messageDiv.className = 'message success';
+                bannerFile.value = '';
+                fetchBanners();
+                // Update main page banners
+                window.opener?.location.reload();
+            } else {
+                const err = await res.json();
+                messageDiv.textContent = err.error || 'Upload fehlgeschlagen.';
+                messageDiv.className = 'message error';
+            }
+        } catch (err) {
+            messageDiv.textContent = 'Server nicht erreichbar.';
+            messageDiv.className = 'message error';
+        }
+        uploadBtn.disabled = false;
+    });
+
+    async function fetchParticipants() {
+        participantsTbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Lade Teilnehmer...</td></tr>';
+        try {
+            const res = await fetch(`${API_BASE}/api/participants`);
+            const data = await res.json();
+            if (data.participants && data.participants.length > 0) {
+                participantsTbody.innerHTML = '';
+                data.participants.forEach(p => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="padding:0.5rem;border-bottom:1px solid #eee;">${p.name || ''}</td>
+                        <td style="padding:0.5rem;border-bottom:1px solid #eee;">${p.email || ''}</td>
+                        <td style="padding:0.5rem;border-bottom:1px solid #eee;">${p.message || ''}</td>
+                        <td style="padding:0.5rem;border-bottom:1px solid #eee;">${p.banner || ''}</td>
+                    `;
+                    participantsTbody.appendChild(tr);
+                });
+            } else {
+                participantsTbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Keine Teilnehmer vorhanden.</td></tr>';
+            }
+        } catch (err) {
+            participantsTbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#c0392b;">Fehler beim Laden der Teilnehmer.</td></tr>';
+        }
+    }
+
+    reloadParticipantsBtn.addEventListener('click', fetchParticipants);
+
+    // Nach jedem Banner-Upload/Löschen auch Teilnehmerliste neu laden
+    function refreshAll() {
+        fetchBanners();
+        fetchParticipants();
+    }
+
+    // Initiales Laden
+    fetchBanners();
+    fetchParticipants();
+    </script>
+</body>
+
+</html>
