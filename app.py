@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory, make_response
+from flask import Flask, jsonify, request, send_from_directory, make_response, redirect
 from flask_cors import CORS
 import bcrypt
 import os
@@ -289,6 +289,34 @@ def delete_content(section):
     if success:
         return jsonify({'success': True}), 200
     return jsonify({'error': 'Content not found'}), 404
+
+
+# Add a root route that redirects to frontend or shows API status
+@app.route('/')
+def index():
+    # Check if this is a browser request (has Accept header with text/html)
+    if 'text/html' in request.headers.get('Accept', ''):
+        # Redirect to frontend
+        return redirect('https://kosge-frontend.onrender.com')
+    # Otherwise return API status as JSON
+    return jsonify({
+        'status': 'online',
+        'message': 'KOSGE API Server',
+        'version': '1.0.0',
+        'endpoints': {
+            'health': '/api/health',
+            'login': '/api/login',
+            'banners': '/api/banners',
+            'participants': '/api/participants',
+            'cms': '/api/cms/content/<section>'
+        }
+    }), 200
+
+
+# Add a route for favicon.ico to prevent 404 errors
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # Return no content status
 
 
 if __name__ == '__main__':
