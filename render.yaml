@@ -19,10 +19,10 @@ services:
     autoDeploy: true
 
   - type: static
-    name: kosge-frontend
+    name: kos-frontend-kqxo
     env: static
     buildCommand: echo "No build needed"
-    staticPublishPath: ./frontend/public
+    publishPath: frontend/public
     branch: main
     autoDeploy: true
     headers:
