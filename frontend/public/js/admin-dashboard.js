@@ -28,11 +28,40 @@ function checkAuth() {
     }
 }
 
+// Load banners from API
+async function loadBanners() {
+    debugLog('Loading banners...');
+    try {
+        const url = `${API_BASE_URL}/api/banners`;
+        debugLog('Fetching banners from:', url);
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        debugLog('Received banners:', data);
+        return data.banners || [];
+    } catch (error) {
+        debugLog('Error loading banners:', error);
+        throw error;
+    }
+}
+
 // Fetch participants from API with retry logic
 async function fetchParticipants(retryCount = 0) {
     debugLog(`Fetching participants... (attempt ${retryCount + 1}/${MAX_RETRIES})`);
     try {
-        const url = new URL('/api/participants', API_BASE_URL).toString();
+        const url = `${API_BASE_URL}/api/participants`;
         debugLog('Fetching from URL:', url);
 
         const response = await fetch(url, {
@@ -122,6 +151,15 @@ async function initializeDashboard() {
             </div>
         `;
 
+        // Load banners first
+        try {
+            const banners = await loadBanners();
+            debugLog('Loaded banners:', banners);
+        } catch (error) {
+            debugLog('Error loading banners:', error);
+        }
+
+        // Then load participants
         const participants = await fetchParticipants();
         renderParticipants(participants);
         debugLog('Dashboard initialized successfully');
