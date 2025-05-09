@@ -152,7 +152,8 @@
 
         #selected-banner-preview {
             width: 100%;
-            height: 250px;
+            height: auto;
+            aspect-ratio: 4/3;
             overflow: hidden;
             margin-bottom: 20px;
             border-radius: 8px;
@@ -162,7 +163,8 @@
         #selected-banner-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: #f8f8f8;
         }
 
         #participation-form {
@@ -231,6 +233,15 @@
 
         .banner:hover::after {
             opacity: 1;
+        }
+
+        /* Update banner image aspect ratio to 4:3 */
+        .banner img {
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%; /* 4:3 aspect ratio (3/4 = 0.75 = 75%) */
+            object-fit: cover;
+            display: block;
         }
     </style>
 </head>
@@ -1166,6 +1177,13 @@
             isShowingSecondary = !isShowingSecondary;
         });
     });
+    </script>
+    <script>
+        // Add reload functionality to ensure banners are properly displayed
+        window.addEventListener('load', function() {
+            // Force reload banners from localStorage
+            loadBanners();
+        });
     </script>
 </body>
 

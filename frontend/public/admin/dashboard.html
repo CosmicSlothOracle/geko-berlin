@@ -177,6 +177,55 @@
             padding: 20px;
             color: #666;
         }
+
+        .banner-preview {
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%; /* 4:3 aspect ratio */
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-preview img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .banner-info h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+
+        .banner-info ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .banner-info li {
+            margin-bottom: 5px;
+        }
+
+        /* Updated banner aspect ratio note */
+        .banner-info .highlight {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
     </style>
 </head>
 
@@ -187,8 +236,8 @@
             <div class="banner-info">
                 <h3>Banner-Informationen</h3>
                 <ul>
-                    <li>Empfohlene Höhe: 250px</li>
-                    <li>Empfohlenes Seitenverhältnis: 16:9</li>
+                    <li><span class="highlight">Neues Seitenverhältnis: 4:3</span> (statt 16:9)</li>
+                    <li>Empfohlene Größe: 800×600 Pixel</li>
                     <li>Unterstützte Formate: PNG, JPG, JPEG, GIF</li>
                 </ul>
             </div>
@@ -208,33 +257,69 @@
                 <div class="banner-grid">
                     <div class="banner-input-group">
                         <h3>Banner 1</h3>
-                        <input type="url" id="banner1-url" placeholder="Bild-URL eingeben" />
-                        <div class="preview-container">
-                            <img id="banner1-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 1 Vorschau" />
+                        <div class="banner-preview">
+                            <img id="banner1-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 1 Vorschau">
+                        </div>
+                        <div class="form-group">
+                            <label for="banner1-url">Banner-URL</label>
+                            <input type="url" id="banner1-url" placeholder="https://beispiel.com/bild.jpg">
+                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
+                            <p id="banner1-message" class="status-message"></p>
+                        </div>
+                        <div class="button-group">
+                            <button class="save-button" onclick="saveBanner(1)">Speichern</button>
+                            <button class="clear-button" onclick="clearBanner(1)">Löschen</button>
                         </div>
                     </div>
 
                     <div class="banner-input-group">
                         <h3>Banner 2</h3>
-                        <input type="url" id="banner2-url" placeholder="Bild-URL eingeben" />
-                        <div class="preview-container">
-                            <img id="banner2-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 2 Vorschau" />
+                        <div class="banner-preview">
+                            <img id="banner2-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 2 Vorschau">
+                        </div>
+                        <div class="form-group">
+                            <label for="banner2-url">Banner-URL</label>
+                            <input type="url" id="banner2-url" placeholder="https://beispiel.com/bild.jpg">
+                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
+                            <p id="banner2-message" class="status-message"></p>
+                        </div>
+                        <div class="button-group">
+                            <button class="save-button" onclick="saveBanner(2)">Speichern</button>
+                            <button class="clear-button" onclick="clearBanner(2)">Löschen</button>
                         </div>
                     </div>
 
                     <div class="banner-input-group">
                         <h3>Banner 3</h3>
-                        <input type="url" id="banner3-url" placeholder="Bild-URL eingeben" />
-                        <div class="preview-container">
-                            <img id="banner3-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 3 Vorschau" />
+                        <div class="banner-preview">
+                            <img id="banner3-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 3 Vorschau">
+                        </div>
+                        <div class="form-group">
+                            <label for="banner3-url">Banner-URL</label>
+                            <input type="url" id="banner3-url" placeholder="https://beispiel.com/bild.jpg">
+                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
+                            <p id="banner3-message" class="status-message"></p>
+                        </div>
+                        <div class="button-group">
+                            <button class="save-button" onclick="saveBanner(3)">Speichern</button>
+                            <button class="clear-button" onclick="clearBanner(3)">Löschen</button>
                         </div>
                     </div>
 
                     <div class="banner-input-group">
                         <h3>Banner 4</h3>
-                        <input type="url" id="banner4-url" placeholder="Bild-URL eingeben" />
-                        <div class="preview-container">
-                            <img id="banner4-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 4 Vorschau" />
+                        <div class="banner-preview">
+                            <img id="banner4-preview" src="https://i.postimg.cc/vTW9F8fC/platzhalter.png" alt="Banner 4 Vorschau">
+                        </div>
+                        <div class="form-group">
+                            <label for="banner4-url">Banner-URL</label>
+                            <input type="url" id="banner4-url" placeholder="https://beispiel.com/bild.jpg">
+                            <p class="recommendation">Empfohlene Größe: 800×600 Pixel (4:3)</p>
+                            <p id="banner4-message" class="status-message"></p>
+                        </div>
+                        <div class="button-group">
+                            <button class="save-button" onclick="saveBanner(4)">Speichern</button>
+                            <button class="clear-button" onclick="clearBanner(4)">Löschen</button>
                         </div>
                     </div>
                 </div>
@@ -265,59 +350,113 @@
         ? 'http://localhost:5000'
         : 'https://kos-2.onrender.com';
 
-    // Initialize banner URLs from localStorage or default
-    for (let i = 1; i <= 4; i++) {
-        const savedUrl = localStorage.getItem(`banner${i}Url`);
-        if (savedUrl) {
-            document.getElementById(`banner${i}-url`).value = savedUrl;
-            document.getElementById(`banner${i}-preview`).src = savedUrl;
+    // Load saved banner URLs on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadBanners();
+        setupPreviewListeners();
+        fetchParticipations(); // Added this line to fetch participations
+    });
+
+    // Load saved banner URLs
+    function loadBanners() {
+        for (let i = 1; i <= 4; i++) {
+            const savedUrl = localStorage.getItem(`banner${i}Url`);
+            if (savedUrl) {
+                document.getElementById(`banner${i}-url`).value = savedUrl;
+                document.getElementById(`banner${i}-preview`).src = savedUrl;
+            }
         }
     }
 
-    // Preview image when URL is entered
-    document.querySelectorAll('input[type="url"]').forEach(input => {
-        input.addEventListener('input', function() {
-            const bannerId = this.id.split('-')[0];
-            const previewImg = document.getElementById(`${bannerId}-preview`);
-
-            if (this.value) {
-                previewImg.src = this.value;
-            } else {
-                previewImg.src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
-            }
-        });
-    });
-
-    // Handle image load errors
-    document.querySelectorAll('.preview-container img').forEach(img => {
-        img.addEventListener('error', function() {
-            this.src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
-        });
-    });
-
-    // Save banner URLs
-    document.getElementById('save-banners').addEventListener('click', function() {
-        const messageDiv = document.getElementById('message');
-        const bannerUrls = [];
-
-        // Collect all banner URLs
+    // Set up live preview listeners
+    function setupPreviewListeners() {
         for (let i = 1; i <= 4; i++) {
-            const url = document.getElementById(`banner${i}-url`).value;
-            if (url) {
-                bannerUrls.push(url);
-                localStorage.setItem(`banner${i}Url`, url);
-            }
+            const urlInput = document.getElementById(`banner${i}-url`);
+            urlInput.addEventListener('input', function() {
+                const url = this.value.trim();
+                if (isValidImageUrl(url)) {
+                    const previewImg = document.getElementById(`banner${i}-preview`);
+                    previewImg.src = url;
+                    previewImg.onerror = function() {
+                        this.src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
+                        document.getElementById(`banner${i}-message`).textContent = 'Fehler beim Laden des Bildes. Überprüfen Sie die URL.';
+                        document.getElementById(`banner${i}-message`).className = 'status-message error';
+                    };
+                    previewImg.onload = function() {
+                        document.getElementById(`banner${i}-message`).textContent = '';
+                    };
+                }
+            });
+        }
+    }
+
+    // Save banner URL
+    function saveBanner(bannerNumber) {
+        const urlInput = document.getElementById(`banner${bannerNumber}-url`);
+        const url = urlInput.value.trim();
+        const messageEl = document.getElementById(`banner${bannerNumber}-message`);
+
+        if (!url) {
+            messageEl.textContent = 'Bitte geben Sie eine URL ein.';
+            messageEl.className = 'status-message error';
+            return;
         }
 
-        // Update the frontend display
-        messageDiv.textContent = 'Banner URLs wurden gespeichert!';
-        messageDiv.className = 'message success';
-
-        // Refresh main page if it exists
-        if (window.opener) {
-            window.opener.location.reload();
+        if (!isValidImageUrl(url)) {
+            messageEl.textContent = 'Bitte geben Sie eine gültige Bild-URL ein (PNG, JPG, JPEG, GIF).';
+            messageEl.className = 'status-message error';
+            return;
         }
-    });
+
+        // Save to localStorage
+        localStorage.setItem(`banner${bannerNumber}Url`, url);
+
+        // Update preview
+        document.getElementById(`banner${bannerNumber}-preview`).src = url;
+
+        // Show success message
+        messageEl.textContent = 'Banner erfolgreich gespeichert.';
+        messageEl.className = 'status-message success';
+
+        // Clear message after 3 seconds
+        setTimeout(() => {
+            messageEl.textContent = '';
+        }, 3000);
+    }
+
+    // Clear banner
+    function clearBanner(bannerNumber) {
+        // Clear localStorage
+        localStorage.removeItem(`banner${bannerNumber}Url`);
+
+        // Clear input field
+        document.getElementById(`banner${bannerNumber}-url`).value = '';
+
+        // Reset preview
+        document.getElementById(`banner${bannerNumber}-preview`).src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
+
+        // Show success message
+        const messageEl = document.getElementById(`banner${bannerNumber}-message`);
+        messageEl.textContent = 'Banner erfolgreich gelöscht.';
+        messageEl.className = 'status-message success';
+
+        // Clear message after 3 seconds
+        setTimeout(() => {
+            messageEl.textContent = '';
+        }, 3000);
+    }
+
+    // Validate image URL
+    function isValidImageUrl(url) {
+        if (!url) return false;
+
+        try {
+            new URL(url);
+            return url.match(/\.(jpeg|jpg|gif|png)$/i) != null;
+        } catch (e) {
+            return false;
+        }
+    }
 
     // Fetch and display participation data
     async function fetchParticipations() {
@@ -385,13 +524,6 @@
 
         container.innerHTML = html;
     }
-
-    // Load participations on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        loadBanners();
-        setupPreviewListeners();
-        fetchParticipations(); // Added this line to fetch participations
-    });
     </script>
 </body>
 
