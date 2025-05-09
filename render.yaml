@@ -18,11 +18,11 @@ services:
         value: app.py
     autoDeploy: true
 
-  - type: static
+  - type: web
     name: kos-frontend-kqxo
-    env: static
+    runtime: static
     buildCommand: echo "No build needed"
-    publishPath: frontend/public
+    staticPublishPath: frontend/public
     branch: main
     autoDeploy: true
     headers:
