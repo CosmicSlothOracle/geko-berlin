@@ -18,10 +18,18 @@ services:
         value: app.py
     autoDeploy: true
 
-  - type: web
+  - type: static
     name: kosge-frontend
     env: static
-    buildCommand: null
-    staticPublishPath: frontend/public
+    buildCommand: echo "No build needed"
+    staticPublishPath: ./frontend/public
     branch: main
     autoDeploy: true
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
