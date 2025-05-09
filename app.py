@@ -15,7 +15,12 @@ app = Flask(__name__)
 # Configure CORS more explicitly
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:8000", "http://localhost:8080", "https://kos-frontend.onrender.com"],
+        "origins": [
+            "http://localhost:8000",
+            "http://localhost:8080",
+            "https://kosge-frontend.onrender.com",
+            "https://kosge-frontend-kqxo.onrender.com"
+        ],
         "methods": ["GET", "POST", "DELETE", "OPTIONS", "PUT"],
         "allow_headers": ["Content-Type", "Authorization"],
         "expose_headers": ["Content-Type", "Authorization"]
