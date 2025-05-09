@@ -19,7 +19,8 @@ CORS(app, resources={
             "http://localhost:8000",
             "http://localhost:8080",
             "https://kosge-frontend.onrender.com",
-            "https://kosge-frontend-kqxo.onrender.com"
+            "https://kosge-frontend-kqxo.onrender.com",
+            "https://kos-frontend.onrender.com"
         ],
         "methods": ["GET", "POST", "DELETE", "OPTIONS", "PUT"],
         "allow_headers": ["Content-Type", "Authorization"],
