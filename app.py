@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Configure CORS more explicitly
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:8000", "http://localhost:8080"],
+        "origins": ["http://localhost:8000", "http://localhost:8080", "https://kos-frontend.onrender.com"],
         "methods": ["GET", "POST", "DELETE", "OPTIONS", "PUT"],
         "allow_headers": ["Content-Type", "Authorization"],
         "expose_headers": ["Content-Type", "Authorization"]
@@ -292,4 +292,5 @@ def delete_content(section):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
