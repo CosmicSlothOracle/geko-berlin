@@ -89,93 +89,104 @@
         .success { color: #27ae60; }
         .participation-tabs {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .tab-button {
-            padding: 8px 15px;
-            background-color: #f5f5f5;
+            padding: 8px 16px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 4px;
+            background: #fff;
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: normal;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .tab-button:hover {
+            background: #f5f5f5;
         }
 
         .tab-button.active {
-            background-color: var(--secondary-color);
+            background: #E67E22;
             color: white;
-            font-weight: bold;
-            border-color: var(--secondary-color);
+            border-color: #E67E22;
         }
 
         .participation-entry {
+            background: #fff;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 20px;
             margin-bottom: 15px;
-            background-color: #fafafa;
             position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
         }
 
-        .participation-entry.banner1 {
-            border-left: 5px solid #E67E22;
+        .participation-entry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .participation-entry.banner2 {
-            border-left: 5px solid #3498DB;
+        .participation-entry h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            padding-right: 80px; /* Space for banner tag */
         }
 
-        .participation-entry.banner3 {
-            border-left: 5px solid #2ECC71;
+        .participation-entry p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.4;
         }
 
-        .participation-entry.banner4 {
-            border-left: 5px solid #9B59B6;
+        .participation-entry strong {
+            color: #2c3e50;
         }
 
         .participation-banner {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 3px 8px;
-            font-size: 12px;
-            border-radius: 3px;
-            color: white;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
             font-weight: bold;
+            color: white;
         }
 
-        .banner-tag-1 {
-            background-color: #E67E22;
-        }
-
-        .banner-tag-2 {
-            background-color: #3498DB;
-        }
-
-        .banner-tag-3 {
-            background-color: #2ECC71;
-        }
-
-        .banner-tag-4 {
-            background-color: #9B59B6;
-        }
+        .banner-tag-1 { background-color: #E67E22; }
+        .banner-tag-2 { background-color: #3498DB; }
+        .banner-tag-3 { background-color: #2ECC71; }
+        .banner-tag-4 { background-color: #9B59B6; }
 
         .no-participations {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
             color: #666;
             font-style: italic;
         }
 
-        .loading-message {
+        .error-message {
             text-align: center;
             padding: 20px;
+            background: #fee;
+            border-radius: 8px;
+            color: #e74c3c;
+            margin: 15px 0;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 30px;
             color: #666;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .banner-preview {
@@ -346,15 +357,14 @@
     </div>
 
     <script>
-    const API_BASE = window.location.hostname === 'localhost'
-        ? 'http://localhost:5000'
-        : 'https://kos-2.onrender.com';
+    // Use relative API path
+    const API_BASE = '/api';
 
     // Load saved banner URLs on page load
     document.addEventListener('DOMContentLoaded', function() {
         loadBanners();
         setupPreviewListeners();
-        fetchParticipations(); // Added this line to fetch participations
+        fetchParticipations();
     });
 
     // Load saved banner URLs
@@ -464,11 +474,7 @@
         container.innerHTML = '<div class="loading-message">Teilnahmen werden geladen...</div>';
 
         try {
-            const API_BASE = window.location.hostname === 'localhost'
-                ? 'http://localhost:5000'
-                : 'https://kos-2.onrender.com';
-
-            const response = await fetch(API_BASE + '/api/participants');
+            const response = await fetch(API_BASE + '/participants');
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -497,33 +503,35 @@
     function displayParticipations(filter, participations) {
         const container = document.getElementById('participation-container');
 
-        if (!participations.length) {
+        if (!participations || participations.length === 0) {
             container.innerHTML = '<div class="no-participations">Keine Teilnahmen vorhanden.</div>';
             return;
         }
 
-        let filteredParticipations = participations;
-        if (filter !== 'all') {
-            filteredParticipations = participations.filter(p => p.banner === filter);
-        }
+        const filteredParticipations = filter === 'all'
+            ? participations
+            : participations.filter(p => p.banner === filter);
 
-        if (!filteredParticipations.length) {
+        if (filteredParticipations.length === 0) {
             container.innerHTML = `<div class="no-participations">Keine Teilnahmen für Banner ${filter} vorhanden.</div>`;
             return;
         }
 
         const html = filteredParticipations.map(p => `
-            <div class="participation-entry banner${p.banner}">
-                <span class="participation-banner banner-tag-${p.banner}">Banner ${p.banner}</span>
+            <div class="participation-entry banner${p.banner || '1'}">
+                <div class="participation-banner banner-tag-${p.banner || '1'}">Banner ${p.banner || '1'}</div>
                 <h3>${p.name}</h3>
-                <p><strong>E-Mail:</strong> ${p.email || 'Nicht angegeben'}</p>
-                <p><strong>Nachricht:</strong> ${p.message || 'Keine Nachricht'}</p>
-                <p><small>Datum: ${new Date(p.date || Date.now()).toLocaleString('de-DE')}</small></p>
+                ${p.email ? `<p><strong>Email:</strong> ${p.email}</p>` : ''}
+                ${p.message ? `<p><strong>Nachricht:</strong> ${p.message}</p>` : ''}
+                <p><strong>Datum:</strong> ${new Date(p.timestamp).toLocaleString('de-DE')}</p>
             </div>
         `).join('');
 
         container.innerHTML = html;
     }
+
+    // Refresh participations periodically
+    setInterval(fetchParticipations, 30000); // Refresh every 30 seconds
     </script>
 </body>
 
