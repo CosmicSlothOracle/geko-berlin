@@ -22,8 +22,9 @@ services:
       mountPath: /opt/render/project/src/uploads
       sizeGB: 1
 
-  - type: static
+  - type: web
     name: kos-frontend
+    env: static
     region: frankfurt
     buildCommand: null
     staticPublishPath: frontend/public
