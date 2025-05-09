@@ -210,6 +210,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            aspect-ratio: 4/3;
+            width: 100%;
         }
 
         .banner:hover {
@@ -238,8 +240,7 @@
         /* Update banner image aspect ratio to 4:3 */
         .banner img {
             width: 100%;
-            height: 0;
-            padding-bottom: 75%; /* 4:3 aspect ratio (3/4 = 0.75 = 75%) */
+            height: 100%;
             object-fit: cover;
             display: block;
         }
@@ -994,22 +995,48 @@
 
         // Load saved banner URLs on page load
         function loadBanners() {
+            console.log("loadBanners function called");
+
             for (let i = 1; i <= 4; i++) {
                 const savedUrl = localStorage.getItem(`banner${i}Url`);
-                if (savedUrl) {
-                    const bannerImg = document.getElementById(`banner${i}`);
-                    if (bannerImg) {
-                        bannerImg.src = savedUrl;
+                const bannerImg = document.getElementById(`banner${i}`);
 
-                        // Add error handling for broken image URLs
-                        bannerImg.onerror = function() {
-                            this.src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
-                            this.onerror = null; // Prevent infinite loop
-                        };
-                    }
+                console.log(`Banner ${i}:`, {
+                    "savedUrl": savedUrl,
+                    "bannerElement": bannerImg,
+                    "bannerElementExists": !!bannerImg
+                });
+
+                if (savedUrl && bannerImg) {
+                    console.log(`Setting banner ${i} src to`, savedUrl);
+                    bannerImg.src = savedUrl;
+
+                    // Add error handling for broken image URLs
+                    bannerImg.onerror = function() {
+                        console.log(`Error loading image for banner ${i}, using placeholder`);
+                        this.src = 'https://i.postimg.cc/vTW9F8fC/platzhalter.png';
+                        this.onerror = null; // Prevent infinite loop
+                    };
+
+                    // Ensure onload event fires
+                    bannerImg.onload = function() {
+                        console.log(`Banner ${i} image loaded successfully`);
+                    };
                 }
             }
         }
+
+        // Ensure banners load on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBanners();
+            console.log("Banners loaded on DOMContentLoaded");
+        });
+
+        // Additionally load banners when window is fully loaded
+        window.addEventListener('load', function() {
+            loadBanners();
+            console.log("Banners loaded on window load");
+        });
     </script>
     <!-- Add translations for banners -->
     <script>
@@ -1118,6 +1145,43 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Remove Teilnahmen anzeigen button - not needed anymore
         });
+
+        // Force reload all banner images
+        function forceReloadBanners() {
+            console.log("Forcing banner reload");
+
+            // Get all stored banner URLs
+            const storedBanners = [];
+            for (let i = 1; i <= 4; i++) {
+                const url = localStorage.getItem(`banner${i}Url`);
+                if (url) {
+                    storedBanners.push({
+                        id: i,
+                        url: url
+                    });
+                }
+            }
+
+            console.log("Stored banners:", storedBanners);
+
+            // Apply stored URLs to banner elements
+            storedBanners.forEach(bannerData => {
+                const bannerElement = document.getElementById(`banner${bannerData.id}`);
+                if (bannerElement) {
+                    // Force reload by appending a cache-busting parameter
+                    const cacheBuster = `?t=${Date.now()}`;
+                    const urlWithCacheBuster = bannerData.url.includes('?')
+                        ? `${bannerData.url}&cb=${Date.now()}`
+                        : `${bannerData.url}?cb=${Date.now()}`;
+
+                    console.log(`Applying URL to banner${bannerData.id}:`, urlWithCacheBuster);
+                    bannerElement.src = urlWithCacheBuster;
+                }
+            });
+        }
+
+        // Call the force reload function on window load
+        window.addEventListener('load', forceReloadBanners);
     </script>
     <!-- Füge Übersetzungen für die neuen Elemente hinzu -->
     <script>
