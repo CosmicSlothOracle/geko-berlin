@@ -121,6 +121,9 @@ header[role="banner"] {
     position: relative;
     background: linear-gradient(to right, #f4a460, #ff7f50);
     padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Logo Styling */
@@ -156,22 +159,69 @@ header[role="banner"] {
     /* Leichte Vergrößerung beim Hover */
 }
 
-/* Language Controls Styling */
-.language-controls {
+/* Language Selector Styling */
+.language-selector {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 20px;
-    padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 0.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
-.language-controls select {
+.language-selector:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.language-selector select {
     background: transparent;
-    border: none;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.5rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    width: auto;
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.2rem;
+    padding-right: 2.5rem;
+    transition: all 0.2s ease;
+}
+
+.language-selector select:hover {
+    border-color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.25);
+}
+
+/* Responsive adjustments for language selector */
+@media (max-width: 768px) {
+    .language-selector {
+        padding: 0.6rem;
+    }
+
+    .language-selector select {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+        padding-right: 2rem;
+        background-size: 1rem;
+    }
 }
 
 /* -----------------------------------
@@ -442,7 +492,7 @@ footer a {
 
     /* Other responsive styles */
     header,
-    .language-controls {
+    .language-selector {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
@@ -587,21 +637,27 @@ section {
     object-fit: cover;
 }
 
-.edit-event-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
+#edit-event-btn {
+    position: fixed;
+    bottom: 80px; /* Just above the Add Event button */
+    right: 20px;
+    background-color: var(--accent-color);
     color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 12px 24px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 101;
+    display: block;
 }
 
-.edit-event-btn:hover {
-    background-color: rgba(0, 0, 0, 0.9);
+#edit-event-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .event-participation {
@@ -1031,6 +1087,9 @@ section:hover .section-title-container h2 {
 .header-controls {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
 }
 
 /* Admin Login Modal */
@@ -1115,6 +1174,7 @@ section:hover .section-title-container h2 {
 @media (max-width: 768px) {
     .header-controls {
         margin-top: 1rem;
+        justify-content: center;
     }
 
     .admin-button {

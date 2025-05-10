@@ -3,32 +3,32 @@
   "available_languages": {
     "de": {
       "name": "deutsch",
-      "file": "index.html",
+      "file": "../public/index.html",
       "flag": "🇩🇪"
     },
     "en": {
       "name": "english",
-      "file": "lang/en.html",
+      "file": "en.html",
       "flag": "🇬🇧"
     },
     "tr": {
       "name": "türkçe",
-      "file": "lang/tr.html",
+      "file": "tr.html",
       "flag": "🇹🇷"
     },
     "ru": {
       "name": "русский",
-      "file": "lang/ru.html",
+      "file": "ru.html",
       "flag": "🇷🇺"
     },
     "ar": {
       "name": "العربية",
-      "file": "lang/ar.html",
+      "file": "ar.html",
       "flag": "🇸🇦"
     },
     "einfach": {
       "name": "einfache sprache",
-      "file": "lang/einfach.html"
+      "file": "einfach.html"
     }
   }
 }

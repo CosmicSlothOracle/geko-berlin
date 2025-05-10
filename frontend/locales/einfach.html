@@ -21,14 +21,13 @@
             <div class="language-controls">
                 <label for="language" class="visually-hidden">Sprache wählen</label>
                 <select id="language" onchange="changeLanguage(this.value);">
-                    <option value="../index.html">Deutsch 🇩🇪</option>
-                    <option value="tr.html">Türkçe 🇹🇷</option>
-                    <option value="ar.html">العربية 🇸🇦</option>
-                    <option value="ru.html">Русский 🇷🇺</option>
-                    <option value="en.html">English 🇬🇧</option>
+                    <option value="de">Deutsch 🇩🇪</option>
+                    <option value="tr">Türkçe 🇹🇷</option>
+                    <option value="ar">العربية 🇸🇦</option>
+                    <option value="ru">Русский 🇷🇺</option>
+                    <option value="en">English 🇬🇧</option>
+                    <option selected="selected" value="einfach">Einfache Sprache</option>
                 </select>
-                <a href="einfach.html" class="simple-language-btn" aria-label="Einfache Sprache"
-                aria-current="page">Einfache Sprache</a>
             </div>
         </header>
         <nav role="navigation" aria-label="Hauptnavigation">
@@ -121,6 +120,111 @@
                     <img src="https://link.storjshare.io/raw/jucy75rsgy7m4lfjnmizbuzckf5a/geko/selec7.jpeg" alt="Bild 11">
                 </div>
             </section>
+
+            <section id="event1">
+                <div class="section-title-container">
+                    <h2>Treffen 1</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Bild von Treffen 1" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Teilnahme für Treffen 1</h3>
+                    <form class="event-participation-form" data-event="1">
+                        <input type="text" name="name" placeholder="Dein Name" required>
+                        <input type="email" name="email" placeholder="Deine E-Mail (wenn du möchtest)">
+                        <textarea name="message" placeholder="Deine Nachricht (wenn du möchtest)"></textarea>
+                        <button type="submit">Teilnehmen</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-1" style="display:none;">Teilnehmer anzeigen</button>
+                </div>
+            </section>
+            <div id="participants-modal-1" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="1">&times;</span>
+                    <h2>Teilnehmer für Treffen 1</h2>
+                    <div id="participants-list-1"></div>
+                </div>
+            </div>
+
+            <section id="event2">
+                <div class="section-title-container">
+                    <h2>Treffen 2</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Bild von Treffen 2" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Teilnahme für Treffen 2</h3>
+                    <form class="event-participation-form" data-event="2">
+                        <input type="text" name="name" placeholder="Dein Name" required>
+                        <input type="email" name="email" placeholder="Deine E-Mail (wenn du möchtest)">
+                        <textarea name="message" placeholder="Deine Nachricht (wenn du möchtest)"></textarea>
+                        <button type="submit">Teilnehmen</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-2" style="display:none;">Teilnehmer anzeigen</button>
+                </div>
+            </section>
+            <div id="participants-modal-2" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="2">&times;</span>
+                    <h2>Teilnehmer für Treffen 2</h2>
+                    <div id="participants-list-2"></div>
+                </div>
+            </div>
+
+            <section id="event3">
+                <div class="section-title-container">
+                    <h2>Treffen 3</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Bild von Treffen 3" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Teilnahme für Treffen 3</h3>
+                    <form class="event-participation-form" data-event="3">
+                        <input type="text" name="name" placeholder="Dein Name" required>
+                        <input type="email" name="email" placeholder="Deine E-Mail (wenn du möchtest)">
+                        <textarea name="message" placeholder="Deine Nachricht (wenn du möchtest)"></textarea>
+                        <button type="submit">Teilnehmen</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-3" style="display:none;">Teilnehmer anzeigen</button>
+                </div>
+            </section>
+            <div id="participants-modal-3" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="3">&times;</span>
+                    <h2>Teilnehmer für Treffen 3</h2>
+                    <div id="participants-list-3"></div>
+                </div>
+            </div>
+
+            <section id="event4">
+                <div class="section-title-container">
+                    <h2>Treffen 4</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Bild von Treffen 4" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Teilnahme für Treffen 4</h3>
+                    <form class="event-participation-form" data-event="4">
+                        <input type="text" name="name" placeholder="Dein Name" required>
+                        <input type="email" name="email" placeholder="Deine E-Mail (wenn du möchtest)">
+                        <textarea name="message" placeholder="Deine Nachricht (wenn du möchtest)"></textarea>
+                        <button type="submit">Teilnehmen</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-4" style="display:none;">Teilnehmer anzeigen</button>
+                </div>
+            </section>
+            <div id="participants-modal-4" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="4">&times;</span>
+                    <h2>Teilnehmer für Treffen 4</h2>
+                    <div id="participants-list-4"></div>
+                </div>
+            </div>
+
             <section id="join">
                 <h2>Mitmachen</h2>
                 <p>Wir suchen Menschen, die bei uns mitmachen wollen.
@@ -189,52 +293,44 @@
     <script>
         // Language Configuration
         const languageConfig = {
-            defaultLanguage: 'de',
-            availableLanguages: {
-                'de': { name: 'Deutsch', flag: '🇩🇪', file: '../index.html' },
-                'en': { name: 'English', flag: '🇬🇧', file: 'en.html' },
-                'tr': { name: 'Türkçe', flag: '🇹🇷', file: 'tr.html' },
-                'ru': { name: 'Русский', flag: '🇷🇺', file: 'ru.html' },
-                'ar': { name: 'العربية', flag: '🇸🇦', file: 'ar.html' },
-                'einfach': { name: 'Einfache Sprache', file: 'einfach.html' }
-            }
+            'de': '../index.html',
+            'en': 'en.html',
+            'tr': 'tr.html',
+            'ru': 'ru.html',
+            'ar': 'ar.html',
+            'einfach': 'einfach.html'
         };
 
-        function changeLanguage(targetUrl) {
-            // Save language preference in localStorage
-            const languageCode = targetUrl.split('/').pop().replace('.html', '') || 'de';
-            localStorage.setItem('preferredLanguage', languageCode);
+        function changeLanguage(targetLang) {
+            // Get the target URL from the configuration
+            const targetUrl = languageConfig[targetLang];
 
-            // Redirect to the selected language page
-            window.location.href = targetUrl;
+            if (targetUrl) {
+                // Save language preference
+                localStorage.setItem('preferredLanguage', targetLang);
+
+                // Redirect to the selected language page
+                window.location.href = targetUrl;
+            }
         }
 
-        // Auto-select current language on page load
+        // On page load, check for saved language preference
         document.addEventListener('DOMContentLoaded', () => {
-            const currentPath = window.location.pathname;
+            const savedLanguage = localStorage.getItem('preferredLanguage');
             const languageSelect = document.getElementById('language');
 
-            // Find matching option and set it as selected
-            for (let option of languageSelect.options) {
-                if (currentPath.endsWith(option.value)) {
-                    option.selected = true;
-                    break;
-                }
+            // Set the dropdown to the saved or current language
+            if (savedLanguage) {
+                languageSelect.value = savedLanguage;
+            } else {
+                // Default to German if no preference saved
+                languageSelect.value = 'de';
             }
 
-            // Check for saved language preference
-            const savedLanguage = localStorage.getItem('preferredLanguage');
-            if (savedLanguage && savedLanguage !== 'de' && savedLanguage !== 'einfach') {
-                const targetOption = Array.from(languageSelect.options)
-                    .find(option => {
-                        const optionLang = option.value.split('/').pop().replace('.html', '');
-                        return optionLang === savedLanguage;
-                    });
-
-                if (targetOption && !currentPath.endsWith(targetOption.value)) {
-                    changeLanguage(targetOption.value);
-                }
-            }
+            // Add event listener to language select
+            languageSelect.addEventListener('change', (event) => {
+                changeLanguage(event.target.value);
+            });
         });
     </script>
 </body>

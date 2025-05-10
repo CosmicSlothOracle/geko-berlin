@@ -31,13 +31,13 @@ HTML
             <div class="language-controls">
                 <label class="visually-hidden" for="language">Выберите язык</label>
                 <select id="language" onchange="changeLanguage(this.value);">
-                    <option value="index.html">Deutsch 🇩🇪</option>
-                    <option value="lang/tr.html">Турецкий 🇹🇷</option>
-                    <option value="lang/ar.html">العربية 🇸🇦</option>
-                    <option selected="selected" value="lang/ru.html">Русский 🇷🇺</option>
-                    <option value="lang/en.html">Английский 🇬🇧</option>
+                    <option value="de">Deutsch 🇩🇪</option>
+                    <option value="tr">Турецкий 🇹🇷</option>
+                    <option value="ar">العربية 🇸🇦</option>
+                    <option selected="selected" value="ru">Русский 🇷🇺</option>
+                    <option value="en">Английский 🇬🇧</option>
+                    <option value="einfach">Простой язык</option>
                 </select>
-                <a aria-label="Einfache Sprache" class="simple-language-btn" href="lang/einfach.html">Простой язык</a>
             </div>
         </header>
         <nav aria-label="Hauptnavigation" role="navigation">
@@ -137,6 +137,111 @@ HTML
                     <img src="https://link.storjshare.io/raw/jucy75rsgy7m4lfjnmizbuzckf5a/geko/selec7.jpeg" alt="Слайд 11">
                 </div>
             </section>
+
+            <section id="event1">
+                <div class="section-title-container">
+                    <h2>Мероприятие 1</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Изображение мероприятия 1" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Участие в мероприятии 1</h3>
+                    <form class="event-participation-form" data-event="1">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш email (необязательно)">
+                        <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
+                        <button type="submit">Участвовать</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-1" style="display:none;">Показать участников</button>
+                </div>
+            </section>
+            <div id="participants-modal-1" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="1">&times;</span>
+                    <h2>Участники мероприятия 1</h2>
+                    <div id="participants-list-1"></div>
+                </div>
+            </div>
+
+            <section id="event2">
+                <div class="section-title-container">
+                    <h2>Мероприятие 2</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Изображение мероприятия 2" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Участие в мероприятии 2</h3>
+                    <form class="event-participation-form" data-event="2">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш email (необязательно)">
+                        <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
+                        <button type="submit">Участвовать</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-2" style="display:none;">Показать участников</button>
+                </div>
+            </section>
+            <div id="participants-modal-2" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="2">&times;</span>
+                    <h2>Участники мероприятия 2</h2>
+                    <div id="participants-list-2"></div>
+                </div>
+            </div>
+
+            <section id="event3">
+                <div class="section-title-container">
+                    <h2>Мероприятие 3</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Изображение мероприятия 3" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Участие в мероприятии 3</h3>
+                    <form class="event-participation-form" data-event="3">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш email (необязательно)">
+                        <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
+                        <button type="submit">Участвовать</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-3" style="display:none;">Показать участников</button>
+                </div>
+            </section>
+            <div id="participants-modal-3" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="3">&times;</span>
+                    <h2>Участники мероприятия 3</h2>
+                    <div id="participants-list-3"></div>
+                </div>
+            </div>
+
+            <section id="event4">
+                <div class="section-title-container">
+                    <h2>Мероприятие 4</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Изображение мероприятия 4" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Участие в мероприятии 4</h3>
+                    <form class="event-participation-form" data-event="4">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Ваш email (необязательно)">
+                        <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
+                        <button type="submit">Участвовать</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-4" style="display:none;">Показать участников</button>
+                </div>
+            </section>
+            <div id="participants-modal-4" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="4">&times;</span>
+                    <h2>Участники мероприятия 4</h2>
+                    <div id="participants-list-4"></div>
+                </div>
+            </div>
+
             <section id="join">
                 <h2>Принять участие</h2>
                 <p>Мы являемся относительно однородной, белой, академически социализированной группой и хотим больше
@@ -211,11 +316,12 @@ HTML
     <script>
         // Language Configuration
         const languageConfig = {
-            'de': '/index.html',
-            'en': '/lang/en.html',
-            'tr': '/lang/tr.html',
-            'ru': '/lang/ru.html',
-            'ar': '/lang/ar.html'
+            'de': '../index.html',
+            'en': 'en.html',
+            'tr': 'tr.html',
+            'ru': 'ru.html',
+            'ar': 'ar.html',
+            'einfach': 'einfach.html'
         };
 
         function changeLanguage(targetLang) {

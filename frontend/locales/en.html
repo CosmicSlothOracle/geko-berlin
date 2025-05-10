@@ -31,14 +31,13 @@ html
             <div class="language-controls">
                 <label class="visually-hidden" for="language">Choose language</label>
                 <select id="language" onchange="changeLanguage(this.value);">
-                    <option value="index.html">Deutsch 🇩🇪</option>
-                    <option value="lang/tr.html">Turkish 🇹🇷</option>
-                    <option value="lang/ar.html">العربية 🇸🇦</option>
-                    <option value="lang/ru.html">Русский 🇷🇺</option>
-                    <option selected="selected" value="lang/en.html">English 🇬🇧</option>
+                    <option value="de">Deutsch 🇩🇪</option>
+                    <option value="tr">Turkish 🇹🇷</option>
+                    <option value="ar">العربية 🇸🇦</option>
+                    <option value="ru">Русский 🇷🇺</option>
+                    <option selected="selected" value="en">English 🇬🇧</option>
+                    <option value="einfach">Simple language</option>
                 </select>
-                <a aria-label="Einfache Sprache" class="simple-language-btn" href="lang/einfach.html">Simple
-                    language</a>
             </div>
         </header>
         <nav aria-label="Hauptnavigation" role="navigation">
@@ -163,6 +162,111 @@ html
                 <img class="section-arrow"
                 src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Arrow">
             </section>
+
+            <section id="event1">
+                <div class="section-title-container">
+                    <h2>Event 1</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 1 Image" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Participation for Event 1</h3>
+                    <form class="event-participation-form" data-event="1">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email (optional)">
+                        <textarea name="message" placeholder="Your Message (optional)"></textarea>
+                        <button type="submit">Participate</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-1" style="display:none;">Show Participants</button>
+                </div>
+            </section>
+            <div id="participants-modal-1" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="1">&times;</span>
+                    <h2>Participants for Event 1</h2>
+                    <div id="participants-list-1"></div>
+                </div>
+            </div>
+
+            <section id="event2">
+                <div class="section-title-container">
+                    <h2>Event 2</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 2 Image" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Participation for Event 2</h3>
+                    <form class="event-participation-form" data-event="2">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email (optional)">
+                        <textarea name="message" placeholder="Your Message (optional)"></textarea>
+                        <button type="submit">Participate</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-2" style="display:none;">Show Participants</button>
+                </div>
+            </section>
+            <div id="participants-modal-2" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="2">&times;</span>
+                    <h2>Participants for Event 2</h2>
+                    <div id="participants-list-2"></div>
+                </div>
+            </div>
+
+            <section id="event3">
+                <div class="section-title-container">
+                    <h2>Event 3</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 3 Image" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Participation for Event 3</h3>
+                    <form class="event-participation-form" data-event="3">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email (optional)">
+                        <textarea name="message" placeholder="Your Message (optional)"></textarea>
+                        <button type="submit">Participate</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-3" style="display:none;">Show Participants</button>
+                </div>
+            </section>
+            <div id="participants-modal-3" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="3">&times;</span>
+                    <h2>Participants for Event 3</h2>
+                    <div id="participants-list-3"></div>
+                </div>
+            </div>
+
+            <section id="event4">
+                <div class="section-title-container">
+                    <h2>Event 4</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 4 Image" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Participation for Event 4</h3>
+                    <form class="event-participation-form" data-event="4">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email (optional)">
+                        <textarea name="message" placeholder="Your Message (optional)"></textarea>
+                        <button type="submit">Participate</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-4" style="display:none;">Show Participants</button>
+                </div>
+            </section>
+            <div id="participants-modal-4" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="4">&times;</span>
+                    <h2>Participants for Event 4</h2>
+                    <div id="participants-list-4"></div>
+                </div>
+            </div>
+
             <section id="banners">
                 <div class="section-title-container">
                     <h2>Our Banners</h2>
@@ -268,11 +372,12 @@ html
     <script>
         // Language Configuration
         const languageConfig = {
-            'de': '/index.html',
-            'en': '/lang/en.html',
-            'tr': '/lang/tr.html',
-            'ru': '/lang/ru.html',
-            'ar': '/lang/ar.html'
+            'de': '../index.html',
+            'en': 'en.html',
+            'tr': 'tr.html',
+            'ru': 'ru.html',
+            'ar': 'ar.html',
+            'einfach': 'einfach.html'
         };
 
         function changeLanguage(targetLang) {

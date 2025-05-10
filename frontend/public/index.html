@@ -214,7 +214,6 @@
                 </div>
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 1 Image" class="event-image">
-                    <button class="edit-event-btn" data-event="1">Bearbeiten</button>
                 </div>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 1</h3>
@@ -224,8 +223,16 @@
                         <textarea name="message" placeholder="Ihre Nachricht (optional)"></textarea>
                         <button type="submit">Teilnehmen</button>
                     </form>
+                    <button class="show-participants-btn" id="show-participants-btn-1" style="display:none;">Teilnehmer anzeigen</button>
                 </div>
             </section>
+            <div id="participants-modal-1" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="1">&times;</span>
+                    <h2>Teilnehmer für Event 1</h2>
+                    <div id="participants-list-1"></div>
+                </div>
+            </div>
 
             <section id="event2">
                 <div class="section-title-container">
@@ -233,7 +240,6 @@
                 </div>
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 2 Image" class="event-image">
-                    <button class="edit-event-btn" data-event="2">Bearbeiten</button>
                 </div>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 2</h3>
@@ -243,8 +249,16 @@
                         <textarea name="message" placeholder="Ihre Nachricht (optional)"></textarea>
                         <button type="submit">Teilnehmen</button>
                     </form>
+                    <button class="show-participants-btn" id="show-participants-btn-2" style="display:none;">Teilnehmer anzeigen</button>
                 </div>
             </section>
+            <div id="participants-modal-2" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="2">&times;</span>
+                    <h2>Teilnehmer für Event 2</h2>
+                    <div id="participants-list-2"></div>
+                </div>
+            </div>
 
             <section id="event3">
                 <div class="section-title-container">
@@ -252,7 +266,6 @@
                 </div>
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 3 Image" class="event-image">
-                    <button class="edit-event-btn" data-event="3">Bearbeiten</button>
                 </div>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 3</h3>
@@ -262,8 +275,16 @@
                         <textarea name="message" placeholder="Ihre Nachricht (optional)"></textarea>
                         <button type="submit">Teilnehmen</button>
                     </form>
+                    <button class="show-participants-btn" id="show-participants-btn-3" style="display:none;">Teilnehmer anzeigen</button>
                 </div>
             </section>
+            <div id="participants-modal-3" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="3">&times;</span>
+                    <h2>Teilnehmer für Event 3</h2>
+                    <div id="participants-list-3"></div>
+                </div>
+            </div>
 
             <section id="event4">
                 <div class="section-title-container">
@@ -271,7 +292,6 @@
                 </div>
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 4 Image" class="event-image">
-                    <button class="edit-event-btn" data-event="4">Bearbeiten</button>
                 </div>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 4</h3>
@@ -281,8 +301,16 @@
                         <textarea name="message" placeholder="Ihre Nachricht (optional)"></textarea>
                         <button type="submit">Teilnehmen</button>
                     </form>
+                    <button class="show-participants-btn" id="show-participants-btn-4" style="display:none;">Teilnehmer anzeigen</button>
                 </div>
             </section>
+            <div id="participants-modal-4" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="4">&times;</span>
+                    <h2>Teilnehmer für Event 4</h2>
+                    <div id="participants-list-4"></div>
+                </div>
+            </div>
 
             <!-- Event Edit Modal -->
             <div id="event-edit-modal" class="modal">
@@ -379,7 +407,49 @@
     <!-- Logout Button -->
     <button id="logout-btn" style="display: none;">Logout</button>
 
+    <button id="edit-event-btn" class="edit-event-btn">Edit Event</button>
+
     <script src="/js/admin.js"></script>
+
+    <!-- Language Switching Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSelect = document.getElementById('language-select');
+
+            // Function to handle language change
+            function changeLanguage(language) {
+                // Store the selected language in localStorage
+                localStorage.setItem('preferredLanguage', language);
+
+                // Set up path mapping for different languages
+                const languagePaths = {
+                    'de': '/',
+                    'en': '/locales/en.html',
+                    'tr': '/locales/tr.html',
+                    'ru': '/locales/ru.html',
+                    'ar': '/locales/ar.html',
+                    'einfach': '/locales/einfach.html'
+                };
+
+                // Get the base URL (remove any path)
+                const baseUrl = window.location.protocol + '//' + window.location.host;
+
+                // Navigate to the appropriate page based on language
+                window.location.href = baseUrl + languagePaths[language];
+            }
+
+            // Add event listener to the language selector
+            if (languageSelect) {
+                languageSelect.addEventListener('change', function() {
+                    changeLanguage(this.value);
+                });
+
+                // Set the initial value based on stored preference or current page
+                const currentLanguage = localStorage.getItem('preferredLanguage') || 'de';
+                languageSelect.value = currentLanguage;
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -31,13 +31,13 @@ HTML
             <div class="language-controls">
                 <label class="visually-hidden" for="language">Dili seçin</label>
                 <select id="language" onchange="changeLanguage(this.value);">
-                    <option value="index.html">Deutsch 🇩🇪</option>
-                    <option selected="selected" value="lang/tr.html">Türkçe 🇹🇷</option>
-                    <option value="lang/ar.html">العربية 🇸🇦</option>
-                    <option value="lang/ru.html">Русский 🇷🇺</option>
-                    <option value="lang/en.html">İngilizce 🇬🇧</option>
+                    <option value="de">Deutsch 🇩🇪</option>
+                    <option selected="selected" value="tr">Türkçe 🇹🇷</option>
+                    <option value="ar">العربية 🇸🇦</option>
+                    <option value="ru">Русский 🇷🇺</option>
+                    <option value="en">İngilizce 🇬🇧</option>
+                    <option value="einfach">Basit dil</option>
                 </select>
-                <a aria-label="Einfache Sprache" class="simple-language-btn" href="lang/einfach.html">Basit dil</a>
             </div>
         </header>
         <nav aria-label="Hauptnavigation" role="navigation">
@@ -146,6 +146,111 @@ HTML
                 <img class="section-arrow"
                 src="https://link.storjshare.io/raw/jx4zolve64kgmj27jdwq3fh4otka/geko/arrow.png" alt="Ok">
             </section>
+
+            <section id="event1">
+                <div class="section-title-container">
+                    <h2>Etkinlik 1</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Etkinlik 1 Resmi" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Etkinlik 1 için Katılım</h3>
+                    <form class="event-participation-form" data-event="1">
+                        <input type="text" name="name" placeholder="Adınız" required>
+                        <input type="email" name="email" placeholder="E-posta adresiniz (isteğe bağlı)">
+                        <textarea name="message" placeholder="Mesajınız (isteğe bağlı)"></textarea>
+                        <button type="submit">Katıl</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-1" style="display:none;">Katılımcıları Göster</button>
+                </div>
+            </section>
+            <div id="participants-modal-1" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="1">&times;</span>
+                    <h2>Etkinlik 1 Katılımcıları</h2>
+                    <div id="participants-list-1"></div>
+                </div>
+            </div>
+
+            <section id="event2">
+                <div class="section-title-container">
+                    <h2>Etkinlik 2</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Etkinlik 2 Resmi" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Etkinlik 2 için Katılım</h3>
+                    <form class="event-participation-form" data-event="2">
+                        <input type="text" name="name" placeholder="Adınız" required>
+                        <input type="email" name="email" placeholder="E-posta adresiniz (isteğe bağlı)">
+                        <textarea name="message" placeholder="Mesajınız (isteğe bağlı)"></textarea>
+                        <button type="submit">Katıl</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-2" style="display:none;">Katılımcıları Göster</button>
+                </div>
+            </section>
+            <div id="participants-modal-2" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="2">&times;</span>
+                    <h2>Etkinlik 2 Katılımcıları</h2>
+                    <div id="participants-list-2"></div>
+                </div>
+            </div>
+
+            <section id="event3">
+                <div class="section-title-container">
+                    <h2>Etkinlik 3</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Etkinlik 3 Resmi" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Etkinlik 3 için Katılım</h3>
+                    <form class="event-participation-form" data-event="3">
+                        <input type="text" name="name" placeholder="Adınız" required>
+                        <input type="email" name="email" placeholder="E-posta adresiniz (isteğe bağlı)">
+                        <textarea name="message" placeholder="Mesajınız (isteğe bağlı)"></textarea>
+                        <button type="submit">Katıl</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-3" style="display:none;">Katılımcıları Göster</button>
+                </div>
+            </section>
+            <div id="participants-modal-3" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="3">&times;</span>
+                    <h2>Etkinlik 3 Katılımcıları</h2>
+                    <div id="participants-list-3"></div>
+                </div>
+            </div>
+
+            <section id="event4">
+                <div class="section-title-container">
+                    <h2>Etkinlik 4</h2>
+                </div>
+                <div class="event-image-container">
+                    <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Etkinlik 4 Resmi" class="event-image">
+                </div>
+                <div class="event-participation">
+                    <h3>Etkinlik 4 için Katılım</h3>
+                    <form class="event-participation-form" data-event="4">
+                        <input type="text" name="name" placeholder="Adınız" required>
+                        <input type="email" name="email" placeholder="E-posta adresiniz (isteğe bağlı)">
+                        <textarea name="message" placeholder="Mesajınız (isteğe bağlı)"></textarea>
+                        <button type="submit">Katıl</button>
+                    </form>
+                    <button class="show-participants-btn" id="show-participants-btn-4" style="display:none;">Katılımcıları Göster</button>
+                </div>
+            </section>
+            <div id="participants-modal-4" class="modal">
+                <div class="modal-content">
+                    <span class="close participants-modal-close" data-modal="4">&times;</span>
+                    <h2>Etkinlik 4 Katılımcıları</h2>
+                    <div id="participants-list-4"></div>
+                </div>
+            </div>
+
             <section id="join">
                 <h2>Katılmak</h2>
                 <p>Biz nispeten homojen, beyaz, akademik olarak sosyalleşmiş bir grupuz ve mahalledeki insanların
@@ -222,11 +327,12 @@ HTML
     <script>
         // Language Configuration
         const languageConfig = {
-            'de': '/index.html',
-            'en': '/lang/en.html',
-            'tr': '/lang/tr.html',
-            'ru': '/lang/ru.html',
-            'ar': '/lang/ar.html'
+            'de': '../index.html',
+            'en': 'en.html',
+            'tr': 'tr.html',
+            'ru': 'ru.html',
+            'ar': 'ar.html',
+            'einfach': 'einfach.html'
         };
 
         function changeLanguage(targetLang) {
