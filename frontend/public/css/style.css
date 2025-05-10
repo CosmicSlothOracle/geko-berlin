@@ -1609,3 +1609,26 @@ section:hover .section-title-container h2 {
         max-height: 40vh;
     }
 }
+
+.static-logo-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    z-index: 3;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+}
+.static-logo-2.visible {
+    display: block;
+    opacity: 1;
+}
+@media (max-width: 768px) {
+    .static-logo-2 {
+        max-width: 300px;
+    }
+}
