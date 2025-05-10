@@ -150,6 +150,44 @@ header[role="banner"] {
     cursor: pointer;
 }
 
+.static-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.7s ease;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.static-logo.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.animated-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    z-index: 1;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+}
+
+.animated-logo.visible {
+    display: block;
+    opacity: 1;
+}
+
 .logo {
     max-width: 400px;
     height: auto;
@@ -243,7 +281,7 @@ header[role="banner"] {
         width: 300px;
     }
 
-    .logo {
+    .static-logo, .animated-logo {
         max-width: 300px;
     }
 }
