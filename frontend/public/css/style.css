@@ -156,7 +156,7 @@ header[role="banner"] {
     left: 0;
     width: 100%;
     height: auto;
-    max-width: 400px;
+    max-width: 300px;
     z-index: 2;
     opacity: 1;
     transition: opacity 0.7s ease;
@@ -278,11 +278,11 @@ header[role="banner"] {
     }
 
     .logo-wrapper {
-        width: 300px;
+        width: 225px;
     }
 
     .static-logo, .animated-logo {
-        max-width: 300px;
+        max-width: 225px;
     }
 }
 
@@ -753,9 +753,10 @@ section {
 }
 
 #edit-event-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
+    display: block;
+    width: auto;
+    margin: 0 auto 2rem auto;
+    position: static;
     background-color: var(--accent-color);
     color: white;
     border: none;
@@ -766,7 +767,6 @@ section {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     z-index: 100;
-    display: block;
 }
 
 #edit-event-btn:hover {
@@ -1616,19 +1616,20 @@ section:hover .section-title-container h2 {
     left: 0;
     width: 100%;
     height: auto;
-    max-width: 400px;
+    max-width: 300px;
     z-index: 3;
     opacity: 0;
-    display: none;
+    /* display: none; */
     transition: opacity 0.7s ease;
     pointer-events: none;
 }
 .static-logo-2.visible {
-    display: block;
+    /* display: block; */
     opacity: 1;
+    pointer-events: auto;
 }
 @media (max-width: 768px) {
     .static-logo-2 {
-        max-width: 300px;
+        max-width: 225px;
     }
 }
