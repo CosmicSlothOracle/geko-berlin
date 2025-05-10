@@ -28,8 +28,12 @@
     <div class="content-wrapper">
         <header role="banner">
             <div class="logo-container">
-                <img src="https://link.storjshare.io/raw/jxeghfjuomgqgf536ls26sw3tazq/geko/KOSGE%202.png"
-                alt="Logo Kollektiv für solidarische Gesundheit e.V." class="logo" />
+                <div class="logo-wrapper">
+                    <img src="https://link.storjshare.io/raw/jxeghfjuomgqgf536ls26sw3tazq/geko/KOSGE%202.png"
+                    alt="Logo Kollektiv für solidarische Gesundheit e.V." class="logo static-logo" />
+                    <img src="https://link.storjshare.io/raw/jxeghfjuomgqgf536ls26sw3tazq/geko/KOSGE-animated.gif"
+                    alt="Animated Logo" class="logo animated-logo" style="display: none;" />
+                </div>
             </div>
             <div class="header-controls">
                 <div class="language-selector">
@@ -340,6 +344,11 @@
             <p><strong data-translate="contact-org">Kollektiv für solidarische Gesundheit e.V.</strong></p>
             <p data-translate="contact-email">Email: <a href="mailto:info@kosge-berlin.de">info@kosge-berlin.de</a></p>
             <p data-translate="contact-phone">Telefon: <a href="tel:+4915207240947">+49 1520 7240947</a></p>
+            <div class="footer-links">
+                <a href="https://geko-berlin.de" target="_blank" rel="noopener noreferrer" data-translate="partner-geko">GeKo Berlin</a>
+                <a href="https://poliklinik-syndikat.org" target="_blank" rel="noopener noreferrer" data-translate="partner-poliklinik">Poliklinik-Syndikat</a>
+                <a href="#" id="privacy-policy-link" data-translate="privacy-policy-link">Datenschutz</a>
+            </div>
         </footer>
     </div>
     <!-- Events Container -->
@@ -409,7 +418,32 @@
 
     <button id="edit-event-btn" class="edit-event-btn">Edit Event</button>
 
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="privacy-policy">
+                <h2 data-translate="privacy-policy-title">Datenschutzerklärung</h2>
+                <p data-translate="privacy-policy-intro">Wir freuen uns über Ihr Interesse an unserem Verein. Der Schutz Ihrer personenbezogenen Daten ist uns ein wichtiges Anliegen.</p>
+
+                <h3 data-translate="privacy-policy-data-collection">1. Datenerhebung und -verarbeitung</h3>
+                <p data-translate="privacy-policy-data-collection-text">Wir erheben und verarbeiten personenbezogene Daten nur, wenn Sie uns diese freiwillig zur Verfügung stellen, zum Beispiel bei der Kontaktaufnahme oder der Anmeldung zu Veranstaltungen.</p>
+
+                <h3 data-translate="privacy-policy-data-usage">2. Verwendung der Daten</h3>
+                <p data-translate="privacy-policy-data-usage-text">Ihre Daten werden ausschließlich für die von Ihnen gewünschten Zwecke verwendet und nicht an Dritte weitergegeben.</p>
+
+                <h3 data-translate="privacy-policy-rights">3. Ihre Rechte</h3>
+                <p data-translate="privacy-policy-rights-text">Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten.</p>
+
+                <h3 data-translate="privacy-policy-contact">4. Kontakt</h3>
+                <p data-translate="privacy-policy-contact-text">Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Scripts -->
     <script src="/js/admin.js"></script>
+    <script src="js/main.js"></script>
 
     <!-- Language Switching Script -->
     <script>
