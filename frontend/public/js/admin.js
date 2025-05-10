@@ -2,6 +2,11 @@
 const ADMIN_USERNAME = 'admin';
 const ADMIN_PASSWORD = 'kosge2024!';
 
+// API URL Configuration
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:10000/api'
+    : 'https://kosge-backend.onrender.com/api';
+
 // DOM Elements
 const adminLoginModal = document.getElementById('admin-login-modal');
 const adminModal = document.getElementById('adminModal');
@@ -29,6 +34,54 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeEventsStorage();
     checkAdminStatus();
     loadEvents();
+    setupShowParticipantsButtons();
+    // Attach event listener to the static edit event button if it exists
+    const editEventBtn = document.getElementById('edit-event-btn');
+    if (editEventBtn) {
+        editEventBtn.addEventListener('click', () => {
+            if (!isAdminLoggedIn) {
+                adminLoginModal.style.display = 'block';
+                return;
+            }
+            // Auswahl der Event-Sektion (1-4)
+            let eventSection = prompt('Welches Event möchten Sie bearbeiten? (1-4)');
+            if (!eventSection || !['1','2','3','4'].includes(eventSection.trim())) {
+                alert('Ungültige Auswahl. Bitte geben Sie eine Zahl von 1 bis 4 ein.');
+                return;
+            }
+            eventForm.reset();
+            eventForm.dataset.eventSection = eventSection.trim();
+            adminModal.style.display = 'block';
+        });
+    }
+
+    // Intercept event participation form submissions and send to backend
+    document.querySelectorAll('.event-participation-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                name: form.elements['name'].value,
+                email: form.elements['email'].value,
+                message: form.elements['message'].value,
+                banner: '', // or any other field you want to send
+            };
+            fetch(`${API_BASE_URL}/participants`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.success) {
+                    alert('Teilnahme gespeichert!');
+                    form.reset();
+                } else {
+                    alert('Fehler beim Speichern: ' + (response.error || 'Unbekannter Fehler'));
+                }
+            })
+            .catch(() => alert('Netzwerkfehler beim Speichern!'));
+        });
+    });
 });
 
 function setupEventListeners() {
@@ -110,6 +163,11 @@ function updateUIForAdminStatus() {
     }
     if (addEventBtn) {
         addEventBtn.style.display = isAdminLoggedIn ? 'block' : 'none';
+    }
+    // Show/hide show-participants buttons
+    for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`show-participants-btn-${i}`);
+        if (btn) btn.style.display = isAdminLoggedIn ? 'block' : 'none';
     }
 }
 
@@ -396,4 +454,59 @@ if (eventEditForm) {
             eventEditMessage.textContent = 'Fehler beim Speichern.';
         }
     });
+}
+
+// --- Show Participants Modal Logic ---
+function setupShowParticipantsButtons() {
+    for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`show-participants-btn-${i}`);
+        const modal = document.getElementById(`participants-modal-${i}`);
+        const closeBtn = modal ? modal.querySelector('.participants-modal-close') : null;
+        if (btn && modal && closeBtn) {
+            btn.addEventListener('click', () => {
+                fetchAndShowParticipants(i);
+            });
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+    }
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        for (let i = 1; i <= 4; i++) {
+            const modal = document.getElementById(`participants-modal-${i}`);
+            if (modal && e.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    });
+}
+
+async function fetchAndShowParticipants(eventNumber) {
+    const modal = document.getElementById(`participants-modal-${eventNumber}`);
+    const listDiv = document.getElementById(`participants-list-${eventNumber}`);
+    if (!modal || !listDiv) return;
+    listDiv.innerHTML = '<p>Lade Teilnehmer...</p>';
+    modal.style.display = 'block';
+    try {
+        const res = await fetch(`${API_BASE_URL}/participants`);
+        const data = await res.json();
+        if (!data.participants) throw new Error('Keine Teilnehmer gefunden');
+        // Filter by banner/section
+        const filtered = data.participants.filter(p => (p.banner || '1') === String(eventNumber));
+        if (filtered.length === 0) {
+            listDiv.innerHTML = '<p>Keine Teilnehmer für dieses Event.</p>';
+        } else {
+            listDiv.innerHTML = filtered.map(p => `
+                <div class="participant-item${p.message ? ' has-message' : ''}${p.email ? ' has-email' : ''}">
+                    <strong>${p.name}</strong>
+                    ${p.email ? `<div><span class='detail-label'>E-Mail:</span> ${p.email}</div>` : ''}
+                    ${p.message ? `<div><span class='detail-label'>Nachricht:</span> ${p.message}</div>` : ''}
+                    ${p.timestamp ? `<div><small>${new Date(p.timestamp).toLocaleString('de-DE')}</small></div>` : ''}
+                </div>
+            `).join('');
+        }
+    } catch (e) {
+        listDiv.innerHTML = `<p>Fehler beim Laden: ${e.message}</p>`;
+    }
 }

@@ -1,10 +1,12 @@
 // API Configuration
 const config = {
-    // Use local backend URL
-    API_BASE_URL: 'http://localhost:10000',
+    // Dynamically set API URL based on environment
+    API_BASE_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:10000/api'
+        : 'https://kosge-backend.onrender.com/api',
     MAX_RETRIES: 3,
     RETRY_DELAY: 1000,
-    DEBUG: true // Enable debug logging
+    DEBUG: false // Disable debug logging in production
 };
 
 // Debug logging

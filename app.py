@@ -219,10 +219,8 @@ def uploaded_file(filename):
         logger.info(f'File exists, size: {os.path.getsize(file_path)} bytes')
         response = send_from_directory(UPLOAD_FOLDER, filename)
 
-        # Add CORS headers
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        response.headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+        # Use the add_cors_headers function
+        response = add_cors_headers(response)
 
         # Set content type for PNG files
         if filename.lower().endswith('.png'):
@@ -260,12 +258,7 @@ def get_participants():
     try:
         participants = load_participants()
         response = jsonify({'participants': participants})
-        # Add CORS headers
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add(
-            'Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Content-Type', 'application/json')
+        # Use the after_request handler to add CORS headers
         return response, 200
     except Exception as e:
         logger.error(f'Error getting participants: {str(e)}')
@@ -274,10 +267,18 @@ def get_participants():
 
 @app.route('/api/participants', methods=['OPTIONS'])
 def participants_options():
+    return create_options_response()
+
+
+# Reusable function for OPTIONS response
+def create_options_response():
     response = make_response()
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    response.headers.add("Access-Control-Allow-Origin",
+                         request.headers.get('Origin'))
+    response.headers.add("Access-Control-Allow-Methods",
+                         "GET, POST, DELETE, OPTIONS, PUT")
+    response.headers.add("Access-Control-Allow-Headers",
+                         "Content-Type, Authorization")
     return response
 
 
