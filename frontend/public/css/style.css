@@ -145,16 +145,30 @@ header[role="banner"] {
 
 .logo-wrapper {
     position: relative;
-    width: 200px;
+    width: 400px;
     height: auto;
     cursor: pointer;
 }
 
 .logo {
-    max-width: 200px;
+    max-width: 400px;
     height: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
+    animation: none;
+}
+
+.logo.animated {
+    animation: logoAnimation 2s infinite alternate;
+}
+
+@keyframes logoAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
 
 .logo:hover {
@@ -226,11 +240,11 @@ header[role="banner"] {
     }
 
     .logo-wrapper {
-        width: 150px;
+        width: 300px;
     }
 
     .logo {
-        max-width: 150px;
+        max-width: 300px;
     }
 }
 
@@ -702,8 +716,8 @@ section {
 
 #edit-event-btn {
     position: fixed;
-    bottom: 80px; /* Just above the Add Event button */
-    right: 20px;
+    bottom: 20px;
+    left: 20px;
     background-color: var(--accent-color);
     color: white;
     border: none;
@@ -713,7 +727,7 @@ section {
     font-size: 16px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    z-index: 101;
+    z-index: 100;
     display: block;
 }
 
@@ -721,6 +735,22 @@ section {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove or override global .edit-event-btn conflicting styles for floating button */
+.edit-event-btn {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: inherit;
+    box-shadow: none;
+    transition: none;
 }
 
 .event-participation {
@@ -1526,5 +1556,18 @@ section:hover .section-title-container h2 {
 
     footer {
         margin-bottom: var(--mobile-nav-height);
+    }
+}
+
+.modal-content .privacy-policy {
+    max-height: 60vh;
+    overflow-y: auto;
+    /* Smooth scrolling for better UX */
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+    .modal-content .privacy-policy {
+        max-height: 40vh;
     }
 }
