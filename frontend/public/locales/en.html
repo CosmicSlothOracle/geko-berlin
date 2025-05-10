@@ -267,7 +267,28 @@
             <p><strong>Collective for Solidarity Health e.V.</strong></p>
             <p>Email: <a href="mailto:info@kosge-berlin.de">info@kosge-berlin.de</a></p>
             <p>Telephone: <a href="tel:+4915207240947">+49 1520 7240947</a></p>
+            <div class="footer-links">
+                <a href="https://geko-berlin.de/" target="_blank">geko-berlin.de</a> |
+                <a href="https://www.poliklinik-syndikat.org" target="_blank">poliklinik-syndikat.org</a>
+                <button id="privacy-btn" class="footer-btn">Datenschutz</button>
+            </div>
+            <div class="footer-logo-gif">
+                <img src="https://link.storjshare.io/raw/jxeghfjuomgqgf536ls26sw3tazq/geko/KOSGE%202.png" alt="Logo Kollektiv für solidarische Gesundheit e.V." class="logo" id="footer-logo">
+                <img src="https://i.postimg.cc/4dh0x6bD/Logokosge.gif" alt="Logo GIF" id="footer-logo-gif" style="display:none;max-width:120px;">
+            </div>
         </footer>
+        <div id="privacy-modal" class="modal" style="display:none;">
+            <div class="modal-content" style="max-height:70vh;overflow-y:auto;">
+                <span class="close" id="close-privacy-modal">&times;</span>
+                <h2>Datenschutzhinweis</h2>
+                <p>Wir als Verein erklären hiermit ausdrücklich, dass wir die aus der DSGVO erforderlichen Datenschutzrichtlinien einhalten wollen. Wir beziehen uns dabei insbesondere auf die Artikel<br>
+Art. 6 - EU-DSGVO - Rechtmäßigkeit der Verarbeitung - Abs. 1 a<br>Art. 13 - EU-DSGVO - Informationspflicht bei Erhebung<br>Art. 15 - EU-DSGVO - (Ihr) Recht auf Auskunft<br>Art. 16 - EU-DSGVO - (Ihr) Recht auf Berichtigung<br>Art. 17 - EU-DSGVO - (Ihr) Recht auf Berichtigung und Löschung<br>Art. 18 - EU-DSGVO - (Ihr) Recht auf Einschränkung der Verarbeitung<br>Art. 77 - EU-DSGVO - Recht auf Beschwerde bei einer Aufsichtsbehörde</p>
+<p>Das heißt für uns im Besonderen:<br>Kollektiv für solidarische Gesundheit e. V. nutzt für die Durchführung von Videokonferenzen den Dienst "Jitsi Meet". Jitsi Meet ist ein Open-Source-Tool, das eine verschlüsselte Übertragung der Inhalte ermöglicht. Sofern Jitsi Meet auf unseren eigenen Servern gehostet wird, erfolgt keine Datenweitergabe an Dritte. Bei der Nutzung werden ausschließlich die für die Durchführung der Konferenz notwendigen Daten verarbeitet (z. B. Name, IP-Adresse, Audio-/Videodaten). Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer effektiven Kommunikation). Eine Aufzeichnung der Sitzungen erfolgt nicht, es sei denn, dies wird vorher ausdrücklich angekündigt und eine Einwilligung eingeholt.</p>
+<p>Für die Teilnahme an digitalen Veranstaltungen können Ihre Daten vom Kollektiv für solidarische Gesundheit e.V. auch auf einem lokalen System in einer Kontaktdatenbank oder in Listen für die vereinsinterne Nutzung zur Planung und Umsetzung dieser Veranstaltungen abgelegt werden. Wir werden Ihre Daten innerhalb unseres vom Vorstand eingesetzten Bearbeitungs-Teams austauschen, damit wir Ihre Interessen am Kollektiv für solidarische Gesundheit e.V. optimal bedienen können.<br>Zu diesem Zweck werden, wenn von Ihnen angegeben<br>- Name, Vorname, Namenszusätze (= Name)<br>Kontaktadresse, Region<br>- ggfs. Institution/Organisation und Position/Aufgabe<br>- Telefon<br>- eMail-Adresse<br>- Recht am Bild gespeichert.</p>
+<p>Wir geben Ihnen auf Wunsch ausführlich und personenbezogen die Daten bekannt, die wir von Ihnen persönlich speichern. Ihre vom Kollektiv für solidarische Gesundheit e. V. gespeicherten Daten können nur mit Ihrer ausdrücklichen Zustimmung, zweckgebunden außerhalb des Teams weitergegeben werden. Ihre Zustimmung kann jederzeit von Ihnen widerrufen werden. Sie haben jederzeit das Recht, dass Ihre vom Kollektiv für solidarische Gesundheit e.V. gespeicherte Daten auf Ihre Aufforderung gelöscht oder geändert werden. Für ans Kollektiv für solidarische Gesundheit e.V. gegebene Daten (Telefon, Mailadresse, Freigaben, Recht am Bild) erfolgt die Löschung auf Aufforderung innerhalb von 4 Wochen.</p>
+<p>Für Kontakt zum Verein, hier im Besonderen Löschung / Veränderung Ihrer gespeicherten Daten steht ihnen die Vereinsverwaltung zur Verfügung. Diese erreichen sie:<br>Kollektiv für solidarische Gesundheit e.V.<br>T.: ‪+49 1520 7240947‬<br>M.: info@kosge-berlin.de</p>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -340,6 +361,48 @@
             // Change slide every 4 seconds
             setInterval(nextSlide, 4000);
         });
+    </script>
+    <script>
+    // Datenschutz Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var privacyBtn = document.getElementById('privacy-btn');
+        var privacyModal = document.getElementById('privacy-modal');
+        var closePrivacy = document.getElementById('close-privacy-modal');
+        if(privacyBtn && privacyModal && closePrivacy) {
+            privacyBtn.onclick = function() { privacyModal.style.display = 'block'; };
+            closePrivacy.onclick = function() { privacyModal.style.display = 'none'; };
+            window.onclick = function(event) { if(event.target == privacyModal) privacyModal.style.display = 'none'; };
+        }
+        // Logo GIF Hover/Click
+        var logo = document.getElementById('footer-logo');
+        var gif = document.getElementById('footer-logo-gif');
+        if(logo && gif) {
+            var playing = false;
+            var gifUrl = gif.src;
+            logo.addEventListener('mouseenter', function() {
+                gif.style.display = 'inline-block';
+                logo.style.display = 'none';
+                gif.src = gifUrl + '?' + new Date().getTime(); // restart gif
+                playing = true;
+            });
+            gif.addEventListener('mouseleave', function() {
+                gif.style.display = 'none';
+                logo.style.display = 'inline-block';
+                playing = false;
+            });
+            logo.addEventListener('click', function() {
+                gif.style.display = 'inline-block';
+                logo.style.display = 'none';
+                gif.src = gifUrl + '?' + new Date().getTime();
+                playing = true;
+            });
+            gif.addEventListener('click', function() {
+                gif.style.display = 'none';
+                logo.style.display = 'inline-block';
+                playing = false;
+            });
+        }
+    });
     </script>
 </body>
 
