@@ -154,27 +154,11 @@ header[role="banner"] {
     max-width: 200px;
     height: auto;
     object-fit: contain;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
+    transition: transform 0.3s ease;
 }
 
-.static-logo {
-    opacity: 1;
-}
-
-.animated-logo {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.logo-wrapper:hover .static-logo {
-    opacity: 0;
-}
-
-.logo-wrapper:hover .animated-logo {
-    opacity: 1;
+.logo:hover {
+    transform: scale(1.05);
 }
 
 /* Language Selector Styling */
@@ -433,7 +417,7 @@ h1 {
   Footer
 ----------------------------------- */
 footer {
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);  /* Purple background */
     padding: 2rem 1rem;
     text-align: center;
     position: relative;
@@ -442,12 +426,23 @@ footer {
 }
 
 footer h2 {
-    color: var(--text-color);
+    color: white;  /* White text */
     margin-bottom: 1rem;
 }
 
 footer p {
     margin-bottom: 0.5rem;
+    color: white;  /* White text */
+}
+
+footer a {
+    color: white !important;  /* White links */
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+footer a:hover {
+    opacity: 0.8;  /* Subtle hover effect */
 }
 
 .footer-links {
@@ -457,11 +452,11 @@ footer p {
     gap: 2rem;
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);  /* Light border */
 }
 
 .footer-links a {
-    color: var(--text-color);
+    color: white;  /* White text */
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -470,9 +465,20 @@ footer p {
 }
 
 .footer-links a:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--accent-color);
-    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.1);  /* Light background on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    footer {
+        margin-bottom: var(--mobile-nav-height);
+        padding: 1.5rem 1rem;
+    }
 }
 
 /* -----------------------------------
