@@ -1,38 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
     const staticLogo = document.querySelector('.static-logo');
-    const animatedLogo = document.querySelector('.animated-logo');
     const staticLogo2 = document.querySelector('.static-logo-2');
     let isAnimating = false;
-    // Duration of the GIF in ms (adjust to actual GIF length)
-    const GIF_DURATION = 2000;
 
-    if (staticLogo && animatedLogo && staticLogo2) {
+    if (staticLogo && staticLogo2) {
         staticLogo2.style.display = 'none';
         staticLogo2.classList.remove('visible');
+        staticLogo.style.opacity = 1;
+        staticLogo2.style.opacity = 0;
+
         staticLogo.addEventListener('click', function() {
             if (isAnimating) return;
             isAnimating = true;
-            // Fade out static logo
             staticLogo.classList.add('fade-out');
-            // Show and fade in animated logo
-            animatedLogo.classList.add('visible');
-            // Reset GIF by re-assigning src
-            const src = animatedLogo.src;
-            animatedLogo.style.display = 'none';
-            animatedLogo.offsetHeight; // force reflow
-            animatedLogo.src = '';
-            animatedLogo.src = src;
-            animatedLogo.style.display = 'block';
-            // After GIF duration, show static logo 2 with fade-in
             setTimeout(function() {
-                animatedLogo.classList.remove('visible');
-                animatedLogo.style.display = 'none';
+                staticLogo.style.display = 'none';
                 staticLogo2.style.display = 'block';
                 setTimeout(function() {
                     staticLogo2.classList.add('visible');
                     isAnimating = false;
-                }, 10); // allow display:block to apply before opacity
-            }, GIF_DURATION);
+                }, 10);
+            }, 700); // match CSS transition
+        });
+
+        staticLogo2.addEventListener('click', function() {
+            if (isAnimating) return;
+            isAnimating = true;
+            staticLogo2.classList.remove('visible');
+            setTimeout(function() {
+                staticLogo2.style.display = 'none';
+                staticLogo.style.display = 'block';
+                setTimeout(function() {
+                    staticLogo.classList.remove('fade-out');
+                    isAnimating = false;
+                }, 10);
+            }, 700); // match CSS transition
         });
     }
 });
