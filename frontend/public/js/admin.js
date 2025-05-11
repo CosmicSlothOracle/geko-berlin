@@ -214,19 +214,13 @@ async function handleEventSubmit(e) {
 async function loadEvents() {
     let events = [];
     try {
-        const eventsData = localStorage.getItem('events');
-        events = eventsData ? JSON.parse(eventsData) : [];
-        if (!Array.isArray(events)) {
-            console.error('Events data is not an array, resetting to empty array');
-            events = [];
-            localStorage.setItem('events', '[]');
-        }
+        const res = await fetch(API_BASE_URL + '/events');
+        const data = await res.json();
+        events = data.events || [];
     } catch (error) {
-        console.error('Error parsing events:', error);
+        console.error('Fehler beim Laden der Events:', error);
         events = [];
-        localStorage.setItem('events', '[]');
     }
-
     // Events in die jeweiligen Sektionen einfügen
     for (let i = 1; i <= 4; i++) {
         const section = document.getElementById(`event${i}`);
@@ -236,6 +230,9 @@ async function loadEvents() {
                 const imgUrl = event.imageUrl && event.imageUrl.trim() !== '' ? event.imageUrl : 'https://i.postimg.cc/L5fgbxQJ/image.png';
                 section.querySelector('.event-image').src = imgUrl;
                 section.querySelector('h2').textContent = event.title || `Event ${i}`;
+                // Entferne alte Details, falls vorhanden
+                const oldDetails = section.querySelector('.event-details');
+                if (oldDetails) oldDetails.remove();
                 section.querySelector('.event-participation').insertAdjacentHTML('beforebegin', `
                     <div class="event-details">
                         <p><strong>Date:</strong> ${formatDate(event.date)}</p>
@@ -248,7 +245,6 @@ async function loadEvents() {
             }
         }
     }
-
     // Events-Container für Übersicht (optional)
     const eventsContainer = document.getElementById('events-container');
     if (eventsContainer) {
@@ -264,16 +260,12 @@ async function loadEvents() {
             </div>
         `).join('');
     }
+    window._eventsCache = events; // Für andere Funktionen
 }
 
 function openEditEventModal(eventSection) {
-    let events = [];
-    try {
-        const eventsData = localStorage.getItem('events');
-        events = eventsData ? JSON.parse(eventsData) : [];
-    } catch (error) { events = []; }
+    const events = window._eventsCache || [];
     const event = events.find(e => e.section === String(eventSection));
-    // Felder vorausfüllen
     document.getElementById('event-edit-title').value = event ? event.title : '';
     document.getElementById('event-edit-date').value = event ? event.date : '';
     document.getElementById('event-edit-time').value = event ? event.time : '';
@@ -287,22 +279,16 @@ function openEditEventModal(eventSection) {
     } else {
         preview.style.display = 'none';
     }
-    // Speichere die aktuelle Section im Modal
     document.getElementById('event-edit-form').dataset.eventSection = eventSection;
+    document.getElementById('event-edit-form').dataset.eventId = event ? event.id : '';
     openModal('event-edit-modal');
 }
 
-function handleEventEditSubmit(e) {
+async function handleEventEditSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const eventSection = form.dataset.eventSection;
-    let events = [];
-    try {
-        const eventsData = localStorage.getItem('events');
-        events = eventsData ? JSON.parse(eventsData) : [];
-    } catch (error) { events = []; }
-    const eventIndex = events.findIndex(ev => ev.section === String(eventSection));
-    // Pflichtfeld-Validierung
+    const eventId = form.dataset.eventId;
     const title = document.getElementById('event-edit-title').value.trim();
     const date = document.getElementById('event-edit-date').value;
     const time = document.getElementById('event-edit-time').value;
@@ -313,7 +299,6 @@ function handleEventEditSubmit(e) {
         document.getElementById('event-edit-message').textContent = 'Bitte alle Felder ausfüllen!';
         return;
     }
-    // Event überschreiben
     const updatedEvent = {
         section: String(eventSection),
         title,
@@ -323,15 +308,18 @@ function handleEventEditSubmit(e) {
         description,
         imageUrl
     };
-    if (eventIndex !== -1) {
-        events[eventIndex] = { ...events[eventIndex], ...updatedEvent };
-    } else {
-        // Falls noch kein Event existiert, neu anlegen (optional)
-        events.push(updatedEvent);
+    try {
+        const res = await fetch(`${API_BASE_URL}/events/${eventId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedEvent)
+        });
+        if (!res.ok) throw new Error('Fehler beim Speichern!');
+        closeModal('event-edit-modal');
+        loadEvents();
+    } catch (err) {
+        document.getElementById('event-edit-message').textContent = 'Fehler beim Speichern!';
     }
-    localStorage.setItem('events', JSON.stringify(events));
-    closeModal('event-edit-modal');
-    loadEvents();
 }
 
 function formatDate(dateString) {
@@ -382,13 +370,9 @@ function initializeEventsStorage() {
 }
 
 // Bild-Edit-Modal öffnen
-function openImageEditModal(eventId) {
-    let events = [];
-    try {
-        const eventsData = localStorage.getItem('events');
-        events = eventsData ? JSON.parse(eventsData) : [];
-    } catch (error) { events = []; }
-    const event = events.find(e => e.id.toString() === eventId);
+async function openImageEditModal(eventId) {
+    const events = window._eventsCache || [];
+    const event = events.find(e => e.id && e.id.toString() === eventId);
     if (event) {
         editingImageEventId = eventId;
         eventEditModal.style.display = 'block';
@@ -408,24 +392,23 @@ if (eventEditUrlInput) {
 
 // Bild-URL speichern
 if (eventEditForm) {
-    eventEditForm.addEventListener('submit', function(e) {
+    eventEditForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         if (!editingImageEventId) return;
-        let events = [];
+        const imageUrl = eventEditUrlInput.value;
         try {
-            const eventsData = localStorage.getItem('events');
-            events = eventsData ? JSON.parse(eventsData) : [];
-        } catch (error) { events = []; }
-        const eventIndex = events.findIndex(e => e.id.toString() === editingImageEventId);
-        if (eventIndex !== -1) {
-            events[eventIndex].imageUrl = eventEditUrlInput.value;
-            localStorage.setItem('events', JSON.stringify(events));
+            const res = await fetch(`${API_BASE_URL}/events/${editingImageEventId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ imageUrl })
+            });
+            if (!res.ok) throw new Error('Fehler beim Speichern!');
             eventEditMessage.textContent = 'Bild-URL gespeichert!';
-            eventEditPreview.src = eventEditUrlInput.value;
-            eventEditCurrentUrl.textContent = eventEditUrlInput.value;
+            eventEditPreview.src = imageUrl;
+            eventEditCurrentUrl.textContent = imageUrl;
             loadEvents();
             setTimeout(() => { eventEditModal.style.display = 'none'; }, 1000);
-        } else {
+        } catch (err) {
             eventEditMessage.textContent = 'Fehler beim Speichern.';
         }
     });
