@@ -775,20 +775,25 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Remove or override global .edit-event-btn conflicting styles for floating button */
+/* Edit-Event-Button Styling (konsistent mit Teilnehmeranzeige) */
 .edit-event-btn {
-    position: static !important;
-    top: auto !important;
-    right: auto !important;
-    background-color: inherit;
-    color: inherit;
+    background-color: var(--accent-color);
+    color: #fff;
     border: none;
-    padding: 0;
-    border-radius: 0;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: inherit;
-    box-shadow: none;
-    transition: none;
+    margin: 0.5rem 0 1rem 0;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    display: block;
+    width: fit-content;
+}
+.edit-event-btn:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
 .event-participation {
@@ -1490,25 +1495,6 @@ section:hover .section-title-container h2 {
 }
 
 .edit-event-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.edit-event-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-/* Add Event Button */
-.add-event-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -1524,7 +1510,7 @@ section:hover .section-title-container h2 {
     z-index: 100;
 }
 
-.add-event-btn:hover {
+.edit-event-btn:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

@@ -217,6 +217,7 @@
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 1 Image" class="event-image">
                 </div>
+                <button class="edit-event-btn" data-id="1">Event bearbeiten</button>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 1</h3>
                     <form class="event-participation-form" data-event="1">
@@ -243,6 +244,7 @@
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 2 Image" class="event-image">
                 </div>
+                <button class="edit-event-btn" data-id="2">Event bearbeiten</button>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 2</h3>
                     <form class="event-participation-form" data-event="2">
@@ -269,6 +271,7 @@
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 3 Image" class="event-image">
                 </div>
+                <button class="edit-event-btn" data-id="3">Event bearbeiten</button>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 3</h3>
                     <form class="event-participation-form" data-event="3">
@@ -295,6 +298,7 @@
                 <div class="event-image-container">
                     <img src="https://i.postimg.cc/L5fgbxQJ/image.png" alt="Event 4 Image" class="event-image">
                 </div>
+                <button class="edit-event-btn" data-id="4">Event bearbeiten</button>
                 <div class="event-participation">
                     <h3>Teilnahme für Event 4</h3>
                     <form class="event-participation-form" data-event="4">
@@ -318,15 +322,34 @@
             <div id="event-edit-modal" class="modal">
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
-                    <h2>Event Bild bearbeiten</h2>
-                    <div class="current-url-container">
-                        <label for="event-edit-url">Aktuelle Bild-URL:</label>
-                        <p id="current-url"></p>
-                    </div>
+                    <h2>Event bearbeiten</h2>
                     <form id="event-edit-form">
-                        <input type="text" id="event-edit-url" placeholder="Neue Bild-URL" required>
-                        <div class="preview-container">
-                            <img id="event-edit-preview" src="" alt="Vorschau">
+                        <div class="form-group">
+                            <label for="event-edit-title">Titel</label>
+                            <input type="text" id="event-edit-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-edit-date">Datum</label>
+                            <input type="date" id="event-edit-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-edit-time">Uhrzeit</label>
+                            <input type="time" id="event-edit-time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-edit-location">Ort</label>
+                            <input type="text" id="event-edit-location" name="location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-edit-description">Beschreibung</label>
+                            <textarea id="event-edit-description" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-edit-image-url">Bild-URL</label>
+                            <input type="text" id="event-edit-image-url" name="imageUrl" placeholder="https://..." />
+                            <div class="preview-container">
+                                <img id="event-edit-preview" src="" alt="Vorschau" style="max-width:100%;height:auto;display:none;" />
+                            </div>
                         </div>
                         <div class="modal-actions">
                             <button type="submit">Speichern</button>
@@ -337,7 +360,6 @@
                 </div>
             </div>
         </main>
-        <button id="edit-event-btn" class="edit-event-btn">Edit Event</button>
         <footer id="contact" role="contentinfo">
             <h2 data-translate="contact-title">Kontakt & Impressum</h2>
             <p><strong data-translate="contact-org">Kollektiv für solidarische Gesundheit e.V.</strong></p>
@@ -354,9 +376,6 @@
     <div id="events-container" class="events-container">
         <!-- Events will be loaded here dynamically -->
     </div>
-
-    <!-- Add Event Button (only visible to admin) -->
-    <button id="add-event-btn" class="add-event-btn" style="display: none;">Add Event</button>
 
     <!-- Admin Login Modal -->
     <div id="admin-login-modal" class="modal">

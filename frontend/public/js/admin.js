@@ -35,53 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAdminStatus();
     loadEvents();
     setupShowParticipantsButtons();
-    // Attach event listener to the static edit event button if it exists
-    const editEventBtn = document.getElementById('edit-event-btn');
-    if (editEventBtn) {
-        editEventBtn.addEventListener('click', () => {
-            if (!isAdminLoggedIn) {
-                adminLoginModal.style.display = 'block';
-                return;
-            }
-            // Auswahl der Event-Sektion (1-4)
-            let eventSection = prompt('Welches Event möchten Sie bearbeiten? (1-4)');
-            if (!eventSection || !['1','2','3','4'].includes(eventSection.trim())) {
-                alert('Ungültige Auswahl. Bitte geben Sie eine Zahl von 1 bis 4 ein.');
-                return;
-            }
-            eventForm.reset();
-            eventForm.dataset.eventSection = eventSection.trim();
-            adminModal.style.display = 'block';
-        });
-    }
-
-    // Intercept event participation form submissions and send to backend
-    document.querySelectorAll('.event-participation-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const data = {
-                name: form.elements['name'].value,
-                email: form.elements['email'].value,
-                message: form.elements['message'].value,
-                banner: '', // or any other field you want to send
-            };
-            fetch(`${API_BASE_URL}/participants`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
-            .then(response => {
-                if (response.success) {
-                    alert('Teilnahme gespeichert!');
-                    form.reset();
-                } else {
-                    alert('Fehler beim Speichern: ' + (response.error || 'Unbekannter Fehler'));
-                }
-            })
-            .catch(() => alert('Netzwerkfehler beim Speichern!'));
-        });
-    });
+    // Entferne Floating-Button-Logik
 });
 
 function setupEventListeners() {
@@ -107,24 +61,17 @@ function setupEventListeners() {
         logoutBtn.addEventListener('click', handleLogout);
     }
 
-    // Add Event Button
-    if (addEventBtn) {
-        addEventBtn.addEventListener('click', () => {
-            if (!isAdminLoggedIn) {
-                adminLoginModal.style.display = 'block';
-                return;
-            }
-            // Auswahl der Event-Sektion (1-4)
-            let eventSection = prompt('Welches Event möchten Sie bearbeiten? (1-4)');
-            if (!eventSection || !['1','2','3','4'].includes(eventSection.trim())) {
-                alert('Ungültige Auswahl. Bitte geben Sie eine Zahl von 1 bis 4 ein.');
-                return;
-            }
-            eventForm.reset();
-            eventForm.dataset.eventSection = eventSection.trim();
-            adminModal.style.display = 'block';
-        });
-    }
+    // Event delegation für edit-event-btn
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('edit-event-btn')) {
+            const eventSection = e.target.dataset.id;
+            openEditEventModal(eventSection);
+        }
+        if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal-cancel')) {
+            closeModal('event-edit-modal');
+            document.getElementById('event-edit-message').textContent = '';
+        }
+    });
 
     // Window click to close modals
     window.addEventListener('click', (e) => {
@@ -133,23 +80,23 @@ function setupEventListeners() {
         }
     });
 
-    // Event delegation for edit buttons
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('edit-event-btn')) {
-            handleEditEvent(e.target.dataset.id);
-        }
-        if (e.target.classList.contains('edit-image-btn')) {
-            const eventId = e.target.dataset.id;
-            openImageEditModal(eventId);
-        }
-        if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal-cancel')) {
-            eventEditModal.style.display = 'none';
-            eventEditMessage.textContent = '';
-            eventEditPreview.src = '';
-            eventEditUrlInput.value = '';
-            eventEditCurrentUrl.textContent = '';
-        }
-    });
+    // Modal-Formular-Submit
+    if (eventEditForm) {
+        eventEditForm.addEventListener('submit', handleEventEditSubmit);
+    }
+
+    // Bild-URL Vorschau
+    const eventEditImageUrl = document.getElementById('event-edit-image-url');
+    if (eventEditImageUrl && eventEditPreview) {
+        eventEditImageUrl.addEventListener('input', () => {
+            if (eventEditImageUrl.value) {
+                eventEditPreview.src = eventEditImageUrl.value;
+                eventEditPreview.style.display = 'block';
+            } else {
+                eventEditPreview.style.display = 'none';
+            }
+        });
+    }
 }
 
 function checkAdminStatus() {
@@ -216,8 +163,6 @@ async function handleEventSubmit(e) {
     try {
         const eventsData = localStorage.getItem('events');
         events = eventsData ? JSON.parse(eventsData) : [];
-
-        // Validate that events is actually an array
         if (!Array.isArray(events)) {
             console.error('Events data is not an array, resetting to empty array');
             events = [];
@@ -229,38 +174,25 @@ async function handleEventSubmit(e) {
         localStorage.setItem('events', '[]');
     }
 
+    // Prüfe, ob ein bestehendes Event bearbeitet wird
     const editingEventId = eventForm.dataset.editingEventId;
-
     if (editingEventId) {
-        // Update existing event
-        const eventIndex = events.findIndex(e => e.id.toString() === editingEventId);
+        const eventIndex = events.findIndex(e => e.id && e.id.toString() === editingEventId);
         if (eventIndex !== -1) {
-            events[eventIndex] = {
-                ...events[eventIndex],
-                ...eventData,
-                lastModified: new Date().toISOString()
-            };
+            // Überschreibe nur die Werte, ID bleibt erhalten
+            events[eventIndex] = { ...events[eventIndex], ...eventData };
         }
+        // Nach dem Speichern zurücksetzen
+        delete eventForm.dataset.editingEventId;
     } else {
-        // Add new event
-        events.push({
-            ...eventData,
-            id: Date.now(),
-            timestamp: new Date().toISOString()
-        });
+        // Neues Event anlegen (nur wenn kein Bearbeiten)
+        const newId = Date.now().toString();
+        events.push({ id: newId, ...eventData });
     }
 
-    try {
-        localStorage.setItem('events', JSON.stringify(events));
-        eventForm.reset();
-        delete eventForm.dataset.editingEventId;
-        adminModal.style.display = 'none';
-        alert('Event saved successfully!');
-        await loadEvents();
-    } catch (error) {
-        console.error('Error saving events:', error);
-        alert('Error saving event. Please try again.');
-    }
+    localStorage.setItem('events', JSON.stringify(events));
+    adminModal.style.display = 'none';
+    loadEvents();
 }
 
 async function loadEvents() {
@@ -318,45 +250,72 @@ async function loadEvents() {
     }
 }
 
-function handleEditEvent(eventId) {
-    if (!isAdminLoggedIn) {
-        adminLoginModal.style.display = 'block';
-        return;
-    }
-
+function openEditEventModal(eventSection) {
     let events = [];
     try {
         const eventsData = localStorage.getItem('events');
         events = eventsData ? JSON.parse(eventsData) : [];
+    } catch (error) { events = []; }
+    const event = events.find(e => e.section === String(eventSection));
+    // Felder vorausfüllen
+    document.getElementById('event-edit-title').value = event ? event.title : '';
+    document.getElementById('event-edit-date').value = event ? event.date : '';
+    document.getElementById('event-edit-time').value = event ? event.time : '';
+    document.getElementById('event-edit-location').value = event ? event.location : '';
+    document.getElementById('event-edit-description').value = event ? event.description : '';
+    document.getElementById('event-edit-image-url').value = event ? event.imageUrl : '';
+    const preview = document.getElementById('event-edit-preview');
+    if (event && event.imageUrl) {
+        preview.src = event.imageUrl;
+        preview.style.display = 'block';
+    } else {
+        preview.style.display = 'none';
+    }
+    // Speichere die aktuelle Section im Modal
+    document.getElementById('event-edit-form').dataset.eventSection = eventSection;
+    openModal('event-edit-modal');
+}
 
-        // Validate that events is actually an array
-        if (!Array.isArray(events)) {
-            console.error('Events data is not an array, resetting to empty array');
-            events = [];
-            localStorage.setItem('events', '[]');
-            return;
-        }
-    } catch (error) {
-        console.error('Error parsing events:', error);
-        events = [];
-        localStorage.setItem('events', '[]');
+function handleEventEditSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const eventSection = form.dataset.eventSection;
+    let events = [];
+    try {
+        const eventsData = localStorage.getItem('events');
+        events = eventsData ? JSON.parse(eventsData) : [];
+    } catch (error) { events = []; }
+    const eventIndex = events.findIndex(ev => ev.section === String(eventSection));
+    // Pflichtfeld-Validierung
+    const title = document.getElementById('event-edit-title').value.trim();
+    const date = document.getElementById('event-edit-date').value;
+    const time = document.getElementById('event-edit-time').value;
+    const location = document.getElementById('event-edit-location').value.trim();
+    const description = document.getElementById('event-edit-description').value.trim();
+    const imageUrl = document.getElementById('event-edit-image-url').value.trim();
+    if (!title || !date || !time || !location || !description) {
+        document.getElementById('event-edit-message').textContent = 'Bitte alle Felder ausfüllen!';
         return;
     }
-
-    const event = events.find(e => e.id.toString() === eventId);
-
-    if (event) {
-        document.getElementById('eventTitle').value = event.title;
-        document.getElementById('eventDate').value = event.date;
-        document.getElementById('eventTime').value = event.time;
-        document.getElementById('eventLocation').value = event.location;
-        document.getElementById('eventDescription').value = event.description;
-        if(document.getElementById('eventImageUrl')) {
-            document.getElementById('eventImageUrl').value = event.imageUrl || '';
-        }
-        eventForm.dataset.editingEventId = eventId;
-        adminModal.style.display = 'block';
+    // Event überschreiben
+    const updatedEvent = {
+        section: String(eventSection),
+        title,
+        date,
+        time,
+        location,
+        description,
+        imageUrl
+    };
+    if (eventIndex !== -1) {
+        events[eventIndex] = { ...events[eventIndex], ...updatedEvent };
+    } else {
+        // Falls noch kein Event existiert, neu anlegen (optional)
+        events.push(updatedEvent);
     }
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal('event-edit-modal');
+    loadEvents();
 }
 
 function formatDate(dateString) {
