@@ -1619,3 +1619,22 @@ section:hover .section-title-container h2 {
         max-width: 225px;
     }
 }
+
+.admin-login-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.admin-login-btn:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+}

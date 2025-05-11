@@ -35,7 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAdminStatus();
     loadEvents();
     setupShowParticipantsButtons();
-    // Entferne Floating-Button-Logik
+    // Admin-Login-Button-Handler
+    const adminLoginBtn = document.getElementById('admin-login-btn');
+    if (adminLoginBtn) {
+        adminLoginBtn.addEventListener('click', () => {
+            document.getElementById('admin-login-modal').style.display = 'block';
+        });
+    }
+    // Initial: Admin-Only-Buttons verstecken
+    setAdminOnlyVisibility(isAdminLoggedIn);
 });
 
 function setupEventListeners() {
@@ -116,6 +124,14 @@ function updateUIForAdminStatus() {
         const btn = document.getElementById(`show-participants-btn-${i}`);
         if (btn) btn.style.display = isAdminLoggedIn ? 'block' : 'none';
     }
+    // Admin-Only-Buttons sichtbar/unsichtbar
+    setAdminOnlyVisibility(isAdminLoggedIn);
+}
+
+function setAdminOnlyVisibility(isVisible) {
+    document.querySelectorAll('.admin-only').forEach(btn => {
+        btn.style.display = isVisible ? 'block' : 'none';
+    });
 }
 
 function handleAdminLogin(e) {
