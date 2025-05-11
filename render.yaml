@@ -3,18 +3,20 @@ services:
     name: kosge-backend
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && python app.py
     envVars:
       - key: PORT
         value: 10000
-    rootDir: backend
+      - key: FLASK_ENV
+        value: production
+    rootDir: .
     autoDeploy: true
 
   - type: web
     name: kosge-frontend
     env: static
     buildCommand: ""
-    staticPublishPath: public
-    rootDir: frontend
+    staticPublishPath: frontend/public
+    rootDir: .
     autoDeploy: true
