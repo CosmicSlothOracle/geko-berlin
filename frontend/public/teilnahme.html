@@ -152,6 +152,7 @@
     </style>
 </head>
 <body>
+    <script src="js/config.js"></script>
     <div class="form-container">
         <h2>Teilnahmeformular</h2>
         <div id="banner-preview" class="banner-preview">
@@ -197,53 +198,37 @@
         const selectedBanner = document.getElementById('selected-banner');
         const bannerTitle = document.getElementById('banner-title');
 
-        // Load banners from localStorage
+        // Load default banners
         function loadBanners() {
-            const banners = JSON.parse(localStorage.getItem('banners') || '[]');
-
-            // Clear existing options (except the default one)
+            // Only use default banners
             while (bannerSelect.options.length > 1) {
                 bannerSelect.remove(1);
             }
-
-            // Add options for each banner
-            banners.forEach(banner => {
+            const defaultBanners = [
+                {
+                    id: "1",
+                    url: "https://link.storjshare.io/raw/jug4nxwemak2ghsh2f7y4pizhhpa/geko/selec17.jpeg"
+                },
+                {
+                    id: "2",
+                    url: "https://link.storjshare.io/raw/juxxxawxv2vxznf45f63qkpi5syq/geko/selec6.jpeg"
+                },
+                {
+                    id: "3",
+                    url: "https://link.storjshare.io/raw/jua2vpfy32xr4zjznyeze3mpwnvq/geko/selec8.jpeg"
+                },
+                {
+                    id: "4",
+                    url: "https://link.storjshare.io/raw/jw5avo4flyazwn7rh4yqslrg24bq/geko/Selec1.jpeg"
+                }
+            ];
+            defaultBanners.forEach(banner => {
                 const option = document.createElement('option');
                 option.value = banner.id;
                 option.textContent = `Banner ${banner.id}`;
                 option.dataset.url = banner.url;
                 bannerSelect.appendChild(option);
             });
-
-            // If we have no banners, add a default option
-            if (banners.length === 0) {
-                const defaultBanners = [
-                    {
-                        id: "1",
-                        url: "https://link.storjshare.io/raw/jug4nxwemak2ghsh2f7y4pizhhpa/geko/selec17.jpeg"
-                    },
-                    {
-                        id: "2",
-                        url: "https://link.storjshare.io/raw/juxxxawxv2vxznf45f63qkpi5syq/geko/selec6.jpeg"
-                    },
-                    {
-                        id: "3",
-                        url: "https://link.storjshare.io/raw/jua2vpfy32xr4zjznyeze3mpwnvq/geko/selec8.jpeg"
-                    },
-                    {
-                        id: "4",
-                        url: "https://link.storjshare.io/raw/jw5avo4flyazwn7rh4yqslrg24bq/geko/Selec1.jpeg"
-                    }
-                ];
-
-                defaultBanners.forEach(banner => {
-                    const option = document.createElement('option');
-                    option.value = banner.id;
-                    option.textContent = `Banner ${banner.id}`;
-                    option.dataset.url = banner.url;
-                    bannerSelect.appendChild(option);
-                });
-            }
         }
 
         // Show banner preview when selected
@@ -262,8 +247,8 @@
             }
         });
 
-        // Form submission
-        form.addEventListener('submit', function(e) {
+        // Form submission via fetch to backend API
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const name = nameInput.value.trim();
@@ -282,27 +267,43 @@
                 return;
             }
 
-            // Get existing participants
-            const participants = JSON.parse(localStorage.getItem('participants') || '[]');
-
-            // Add new participant
-            participants.push({
+            // Prepare data
+            const participantData = {
                 name: name,
                 email: email,
                 message: message,
-                banner: banner,
-                timestamp: new Date().toISOString()
-            });
+                banner: banner
+            };
 
-            // Save to localStorage
-            localStorage.setItem('participants', JSON.stringify(participants));
+            // Determine API URL
+            let apiBaseUrl = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) ? window.APP_CONFIG.API_BASE_URL : 'https://kosge-backend.onrender.com/api';
+            const apiUrl = `${apiBaseUrl}/participants`;
 
-            // Clear form
-            form.reset();
-            bannerPreview.style.display = 'none';
+            // Disable button to prevent double submit
+            submitBtn.disabled = true;
+            showMessage('Wird gesendet...', '');
 
-            // Show success message
-            showMessage('Teilnahme erfolgreich übermittelt!', 'success');
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(participantData)
+                });
+                const result = await response.json();
+                if (response.ok && result.success) {
+                    form.reset();
+                    bannerPreview.style.display = 'none';
+                    showMessage('Teilnahme erfolgreich an den Server übermittelt!', 'success');
+                } else {
+                    showMessage(result.error || 'Fehler beim Speichern der Teilnahme.', 'error');
+                }
+            } catch (err) {
+                showMessage('Netzwerkfehler oder Server nicht erreichbar.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+            }
         });
 
         // Helper to show messages

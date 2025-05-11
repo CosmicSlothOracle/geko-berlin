@@ -35,6 +35,7 @@ content_manager = ContentManager(
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
 PARTICIPANTS_FILE = os.path.join(BASE_DIR, 'participants.json')
+EVENTS_FILE = os.path.join(BASE_DIR, 'events.json')
 
 logger.info(f'Base directory: {BASE_DIR}')
 logger.info(f'Upload folder: {UPLOAD_FOLDER}')
@@ -62,6 +63,24 @@ if os.path.exists(PARTICIPANTS_FILE):
             logger.error(f'Error reading participants file: {e}')
 else:
     logger.warning('Participants file does not exist')
+
+# Create empty events file if it doesn't exist
+if not os.path.exists(EVENTS_FILE):
+    with open(EVENTS_FILE, 'w', encoding='utf-8') as f:
+        json.dump([], f)
+
+# Add debug logging for events file
+logger.info(f'Events file path: {EVENTS_FILE}')
+if os.path.exists(EVENTS_FILE):
+    logger.info('Events file exists')
+    with open(EVENTS_FILE, 'r', encoding='utf-8') as f:
+        try:
+            events = json.load(f)
+            logger.info(f'Number of events: {len(events)}')
+        except json.JSONDecodeError as e:
+            logger.error(f'Error reading events file: {e}')
+else:
+    logger.warning('Events file does not exist')
 
 # Dummy-User (später DB)
 DUMMY_USER = {
@@ -116,6 +135,21 @@ def load_participants():
 def save_participants(participants):
     with open(PARTICIPANTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(participants, f, ensure_ascii=False, indent=2)
+
+
+def load_events():
+    if not os.path.exists(EVENTS_FILE):
+        return []
+    with open(EVENTS_FILE, 'r', encoding='utf-8') as f:
+        try:
+            return json.load(f)
+        except Exception:
+            return []
+
+
+def save_events(events):
+    with open(EVENTS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(events, f, ensure_ascii=False, indent=2)
 
 
 @app.route('/api/health', methods=['GET'])
@@ -349,6 +383,120 @@ def delete_content(section):
     return jsonify({'error': 'Content not found'}), 404
 
 
+@app.route('/api/events', methods=['GET'])
+def get_events():
+    try:
+        events = load_events()
+        return jsonify({'events': events}), 200
+    except Exception as e:
+        logger.error(f'Error getting events: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/events', methods=['POST'])
+def add_event():
+    try:
+        data = request.get_json()
+        events = load_events()
+        # Generate new unique ID
+        new_id = str(int(max([int(e.get('id', 0)) for e in events] + [0])) + 1)
+        data['id'] = new_id
+        events.append(data)
+        save_events(events)
+        return jsonify({'success': True, 'event': data}), 201
+    except Exception as e:
+        logger.error(f'Error adding event: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/events/<event_id>', methods=['PUT'])
+def update_event(event_id):
+    try:
+        data = request.get_json()
+        events = load_events()
+        updated = False
+        for i, event in enumerate(events):
+            if str(event.get('id')) == str(event_id):
+                events[i].update(data)
+                updated = True
+                break
+        if not updated:
+            return jsonify({'error': 'Event not found'}), 404
+        save_events(events)
+        return jsonify({'success': True, 'event': events[i]}), 200
+    except Exception as e:
+        logger.error(f'Error updating event: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/events/<event_id>', methods=['DELETE'])
+def delete_event(event_id):
+    try:
+        events = load_events()
+        new_events = [e for e in events if str(e.get('id')) != str(event_id)]
+        if len(new_events) == len(events):
+            return jsonify({'error': 'Event not found'}), 404
+        save_events(new_events)
+        return jsonify({'success': True}), 200
+    except Exception as e:
+        logger.error(f'Error deleting event: {str(e)}')
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/health/events', methods=['GET'])
+def health_events():
+    try:
+        events = load_events()
+        if not isinstance(events, list):
+            raise ValueError('Events data is not a list')
+        return jsonify({
+            'status': 'ok',
+            'event_count': len(events)
+        }), 200
+    except Exception as e:
+        logger.error(f'Events health check failed: {str(e)}')
+        return jsonify({
+            'status': 'error',
+            'error': str(e)
+        }), 500
+
+
+@app.route('/api/health/participants', methods=['GET'])
+def health_participants():
+    try:
+        participants = load_participants()
+        if not isinstance(participants, list):
+            raise ValueError('Participants data is not a list')
+        return jsonify({
+            'status': 'ok',
+            'participant_count': len(participants)
+        }), 200
+    except Exception as e:
+        logger.error(f'Participants health check failed: {str(e)}')
+        return jsonify({
+            'status': 'error',
+            'error': str(e)
+        }), 500
+
+
+@app.route('/api/health/banners', methods=['GET'])
+def health_banners():
+    try:
+        if not os.path.exists(UPLOAD_FOLDER):
+            raise FileNotFoundError('Upload folder does not exist')
+        files = [f for f in os.listdir(UPLOAD_FOLDER) if allowed_file(f)]
+        return jsonify({
+            'status': 'ok',
+            'banner_count': len(files)
+        }), 200
+    except Exception as e:
+        logger.error(f'Banners health check failed: {str(e)}')
+        return jsonify({
+            'status': 'error',
+            'error': str(e)
+        }), 500
+
+
 # Add a root route that redirects to frontend or shows API status
 @app.route('/')
 def index():
@@ -366,7 +514,8 @@ def index():
             'login': '/api/login',
             'banners': '/api/banners',
             'participants': '/api/participants',
-            'cms': '/api/cms/content/<section>'
+            'cms': '/api/cms/content/<section>',
+            'events': '/api/events'
         }
     }), 200
 
