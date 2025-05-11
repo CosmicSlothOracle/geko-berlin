@@ -9,6 +9,7 @@ deep-translator==1.11.4
 python-magic==0.4.27
 PyYAML==6.0.1
 i18n==0.2
+bcrypt==4.1.2
 
 # Test dependencies
 pytest==7.4.4
