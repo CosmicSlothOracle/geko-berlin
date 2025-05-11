@@ -112,49 +112,23 @@ For any questions or issues, please contact:
 
 ## 🚀 Deployment
 
-### Frontend (Netlify)
+### Frontend & Backend (Render)
 
 1. Push your code to [https://github.com/CosmicSlothOracle/Kosg.git](https://github.com/CosmicSlothOracle/Kosg.git).
-2. Sign up/log in to [Netlify](https://netlify.com).
-3. Click "Add new site" → "Import an existing project".
-4. Connect your GitHub and select the `Kosg` repo.
-5. Set **publish directory** to `frontend/public`.
-6. Deploy! Netlify will auto-deploy on every push.
-7. The `/frontend/public/_redirects` file proxies `/api/*` to your backend, so you can use `/api/...` in your frontend code without CORS issues.
-
-### Backend (Render)
-
-1. Sign up/log in to [Render](https://render.com).
-2. Click "New +" → "Web Service".
-3. Connect your GitHub and select the `Kosg` repo.
-4. Set **root directory** to `backend`.
-5. **Build command:** `pip install -r requirements.txt`
-6. **Start command:** `python app.py`
-7. **Port:** `10000` (or as set in your code)
-8. Deploy! Render will auto-deploy on every push.
-
-## 🛠 Local Development
-
-### Frontend
-
-```bash
-cd frontend/public
-python -m http.server 8000
-# Visit http://localhost:8000
-```
-
-### Backend
-
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate  # On Windows
-pip install -r requirements.txt
-python app.py
-# API runs on http://localhost:10000
-```
+2. Sign up/log in to [Render](https://render.com).
+3. Click "New +" → "Web Service" for each service (backend and frontend).
+4. For the **backend**:
+   - Set **root directory** to `backend`.
+   - **Build command:** `pip install -r requirements.txt`
+   - **Start command:** `python app.py`
+   - **Port:** `10000` (or as set in your code)
+5. For the **frontend**:
+   - Set **root directory** to `frontend`.
+   - **Static publish path:** `public`
+   - No build command needed for static files.
+6. Deploy! Render will auto-deploy on every push to main.
 
 ---
 
-- All API calls from the frontend should use `/api/...` (Netlify will proxy to backend in production).
+- All API calls from the frontend should use the full backend URL as set in `frontend/public/js/config.js`.
 - For local dev, update API URLs in frontend to `http://localhost:10000/api/...` or use a proxy.
